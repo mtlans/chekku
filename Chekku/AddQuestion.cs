@@ -22,28 +22,10 @@ namespace Chekku
         {
             InitializeComponent();
             code = generateQuestionCode();
-            string start = rtbEquation.Rtf.Length.ToString();
-            lblX.Text = start;
         }
 
    
-        public AddQuestion(string q, string c1, string c2, string c3, string tags, string code, int hasEq, int hasIm, string rtf)
-        {
-            InitializeComponent();
-            code = generateQuestionCode();
-            string start = rtbEquation.Rtf.Length.ToString();
-            lblX.Text = start;
-            hasEquation = hasEq;
-            hasImage = hasIm;
-            txtQuestion.Text = q;
-            txtCh1.Text = c1;
-            txtCh2.Text = c2 ;
-            txtCh3.Text = c3;
-            txtTags.Text = tags;
-            this.code = code;
-            setPicture(rtf);
-
-        }
+        
 
         private void setPicture(string ext) //EQUATION TO
         {
@@ -132,18 +114,7 @@ namespace Chekku
                             //  sqlCommand.Parameters["@Image"].Value = //convert file stream
                         }
 
-                        sqlCommand.Parameters.Add(new SqlParameter("@hasEquation", SqlDbType.Bit));
-                        sqlCommand.Parameters["@hasEquation"].Value = hasEquation;
-
-                        if (hasEquation == 0)
-                        {
-                            sqlCommand.Parameters.Add(new SqlParameter("@Equation", DBNull.Value));
-                        }
-                        else
-                        {
-                            sqlCommand.Parameters.Add(new SqlParameter("@Equation", SqlDbType.NVarChar, 8000));
-                            sqlCommand.Parameters["@Equation"].Value = rtbEquation.Rtf.ToString();
-                        }
+                       
 
                         //sqlCommand.Parameters.Add(new SqlParameter("@Tags", SqlDbType.VarChar, 50));
                         //sqlCommand.Parameters["@Tags"].Value = cmbYear.Text;
@@ -283,24 +254,6 @@ namespace Chekku
             return builder.ToString();
         }
 
-        private void BtnEquate_Click(object sender, EventArgs e)
-        {
-            rtbEquation.Visible = true;
-            lblEq.Visible = true;
-            btnEquate.Visible = false;
-            btnCancelEq.Visible = true;
-            hasEquation = 1;
-        }
-
-        private void BtnCancelEq_Click(object sender, EventArgs e)
-        {
-            rtbEquation.Visible = false;
-            lblEq.Visible = false;
-            btnEquate.Visible = true;
-            btnCancelEq.Visible = false;
-            hasEquation = 0;
-        }
-
 
         string origfile;
         private void BtnImage_Click(object sender, EventArgs e)
@@ -330,12 +283,6 @@ namespace Chekku
             lblimg.Text = pathstring;
             System.IO.File.Copy(origfile, pathstring);
             return pathstring;
-        }
-
-        private void RtbEquation_TextChanged(object sender, EventArgs e)
-        {
-            string start = rtbEquation.Rtf.Length.ToString();
-            lblX.Text = start;
         }
 
         private void BtnTest_Click(object sender, EventArgs e)
@@ -400,19 +347,7 @@ namespace Chekku
             }          
         }
 
-        private void BtnGraphic_Click(object sender, EventArgs e)
-        {
-            string q, c1, c2, c3, tags, code;
-            q = txtQuestion.Text;
-            c1 = txtCh1.Text;
-            c2 = txtCh2.Text;
-            c3 = txtCh3.Text;
-            tags = txtTags.Text;
-            code = this.code;
-            Form ques = new AddQuestionGraphics(q, c1, c2, c3, tags, code);
-            ques.ShowDialog();
-            this.Close();
-        }
+       
 
         //end
 

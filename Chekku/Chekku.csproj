@@ -93,12 +93,6 @@
     <Compile Include="AddQuestion.Designer.cs">
       <DependentUpon>AddQuestion.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddQuestionGraphics.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddQuestionGraphics.Designer.cs">
-      <DependentUpon>AddQuestionGraphics.cs</DependentUpon>
-    </Compile>
     <Compile Include="Add_Section.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,12 +119,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Q_Equation.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Q_Equation.Designer.cs">
-      <DependentUpon>Q_Equation.cs</DependentUpon>
-    </Compile>
     <Compile Include="Section.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,9 +159,6 @@
     <EmbeddedResource Include="AddQuestion.resx">
       <DependentUpon>AddQuestion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddQuestionGraphics.resx">
-      <DependentUpon>AddQuestionGraphics.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Add_Section.resx">
       <DependentUpon>Add_Section.cs</DependentUpon>
     </EmbeddedResource>
@@ -191,9 +176,6 @@
     </Compile>
     <EmbeddedResource Include="Questions.resx">
       <DependentUpon>Questions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Q_Equation.resx">
-      <DependentUpon>Q_Equation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Section.resx">
       <DependentUpon>Section.cs</DependentUpon>

@@ -33,13 +33,9 @@
             this.txtCh1 = new System.Windows.Forms.RichTextBox();
             this.txtAnswer = new System.Windows.Forms.RichTextBox();
             this.txtQuestion = new System.Windows.Forms.RichTextBox();
-            this.btnEquate = new System.Windows.Forms.Button();
             this.btnImage = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
-            this.rtbEquation = new System.Windows.Forms.RichTextBox();
-            this.lblEq = new System.Windows.Forms.Label();
-            this.btnCancelEq = new System.Windows.Forms.Button();
             this.pbox = new System.Windows.Forms.PictureBox();
             this.lblimg = new System.Windows.Forms.Label();
             this.lblX = new System.Windows.Forms.Label();
@@ -47,7 +43,6 @@
             this.txtTags = new System.Windows.Forms.TextBox();
             this.btnTest = new System.Windows.Forms.Button();
             this.lblTags = new System.Windows.Forms.Label();
-            this.btnGraphic = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,16 +86,6 @@
             this.txtQuestion.TabIndex = 41;
             this.txtQuestion.Text = "";
             // 
-            // btnEquate
-            // 
-            this.btnEquate.Location = new System.Drawing.Point(645, 139);
-            this.btnEquate.Name = "btnEquate";
-            this.btnEquate.Size = new System.Drawing.Size(425, 34);
-            this.btnEquate.TabIndex = 46;
-            this.btnEquate.Text = "Add Equation";
-            this.btnEquate.UseVisualStyleBackColor = true;
-            this.btnEquate.Click += new System.EventHandler(this.BtnEquate_Click);
-            // 
             // btnImage
             // 
             this.btnImage.Location = new System.Drawing.Point(645, 423);
@@ -129,37 +114,6 @@
             this.btnBack.TabIndex = 51;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
-            // 
-            // rtbEquation
-            // 
-            this.rtbEquation.Location = new System.Drawing.Point(645, 69);
-            this.rtbEquation.Name = "rtbEquation";
-            this.rtbEquation.Size = new System.Drawing.Size(425, 63);
-            this.rtbEquation.TabIndex = 52;
-            this.rtbEquation.Text = "";
-            this.rtbEquation.Visible = false;
-            this.rtbEquation.TextChanged += new System.EventHandler(this.RtbEquation_TextChanged);
-            // 
-            // lblEq
-            // 
-            this.lblEq.AutoSize = true;
-            this.lblEq.Location = new System.Drawing.Point(642, 46);
-            this.lblEq.Name = "lblEq";
-            this.lblEq.Size = new System.Drawing.Size(172, 17);
-            this.lblEq.TabIndex = 54;
-            this.lblEq.Text = "Paste your equation here:";
-            this.lblEq.Visible = false;
-            // 
-            // btnCancelEq
-            // 
-            this.btnCancelEq.Location = new System.Drawing.Point(645, 139);
-            this.btnCancelEq.Name = "btnCancelEq";
-            this.btnCancelEq.Size = new System.Drawing.Size(425, 34);
-            this.btnCancelEq.TabIndex = 55;
-            this.btnCancelEq.Text = "Cancel";
-            this.btnCancelEq.UseVisualStyleBackColor = true;
-            this.btnCancelEq.Visible = false;
-            this.btnCancelEq.Click += new System.EventHandler(this.BtnCancelEq_Click);
             // 
             // pbox
             // 
@@ -224,22 +178,11 @@
             this.lblTags.TabIndex = 62;
             this.lblTags.Text = "label2";
             // 
-            // btnGraphic
-            // 
-            this.btnGraphic.Location = new System.Drawing.Point(645, 12);
-            this.btnGraphic.Name = "btnGraphic";
-            this.btnGraphic.Size = new System.Drawing.Size(425, 31);
-            this.btnGraphic.TabIndex = 63;
-            this.btnGraphic.Text = "Add Graphic";
-            this.btnGraphic.UseVisualStyleBackColor = true;
-            this.btnGraphic.Click += new System.EventHandler(this.BtnGraphic_Click);
-            // 
             // AddQuestion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1093, 689);
-            this.Controls.Add(this.btnGraphic);
             this.Controls.Add(this.lblTags);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.txtTags);
@@ -247,13 +190,9 @@
             this.Controls.Add(this.lblX);
             this.Controls.Add(this.lblimg);
             this.Controls.Add(this.pbox);
-            this.Controls.Add(this.btnCancelEq);
-            this.Controls.Add(this.lblEq);
-            this.Controls.Add(this.rtbEquation);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnImage);
-            this.Controls.Add(this.btnEquate);
             this.Controls.Add(this.txtCh3);
             this.Controls.Add(this.txtCh2);
             this.Controls.Add(this.txtCh1);
@@ -274,13 +213,9 @@
         private System.Windows.Forms.RichTextBox txtCh1;
         private System.Windows.Forms.RichTextBox txtAnswer;
         private System.Windows.Forms.RichTextBox txtQuestion;
-        private System.Windows.Forms.Button btnEquate;
         private System.Windows.Forms.Button btnImage;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.RichTextBox rtbEquation;
-        private System.Windows.Forms.Label lblEq;
-        private System.Windows.Forms.Button btnCancelEq;
         private System.Windows.Forms.PictureBox pbox;
         private System.Windows.Forms.Label lblimg;
         private System.Windows.Forms.Label lblX;
@@ -288,6 +223,5 @@
         private System.Windows.Forms.TextBox txtTags;
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.Label lblTags;
-        private System.Windows.Forms.Button btnGraphic;
     }
 }

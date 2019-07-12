@@ -242,6 +242,20 @@ namespace Chekku
             }
         }
 
+        private void Filter2()
+        {
+            string toSearch = cmbSelect2.SelectedItem.ToString();
+            toSearch = toSearch.Replace(" ", String.Empty);
+            if (toSearch.Equals("StudentName"))
+            {
+                (dgvViewEnrolled.DataSource as DataTable).DefaultView.RowFilter = string.Format("StudentName LIKE '{0}%'", txtSearch2.Text);
+            }
+            else
+            {
+                (dgvViewEnrolled.DataSource as DataTable).DefaultView.RowFilter = string.Format("StudentNo LIKE '{0}%'", txtSearch2.Text);
+            }
+        }
+
         private void Enroll()
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
@@ -308,7 +322,20 @@ namespace Chekku
             }
         }
 
-        
+        private void CmbSelect2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtSearch2.Clear();
+            Filter2();
+            SelectFirst();
+        }
+
+        private void TxtSearch2_TextChanged(object sender, EventArgs e)
+        {
+            Filter2();
+            SelectFirst();
+        }
+
+
 
 
 

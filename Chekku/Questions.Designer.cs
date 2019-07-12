@@ -35,19 +35,18 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.txtQuestion = new System.Windows.Forms.RichTextBox();
-            this.txtEquation = new System.Windows.Forms.RichTextBox();
-            this.btnEditEq = new System.Windows.Forms.Button();
             this.txtAnswer = new System.Windows.Forms.RichTextBox();
             this.txtCh1 = new System.Windows.Forms.RichTextBox();
             this.txtCh2 = new System.Windows.Forms.RichTextBox();
             this.txtCh3 = new System.Windows.Forms.RichTextBox();
-            this.btnSaveChanges = new System.Windows.Forms.Button();
             this.pbImage = new System.Windows.Forms.PictureBox();
             this.lblQcode = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtTags = new System.Windows.Forms.TextBox();
             this.btnEditPic = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.lblText = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
@@ -70,7 +69,9 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvView.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvView.Location = new System.Drawing.Point(194, 111);
+            this.dgvView.MultiSelect = false;
             this.dgvView.Name = "dgvView";
+            this.dgvView.ReadOnly = true;
             this.dgvView.RowHeadersWidth = 51;
             this.dgvView.RowTemplate.Height = 24;
             this.dgvView.Size = new System.Drawing.Size(396, 471);
@@ -123,34 +124,17 @@
             this.txtQuestion.Enabled = false;
             this.txtQuestion.Location = new System.Drawing.Point(600, 111);
             this.txtQuestion.Name = "txtQuestion";
-            this.txtQuestion.Size = new System.Drawing.Size(496, 127);
+            this.txtQuestion.Size = new System.Drawing.Size(684, 127);
             this.txtQuestion.TabIndex = 34;
             this.txtQuestion.Text = "";
             this.txtQuestion.TextChanged += new System.EventHandler(this.TxtQuestion_TextChanged);
-            // 
-            // txtEquation
-            // 
-            this.txtEquation.Location = new System.Drawing.Point(1102, 111);
-            this.txtEquation.Name = "txtEquation";
-            this.txtEquation.Size = new System.Drawing.Size(244, 90);
-            this.txtEquation.TabIndex = 35;
-            this.txtEquation.Text = "";
-            // 
-            // btnEditEq
-            // 
-            this.btnEditEq.Location = new System.Drawing.Point(1103, 210);
-            this.btnEditEq.Name = "btnEditEq";
-            this.btnEditEq.Size = new System.Drawing.Size(243, 28);
-            this.btnEditEq.TabIndex = 36;
-            this.btnEditEq.Text = "Add/Edit Equation";
-            this.btnEditEq.UseVisualStyleBackColor = true;
             // 
             // txtAnswer
             // 
             this.txtAnswer.Enabled = false;
             this.txtAnswer.Location = new System.Drawing.Point(600, 274);
             this.txtAnswer.Name = "txtAnswer";
-            this.txtAnswer.Size = new System.Drawing.Size(496, 57);
+            this.txtAnswer.Size = new System.Drawing.Size(413, 57);
             this.txtAnswer.TabIndex = 37;
             this.txtAnswer.Text = "";
             // 
@@ -159,7 +143,7 @@
             this.txtCh1.Enabled = false;
             this.txtCh1.Location = new System.Drawing.Point(600, 337);
             this.txtCh1.Name = "txtCh1";
-            this.txtCh1.Size = new System.Drawing.Size(496, 57);
+            this.txtCh1.Size = new System.Drawing.Size(413, 57);
             this.txtCh1.TabIndex = 38;
             this.txtCh1.Text = "";
             // 
@@ -168,7 +152,7 @@
             this.txtCh2.Enabled = false;
             this.txtCh2.Location = new System.Drawing.Point(600, 400);
             this.txtCh2.Name = "txtCh2";
-            this.txtCh2.Size = new System.Drawing.Size(496, 57);
+            this.txtCh2.Size = new System.Drawing.Size(413, 57);
             this.txtCh2.TabIndex = 39;
             this.txtCh2.Text = "";
             // 
@@ -177,23 +161,13 @@
             this.txtCh3.Enabled = false;
             this.txtCh3.Location = new System.Drawing.Point(600, 463);
             this.txtCh3.Name = "txtCh3";
-            this.txtCh3.Size = new System.Drawing.Size(496, 57);
+            this.txtCh3.Size = new System.Drawing.Size(413, 57);
             this.txtCh3.TabIndex = 40;
             this.txtCh3.Text = "";
             // 
-            // btnSaveChanges
-            // 
-            this.btnSaveChanges.Location = new System.Drawing.Point(1151, 600);
-            this.btnSaveChanges.Name = "btnSaveChanges";
-            this.btnSaveChanges.Size = new System.Drawing.Size(195, 67);
-            this.btnSaveChanges.TabIndex = 42;
-            this.btnSaveChanges.Text = "pdf";
-            this.btnSaveChanges.UseVisualStyleBackColor = true;
-            this.btnSaveChanges.Click += new System.EventHandler(this.Btnpdf_Click);
-            // 
             // pbImage
             // 
-            this.pbImage.Location = new System.Drawing.Point(1103, 274);
+            this.pbImage.Location = new System.Drawing.Point(1041, 274);
             this.pbImage.Name = "pbImage";
             this.pbImage.Size = new System.Drawing.Size(243, 157);
             this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -230,36 +204,56 @@
             this.txtTags.Enabled = false;
             this.txtTags.Location = new System.Drawing.Point(603, 560);
             this.txtTags.Name = "txtTags";
-            this.txtTags.Size = new System.Drawing.Size(743, 22);
+            this.txtTags.Size = new System.Drawing.Size(681, 22);
             this.txtTags.TabIndex = 47;
             // 
             // btnEditPic
             // 
-            this.btnEditPic.Location = new System.Drawing.Point(1103, 437);
+            this.btnEditPic.Location = new System.Drawing.Point(1041, 437);
             this.btnEditPic.Name = "btnEditPic";
             this.btnEditPic.Size = new System.Drawing.Size(243, 83);
             this.btnEditPic.TabIndex = 48;
             this.btnEditPic.Text = "Add/Edit Image";
             this.btnEditPic.UseVisualStyleBackColor = true;
+            this.btnEditPic.Visible = false;
+            this.btnEditPic.Click += new System.EventHandler(this.BtnEditPic_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(1041, 600);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(243, 67);
+            this.btnSave.TabIndex = 49;
+            this.btnSave.Text = "Save Changes";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            // 
+            // lblText
+            // 
+            this.lblText.AutoSize = true;
+            this.lblText.Location = new System.Drawing.Point(839, 35);
+            this.lblText.Name = "lblText";
+            this.lblText.Size = new System.Drawing.Size(46, 17);
+            this.lblText.TabIndex = 50;
+            this.lblText.Text = "label1";
             // 
             // Questions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1378, 679);
+            this.ClientSize = new System.Drawing.Size(1309, 679);
+            this.Controls.Add(this.lblText);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnEditPic);
             this.Controls.Add(this.txtTags);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.lblQcode);
             this.Controls.Add(this.pbImage);
-            this.Controls.Add(this.btnSaveChanges);
             this.Controls.Add(this.txtCh3);
             this.Controls.Add(this.txtCh2);
             this.Controls.Add(this.txtCh1);
             this.Controls.Add(this.txtAnswer);
-            this.Controls.Add(this.btnEditEq);
-            this.Controls.Add(this.txtEquation);
             this.Controls.Add(this.txtQuestion);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnDelete);
@@ -284,18 +278,17 @@
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.RichTextBox txtQuestion;
-        private System.Windows.Forms.RichTextBox txtEquation;
-        private System.Windows.Forms.Button btnEditEq;
         private System.Windows.Forms.RichTextBox txtAnswer;
         private System.Windows.Forms.RichTextBox txtCh1;
         private System.Windows.Forms.RichTextBox txtCh2;
         private System.Windows.Forms.RichTextBox txtCh3;
-        private System.Windows.Forms.Button btnSaveChanges;
         private System.Windows.Forms.PictureBox pbImage;
         private System.Windows.Forms.Label lblQcode;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtTags;
         private System.Windows.Forms.Button btnEditPic;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Label lblText;
     }
 }
