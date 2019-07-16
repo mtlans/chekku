@@ -19,7 +19,9 @@ namespace Chekku
 
         private void BtnExams_Click(object sender, EventArgs e)
         {
-
+            Form frm = new Exams();
+            frm.Show();
+            this.Hide();
         }
 
         private void BtnSubjects_Click(object sender, EventArgs e)

@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>23</ApplicationRevision>
+    <ApplicationRevision>24</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -99,6 +99,30 @@
     <Compile Include="Add_Section.Designer.cs">
       <DependentUpon>Add_Section.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreateExam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateExam.Designer.cs">
+      <DependentUpon>CreateExam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateExam_Details.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateExam_Details.Designer.cs">
+      <DependentUpon>CreateExam_Details.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Exams.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Exams.Designer.cs">
+      <DependentUpon>Exams.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Exam_Questions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Exam_Questions.Designer.cs">
+      <DependentUpon>Exam_Questions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Questions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +188,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Chekku.resx">
       <DependentUpon>Chekku.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateExam.resx">
+      <DependentUpon>CreateExam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateExam_Details.resx">
+      <DependentUpon>CreateExam_Details.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Exams.resx">
+      <DependentUpon>Exams.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Exam_Questions.resx">
+      <DependentUpon>Exam_Questions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
