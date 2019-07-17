@@ -28,31 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvSubjects = new System.Windows.Forms.DataGridView();
+            this.dgvView = new System.Windows.Forms.DataGridView();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSubjects)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvView)).BeginInit();
             this.SuspendLayout();
             // 
-            // dgvSubjects
+            // dgvView
             // 
-            this.dgvSubjects.AllowUserToAddRows = false;
-            this.dgvSubjects.AllowUserToDeleteRows = false;
-            this.dgvSubjects.AllowUserToResizeColumns = false;
-            this.dgvSubjects.AllowUserToResizeRows = false;
-            this.dgvSubjects.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvSubjects.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvSubjects.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSubjects.Location = new System.Drawing.Point(274, 104);
-            this.dgvSubjects.MultiSelect = false;
-            this.dgvSubjects.Name = "dgvSubjects";
-            this.dgvSubjects.ReadOnly = true;
-            this.dgvSubjects.RowHeadersWidth = 51;
-            this.dgvSubjects.RowTemplate.Height = 24;
-            this.dgvSubjects.Size = new System.Drawing.Size(228, 255);
-            this.dgvSubjects.TabIndex = 58;
+            this.dgvView.AllowUserToAddRows = false;
+            this.dgvView.AllowUserToDeleteRows = false;
+            this.dgvView.AllowUserToResizeColumns = false;
+            this.dgvView.AllowUserToResizeRows = false;
+            this.dgvView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvView.Location = new System.Drawing.Point(274, 104);
+            this.dgvView.MultiSelect = false;
+            this.dgvView.Name = "dgvView";
+            this.dgvView.ReadOnly = true;
+            this.dgvView.RowHeadersWidth = 51;
+            this.dgvView.RowTemplate.Height = 24;
+            this.dgvView.Size = new System.Drawing.Size(228, 255);
+            this.dgvView.TabIndex = 58;
             // 
             // btnBack
             // 
@@ -100,17 +100,17 @@
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.dgvSubjects);
+            this.Controls.Add(this.dgvView);
             this.Name = "Exams";
             this.Text = "Exams";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSubjects)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvView)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvSubjects;
+        private System.Windows.Forms.DataGridView dgvView;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEdit;
