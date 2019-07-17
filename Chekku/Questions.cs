@@ -69,21 +69,23 @@ namespace Chekku
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
             {
-                const string sql = "SELECT DISTINCT Question, QuestionCode FROM Chekku.QTags";
+                const string sql = "SELECT DISTINCT Chekku.QTags.Question, Chekku.QTags.QuestionCode, Chekku.Questions.Answer FROM Chekku.QTags" +
+                    "\nINNER JOIN Chekku.Questions ON Chekku.Qtags.QuestionCode=Chekku.Questions.QuestionCode";
 
                 using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
                 {
+                    connection.Open();
+
+                    using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                    {
+                        DataTable dataTable = new DataTable();
+                        dataTable.Load(dataReader);
+                        this.dgvView.DataSource = dataTable;
+                        dataReader.Close();
+                    }
                     try
                     {
-                        connection.Open();
-
-                        using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
-                        {
-                            DataTable dataTable = new DataTable();
-                            dataTable.Load(dataReader);
-                            this.dgvView.DataSource = dataTable;
-                            dataReader.Close();
-                        }
+                       
                     }
                     catch
                     {
@@ -123,7 +125,7 @@ namespace Chekku
                 string code = row.Cells[1].Value.ToString();
                 //string extractImage = row.Cells[1].Value.ToString();
                 //setPicture(extractImage);
-                lblQcode.Text = code;
+                //lblQcode.Text = code;
                 qcode = code;
                 FillContent(code);
             }
@@ -185,7 +187,7 @@ namespace Chekku
                     myConnection.Close();
                 }
             }
-            lblQcode.Text = Code;
+            //lblQcode.Text = Code;
             qcode = Code;
         }
 
@@ -487,10 +489,11 @@ namespace Chekku
             }
         }
 
+        string search = "";
+        string count = "0";
+
         private void BtnSearch_Click(object sender, EventArgs e)
         {
-            string search = "";
-            string count = "0";
             if (!String.IsNullOrEmpty(txtSearch.Text))
             {
                 string tags = txtSearch.Text;
@@ -521,10 +524,13 @@ namespace Chekku
 
                 using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
                 {
-                    string sql = "SELECT DISTINCT Question, QuestionCode FROM Chekku.QTags " +
-                        "WHERE Tag IN (" + search + ")" +
-                        "GROUP BY Question, QuestionCode " +
-                        "HAVING COUNT(Tag) =" + count;
+                    string sql = "SELECT DISTINCT Chekku.QTags.Question, Chekku.QTags.QuestionCode, Chekku.Questions.Answer FROM Chekku.QTags " +
+                    "\nINNER JOIN Chekku.Questions ON Chekku.Qtags.QuestionCode=Chekku.Questions.QuestionCode " +
+                    "WHERE Tag IN (" + search + ") " +
+                    "GROUP BY Chekku.QTags.Question, Chekku.QTags.QuestionCode, Chekku.Questions.Answer " +
+                    "HAVING COUNT(Tag) =" + count;
+                         
+
 
                     using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
                     {

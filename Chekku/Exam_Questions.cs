@@ -36,22 +36,26 @@ namespace Chekku
             {
                 //const string sql = "SELECT DISTINCT Question, QuestionCode FROM Chekku.QTags";
 
-                string sql = "SELECT DISTINCT Question, QuestionCode FROM Chekku.QTags " +
-                    "EXCEPT\nSELECT Question, QuestionCode FROM Chekku.ExamItems " +
+                string sql = "SELECT DISTINCT Chekku.QTags.Question, Chekku.QTags.QuestionCode, Chekku.Questions.Answer FROM Chekku.QTags " +
+                    "\nINNER JOIN Chekku.Questions ON Chekku.Qtags.QuestionCode=Chekku.Questions.QuestionCode " +
+                    "EXCEPT\nSELECT Chekku.ExamItems.Question, Chekku.ExamItems.QuestionCode, Chekku.Questions.Answer FROM Chekku.ExamItems " +
+                    "\nINNER JOIN Chekku.Questions ON Chekku.ExamItems.QuestionCode=Chekku.Questions.QuestionCode " +
                     "WHERE ExamCode = '" + examCode + "'";
                 using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
                 {
+
+                    connection.Open();
+
+                    using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                    {
+                        DataTable dataTable = new DataTable();
+                        dataTable.Load(dataReader);
+                        this.dgvView.DataSource = dataTable;
+                        dataReader.Close();
+                    }
                     try
                     {
-                        connection.Open();
-
-                        using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
-                        {
-                            DataTable dataTable = new DataTable();
-                            dataTable.Load(dataReader);
-                            this.dgvView.DataSource = dataTable;
-                            dataReader.Close();
-                        }
+                        
                     }
                     catch
                     {
@@ -68,20 +72,24 @@ namespace Chekku
 
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
             {
-                string sql = "SELECT Question, QuestionCode FROM Chekku.ExamItems WHERE ExamCode = '" + examCode + "'";
+                string sql = "SELECT DISTINCT Chekku.ExamItems.Question, Chekku.ExamItems.QuestionCode, Chekku.Questions.Answer FROM Chekku.ExamItems " +
+                    "\nINNER JOIN Chekku.Questions ON Chekku.ExamItems.QuestionCode = Chekku.Questions.QuestionCode " +
+                    "\nWHERE Chekku.ExamItems.ExamCode = '" + examCode + "'";
+                    
 
                 using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
                 {
                     connection.Open();
+                    using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                    {
+                        DataTable dataTable = new DataTable();
+                        dataTable.Load(dataReader);
+                        this.dgvItems.DataSource = dataTable;
+                        dataReader.Close();
+                    }
                     try
                     {
-                        using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
-                        {
-                            DataTable dataTable = new DataTable();
-                            dataTable.Load(dataReader);
-                            this.dgvItems.DataSource = dataTable;
-                            dataReader.Close();
-                        }
+                        
                     }
                     catch
                     {
@@ -93,6 +101,7 @@ namespace Chekku
                     }
                 }
             }
+            this.dgvItems.Columns[1].Visible = false;
         }
 
         private void DgvView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -198,12 +207,14 @@ namespace Chekku
 
                 using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
                 {
-                    string sql = "SELECT DISTINCT Question, QuestionCode FROM Chekku.QTags " +
-                        "WHERE Tag IN (" + search + ")" +
-                        "GROUP BY Question, QuestionCode " +
-                        "HAVING COUNT(Tag) =" + count +
-                        " \nEXCEPT\nSELECT Question, QuestionCode FROM Chekku.ExamItems " +
-                        "WHERE ExamCode = '" + examCode + "'";
+                    string sql = "SELECT DISTINCT Chekku.QTags.Question, Chekku.QTags.QuestionCode, Chekku.Questions.Answer FROM Chekku.QTags " +
+                    "\nINNER JOIN Chekku.Questions ON Chekku.Qtags.QuestionCode=Chekku.Questions.QuestionCode " +
+                    "WHERE Tag IN (" + search + ") " +
+                    "GROUP BY Chekku.QTags.Question, Chekku.QTags.QuestionCode, Chekku.Questions.Answer " +
+                    "HAVING COUNT(Tag) =" + count +
+                    "\nEXCEPT\nSELECT Chekku.ExamItems.Question, Chekku.ExamItems.QuestionCode, Chekku.Questions.Answer FROM Chekku.ExamItems " +
+                    "\nINNER JOIN Chekku.Questions ON Chekku.ExamItems.QuestionCode=Chekku.Questions.QuestionCode " +
+                    "WHERE ExamCode = '" + examCode + "'";
                     using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
                     {
                         connection.Open();
@@ -287,6 +298,7 @@ namespace Chekku
                 loadQuestions();
                 SelectFirst();
             }
+            lblNumber.Text = Items.Count.ToString();
         }
 
         private void AddItem()
@@ -334,6 +346,7 @@ namespace Chekku
                 loadQuestions();
                 SelectFirst();
             }
+            lblNumber.Text = Items.Count.ToString();
         }
 
         private void RemoveItem()
@@ -453,7 +466,7 @@ namespace Chekku
             string count = "0";
             if (!String.IsNullOrEmpty(txtSearch2.Text))
             {
-                string tags = txtSearch.Text;
+                string tags = txtSearch2.Text;
                 string[] words = tags.Split(',');
                 List<string> noSpace = new List<string>();
                 foreach (string word in words)
@@ -481,12 +494,14 @@ namespace Chekku
 
                 using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
                 {
-                    string sql = "SELECT DISTINCT Question, QuestionCode FROM Chekku.QTags " +
-                        "WHERE Tag IN (" + search + ")" +
-                        "GROUP BY Question, QuestionCode " +
-                        "HAVING COUNT(Tag) =" + count +
-                        " \nINTERSECT\nSELECT Question, QuestionCode FROM Chekku.ExamItems " +
-                        "WHERE ExamCode = '" + examCode + "'";
+                    string sql = "SELECT DISTINCT Chekku.QTags.Question, Chekku.QTags.QuestionCode, Chekku.Questions.Answer FROM Chekku.QTags " +
+                    "\nINNER JOIN Chekku.Questions ON Chekku.Qtags.QuestionCode=Chekku.Questions.QuestionCode " +
+                    "WHERE Tag IN (" + search + ") " +
+                    "GROUP BY Chekku.QTags.Question, Chekku.QTags.QuestionCode, Chekku.Questions.Answer " +
+                    "HAVING COUNT(Tag) =" + count +
+                    "\nINTERSECT\nSELECT Chekku.ExamItems.Question, Chekku.ExamItems.QuestionCode, Chekku.Questions.Answer FROM Chekku.ExamItems " +
+                    "\nINNER JOIN Chekku.Questions ON Chekku.ExamItems.QuestionCode=Chekku.Questions.QuestionCode " +
+                    "WHERE ExamCode = '" + examCode + "'";
                     using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
                     {
                         connection.Open();

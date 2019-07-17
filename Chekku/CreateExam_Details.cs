@@ -155,21 +155,23 @@ namespace Chekku
 
                         var returnParameter = sqlCommand.Parameters.Add("@ReturnVal", SqlDbType.Int);
                         returnParameter.Direction = ParameterDirection.ReturnValue;
+
+                        connection.Open();
+                        sqlCommand.ExecuteNonQuery();
+                        checkState = (Int32)returnParameter.Value;
+                        if (checkState == 0)
+                        {
+                            MessageBox.Show("This section already exists!");
+                        }
+                        else
+                        {
+                            Form frm = new Exam_Questions(code);
+                            frm.Show();
+                            this.Hide();
+                        }
                         try
                         {
-                            connection.Open();
-                            sqlCommand.ExecuteNonQuery();
-                            checkState = (Int32)returnParameter.Value;
-                            if (checkState == 0)
-                            {
-                                MessageBox.Show("This section already exists!");
-                            }
-                            else
-                            {
-                                Form frm = new Exam_Questions(code);
-                                frm.Show();
-                                this.Hide();
-                            }
+                            
                         }
                         catch
                         {
@@ -186,8 +188,8 @@ namespace Chekku
 
         private bool checkfields()
         {
-            if(String.IsNullOrWhiteSpace(txtExam.Text) || String.IsNullOrWhiteSpace(txtNum.Text)){
-                MessageBox.Show("Please enter an exam name and number of items.");
+            if(String.IsNullOrWhiteSpace(txtExam.Text)){
+                MessageBox.Show("Please enter an exam name.");
                 return false;
             }
             else
