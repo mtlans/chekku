@@ -501,9 +501,9 @@ namespace Chekku
                 List<string> noSpace = new List<string>();
                 foreach (string word in words)
                 {
-                    string trimmed = "'" + word.Trim() + "'";
-                    noSpace.Add(trimmed);
-                    System.Console.WriteLine(trimmed);
+                    //string trimmed = "'" + word.Trim() + "'";
+                    noSpace.Add(word.Trim());
+                    System.Console.WriteLine(word.Trim());
                 }
                 int lastIndex = noSpace.Count - 1;
 
@@ -521,15 +521,59 @@ namespace Chekku
                 System.Console.WriteLine(noSpace.Count);
                 count = noSpace.Count.ToString();
                 System.Console.WriteLine(search);
+                String last = noSpace.Last();
+                String sql = "";
+                foreach (string word in noSpace)
+                {
+                    System.Console.WriteLine(word); 
+
+                }
+
+
+                //foreach (string word in noSpace)
+                //{
+                //    if (word.Equals(last))
+                //    {
+                //        sql += "\nSELECT Chekku.QTags.Question, Chekku.QTags.QuestionCode, Chekku.Questions.Answer FROM Chekku.QTags WHERE Tag LIKE '%" + word + "'"
+                //        +" INNER JOIN Chekku.Questions ON Chekku.Qtags.QuestionCode = Chekku.Questions.QuestionCode\n";
+
+                //    }
+                //    else
+                //    {
+                //        sql += "\nSELECT Chekku.QTags.Question, Chekku.QTags.QuestionCode, Chekku.Questions.Answer FROM Chekku.QTags WHERE Tag LIKE '%" + word + "'" 
+                //             + " INNER JOIN Chekku.Questions ON Chekku.Qtags.QuestionCode = Chekku.Questions.QuestionCode"
+                //             + "\nUNION";
+                //    }
+
+                //}
+
+
+                foreach (string word in noSpace)
+                {
+                    if (word.Equals(last))
+                    {
+                        sql += "\nSELECT Chekku.QTags.Question, Chekku.QTags.QuestionCode, Chekku.Questions.Answer FROM Chekku.QTags "
+                            + "\nINNER JOIN Chekku.Questions ON Chekku.Qtags.QuestionCode = Chekku.Questions.QuestionCode WHERE Tag LIKE '"+word +"%'";
+
+                    }
+                    else
+                    {
+                        sql += "\nSELECT Chekku.QTags.Question, Chekku.QTags.QuestionCode, Chekku.Questions.Answer FROM Chekku.QTags "
+                            + "\nINNER JOIN Chekku.Questions ON Chekku.Qtags.QuestionCode = Chekku.Questions.QuestionCode WHERE Tag LIKE '" + word + "%'"
+                            + "\nINTERSECT";
+                    }
+
+                }
 
                 using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
                 {
-                    string sql = "SELECT DISTINCT Chekku.QTags.Question, Chekku.QTags.QuestionCode, Chekku.Questions.Answer FROM Chekku.QTags " +
-                    "\nINNER JOIN Chekku.Questions ON Chekku.Qtags.QuestionCode=Chekku.Questions.QuestionCode " +
-                    "WHERE Tag IN (" + search + ") " +
-                    "GROUP BY Chekku.QTags.Question, Chekku.QTags.QuestionCode, Chekku.Questions.Answer " +
-                    "HAVING COUNT(Tag) =" + count;
-                         
+                    //string sql = "SELECT DISTINCT Chekku.QTags.Question, Chekku.QTags.QuestionCode, Chekku.Questions.Answer FROM Chekku.QTags " +
+                    //"\nINNER JOIN Chekku.Questions ON Chekku.Qtags.QuestionCode=Chekku.Questions.QuestionCode " +
+                    //"WHERE Tag IN (" + search + ") " +
+                    //"GROUP BY Chekku.QTags.Question, Chekku.QTags.QuestionCode, Chekku.Questions.Answer " +
+                    //"HAVING COUNT(Tag) =" + count;
+
+                    System.Console.WriteLine(sql);
 
 
                     using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
