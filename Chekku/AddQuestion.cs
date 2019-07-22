@@ -1,21 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
-using System.Windows.Documents;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using Image = System.Drawing.Image;
 
 namespace Chekku
 {
-    
+
     public partial class AddQuestion : Form
     {
         public AddQuestion()
@@ -24,8 +20,8 @@ namespace Chekku
             code = generateQuestionCode();
         }
 
-   
-        
+
+
 
         private void setPicture(string ext) //EQUATION TO
         {
@@ -114,7 +110,7 @@ namespace Chekku
                             //  sqlCommand.Parameters["@Image"].Value = //convert file stream
                         }
 
-                       
+
 
                         //sqlCommand.Parameters.Add(new SqlParameter("@Tags", SqlDbType.VarChar, 50));
                         //sqlCommand.Parameters["@Tags"].Value = cmbYear.Text;
@@ -135,14 +131,14 @@ namespace Chekku
                             AddTags();
                         }
                     }
-                }       
+                }
             }
         }
 
         private bool checkFields()
         {
 
-            if(pbox.Image != null)
+            if (pbox.Image != null)
             {
                 hasImage = 1;//meron
             }
@@ -161,12 +157,13 @@ namespace Chekku
                 MessageBox.Show("Please enter an answer.");
                 return false;
             }
-            if (String.IsNullOrWhiteSpace(txtCh1.Text)&& String.IsNullOrWhiteSpace(txtCh2.Text) && String.IsNullOrWhiteSpace(txtCh3.Text))
+            if (String.IsNullOrWhiteSpace(txtCh1.Text) && String.IsNullOrWhiteSpace(txtCh2.Text) && String.IsNullOrWhiteSpace(txtCh3.Text))
             {
                 MessageBox.Show("Please enter at least one choice.");
                 return false;
             }
-            if (String.IsNullOrWhiteSpace(txtTags.Text)){
+            if (String.IsNullOrWhiteSpace(txtTags.Text))
+            {
                 MessageBox.Show("Please enter at least one tag.");
                 return false;
             }
@@ -185,7 +182,7 @@ namespace Chekku
                 int checkState;
                 using (SqlCommand sqlCommand = new SqlCommand("Chekku.checkQuestionCode", connection))
                 {
-                   
+
                     sqlCommand.CommandType = CommandType.StoredProcedure;
 
                     sqlCommand.Parameters.Add(new SqlParameter("@QuestionCode", SqlDbType.VarChar, 50));
@@ -260,7 +257,7 @@ namespace Chekku
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = "(*.jpg;*.jpeg;*.png;) | *.jpg; *.jpeg; *.png; ";
-            if(dialog.ShowDialog()== DialogResult.OK);
+            if (dialog.ShowDialog() == DialogResult.OK) ;
             {
                 pbox.Image = Image.FromFile(dialog.FileName);
                 origfile = dialog.FileName;
@@ -278,7 +275,7 @@ namespace Chekku
                 Directory.CreateDirectory(path);
             }
 
-            string imgname = code +".jpg";
+            string imgname = code + ".jpg";
             string pathstring = System.IO.Path.Combine(path, imgname);
             lblimg.Text = pathstring;
             System.IO.File.Copy(origfile, pathstring);
@@ -287,7 +284,7 @@ namespace Chekku
 
         private void BtnTest_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void AddTags()
@@ -344,10 +341,10 @@ namespace Chekku
                 Form ques = new Questions();
                 ques.Show();
                 this.Close();
-            }          
+            }
         }
 
-       
+
 
         //end
 

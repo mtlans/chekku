@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Chekku
 {
@@ -111,7 +105,7 @@ namespace Chekku
         int i = 0;
         private void DgvSubjects_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = this.dgvSubjects.Rows[e.RowIndex];
@@ -178,7 +172,7 @@ namespace Chekku
             selectSections();
         }
 
-    private void CmbSearchYear_SelectedIndexChanged(object sender, EventArgs e)
+        private void CmbSearchYear_SelectedIndexChanged(object sender, EventArgs e)
         {
             Filter();
             SelectFirst();
@@ -480,7 +474,7 @@ namespace Chekku
         {
 
         }
-       
+
     }
 }
 

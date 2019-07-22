@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Chekku
 {
-    public partial class Exams : Form
+    public partial class Exams_Section : Form
     {
-        public Exams()
+        public Exams_Section()
         {
             InitializeComponent();
             loadExams();

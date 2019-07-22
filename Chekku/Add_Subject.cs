@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Text;
+using System.Windows.Forms;
 
 namespace Chekku
 {
@@ -34,29 +29,29 @@ namespace Chekku
 
                         sqlCommand.Parameters.Add(new SqlParameter("@SubjectID", SqlDbType.VarChar, 50));
                         sqlCommand.Parameters["@SubjectID"].Value = id;
-                        
-                            sqlCommand.Parameters.Add(new SqlParameter("@SubjectCode", SqlDbType.VarChar, 50));
+
+                        sqlCommand.Parameters.Add(new SqlParameter("@SubjectCode", SqlDbType.VarChar, 50));
                         sqlCommand.Parameters["@SubjectCode"].Value = txtSubjectCode.Text;
-                        
-                            sqlCommand.Parameters.Add(new SqlParameter("@SubjectName", SqlDbType.VarChar, 8000));
+
+                        sqlCommand.Parameters.Add(new SqlParameter("@SubjectName", SqlDbType.VarChar, 8000));
                         sqlCommand.Parameters["@SubjectName"].Value = txtSubjectName.Text;
-                           
-                            sqlCommand.Parameters.Add(new SqlParameter("@Term", SqlDbType.Int));
+
+                        sqlCommand.Parameters.Add(new SqlParameter("@Term", SqlDbType.Int));
                         sqlCommand.Parameters["@Term"].Value = cmbTerm.Text;
 
-                            sqlCommand.Parameters.Add(new SqlParameter("@SchoolYear", SqlDbType.VarChar, 50));
+                        sqlCommand.Parameters.Add(new SqlParameter("@SchoolYear", SqlDbType.VarChar, 50));
                         sqlCommand.Parameters["@SchoolYear"].Value = cmbYear.Text;
 
                         var returnParameter = sqlCommand.Parameters.Add("@ReturnVal", SqlDbType.Int);
                         returnParameter.Direction = ParameterDirection.ReturnValue;
-                        
+
 
                         try
                         {
                             connection.Open();
                             sqlCommand.ExecuteNonQuery();
                             checkState = (Int32)returnParameter.Value;
-                            if(checkState == 0)
+                            if (checkState == 0)
                             {
                                 MessageBox.Show("This subject already exists!");
                             }
@@ -101,7 +96,7 @@ namespace Chekku
                 return true;
         }
 
-       
+
         private void BtnBack_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -168,7 +163,7 @@ namespace Chekku
                     }
                     try
                     {
-                       
+
                     }
                     catch
                     {

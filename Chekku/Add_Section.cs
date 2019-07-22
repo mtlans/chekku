@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Text;
+using System.Windows.Forms;
 
 namespace Chekku
 {
@@ -31,7 +26,7 @@ namespace Chekku
                 using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
                 {
                     int checkState;
-                    
+
                     using (SqlCommand sqlCommand = new SqlCommand("Chekku.addNewSection", connection))
                     {
                         sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -47,8 +42,8 @@ namespace Chekku
 
                         var returnParameter = sqlCommand.Parameters.Add("@ReturnVal", SqlDbType.Int);
                         returnParameter.Direction = ParameterDirection.ReturnValue;
-                       
-                        
+
+
 
                         try
                         {
@@ -207,10 +202,10 @@ namespace Chekku
 
         private bool checkFields()
         {
-            if(txtSection.Text == "")
+            if (txtSection.Text == "")
             {
                 MessageBox.Show("Please enter a section.");
-                return false;              
+                return false;
             }
             else
             {
@@ -218,7 +213,7 @@ namespace Chekku
             }
         }
 
-        
+
 
         private void Add_Section_Load(object sender, EventArgs e)
         {

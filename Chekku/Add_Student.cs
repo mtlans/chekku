@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
-    
+using System.Windows.Forms;
+
 namespace Chekku
 {
     public partial class Add_Student : Form
@@ -37,13 +31,13 @@ namespace Chekku
 
                         var returnParameter = sqlCommand.Parameters.Add("@ReturnVal", SqlDbType.Int);
                         returnParameter.Direction = ParameterDirection.ReturnValue;
-                        
-                    try
+
+                        try
                         {
                             connection.Open();
                             sqlCommand.ExecuteNonQuery();
                             checkState = (Int32)returnParameter.Value;
-                         if (checkState == 0)
+                            if (checkState == 0)
                             {
                                 MessageBox.Show("This student already exists!");
                             }

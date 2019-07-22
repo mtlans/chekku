@@ -1,27 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.IO;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using DCSoft.RTF;
-using System.Text.RegularExpressions;
+using System.Linq;
+using System.Windows.Forms;
 using Image = System.Drawing.Image;
-using System.Drawing.Imaging;
 
 namespace Chekku
 {
     public partial class Questions : Form
     {
         private const string Path = "D:/Test/   a.pdf";
-        string qcode = ""; 
+        string qcode = "";
         int hasImage = 0;
 
         string origfile;
@@ -85,7 +76,7 @@ namespace Chekku
                     }
                     try
                     {
-                       
+
                     }
                     catch
                     {
@@ -114,7 +105,7 @@ namespace Chekku
             frm.Show();
             this.Hide();
         }
-        
+
         private void DgvView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -144,13 +135,13 @@ namespace Chekku
                 {
                     while (oReader.Read())
                     {
-                    txtQuestion.Text = oReader["Question"].ToString();
-                    txtAnswer.Text = oReader["Answer"].ToString();
-                    txtCh1.Text = oReader["Choice1"].ToString();
-                    txtCh2.Text = oReader["Choice2"].ToString();
-                    txtCh3.Text = oReader["Choice3"].ToString();
-                    hasImg = Convert.ToInt32(oReader["hasImage"]);
-                    if(hasImg == 1)
+                        txtQuestion.Text = oReader["Question"].ToString();
+                        txtAnswer.Text = oReader["Answer"].ToString();
+                        txtCh1.Text = oReader["Choice1"].ToString();
+                        txtCh2.Text = oReader["Choice2"].ToString();
+                        txtCh3.Text = oReader["Choice3"].ToString();
+                        hasImg = Convert.ToInt32(oReader["hasImage"]);
+                        if (hasImg == 1)
                         {
                             byte[] picArr = (byte[])oReader["Image"];
                             MemoryStream ms = new MemoryStream(picArr);
@@ -182,7 +173,7 @@ namespace Chekku
                 {
                     while (oReader.Read())
                     {
-                        txtTags.Text = oReader["Tagline"].ToString(); 
+                        txtTags.Text = oReader["Tagline"].ToString();
                     }
                     myConnection.Close();
                 }
@@ -250,8 +241,8 @@ namespace Chekku
         {
             if (!String.IsNullOrWhiteSpace(qcode))
             {
-            int checkstate;
-            if (checkFields())
+                int checkstate;
+                if (checkFields())
                 {
                     using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
                     {
@@ -475,7 +466,7 @@ namespace Chekku
                         }
                         MessageBox.Show("Question is now deleted!");
                         refreshView();
-                        SelectFirst(); 
+                        SelectFirst();
                     }
                     catch
                     {
@@ -525,7 +516,7 @@ namespace Chekku
                 String sql = "";
                 foreach (string word in noSpace)
                 {
-                    System.Console.WriteLine(word); 
+                    System.Console.WriteLine(word);
 
                 }
 
@@ -553,7 +544,7 @@ namespace Chekku
                     if (word.Equals(last))
                     {
                         sql += "\nSELECT Chekku.QTags.Question, Chekku.QTags.QuestionCode, Chekku.Questions.Answer FROM Chekku.QTags "
-                            + "\nINNER JOIN Chekku.Questions ON Chekku.Qtags.QuestionCode = Chekku.Questions.QuestionCode WHERE Tag LIKE '"+word +"%'";
+                            + "\nINNER JOIN Chekku.Questions ON Chekku.Qtags.QuestionCode = Chekku.Questions.QuestionCode WHERE Tag LIKE '" + word + "%'";
 
                     }
                     else
@@ -614,7 +605,7 @@ namespace Chekku
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = "(*.jpg;*.jpeg;*.png;) | *.jpg; *.jpeg; *.png; ";
-            if (dialog.ShowDialog() == DialogResult.OK) 
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
                 pbImage.Image = Image.FromFile(dialog.FileName);
                 origfile = dialog.FileName;
@@ -633,14 +624,15 @@ namespace Chekku
             }
             else
             {
-                if (File.Exists(pathstring)){
+                if (File.Exists(pathstring))
+                {
                     File.Delete(pathstring);
                 }
-               System.IO.File.Copy(origfile, pathstring);
+                System.IO.File.Copy(origfile, pathstring);
                 return pathstring;
             }
-            
-            
+
+
         }
 
 

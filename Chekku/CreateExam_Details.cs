@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Chekku
@@ -19,6 +14,7 @@ namespace Chekku
             InitializeComponent();
             loadDetails(subCode, subsectCode);
             subsectcode = subsectCode;
+            cmbSet.SelectedIndex = 1;
         }
 
         private void CreateExam_Details_Load(object sender, EventArgs e)
@@ -72,7 +68,7 @@ namespace Chekku
                 builder.Append(ch);
             }
             if (lowerCase)
-            return builder.ToString().ToLower();
+                return builder.ToString().ToLower();
             return builder.ToString();
         }
         public int RandomNumber(int min, int max)
@@ -165,13 +161,13 @@ namespace Chekku
                         }
                         else
                         {
-                            Form frm = new Exam_Questions(code);
+                            Form frm = new Exam_Questions(code, Convert.ToInt32(cmbSet.SelectedItem));
                             frm.Show();
                             this.Hide();
                         }
                         try
                         {
-                            
+
                         }
                         catch
                         {
@@ -188,7 +184,8 @@ namespace Chekku
 
         private bool checkfields()
         {
-            if(String.IsNullOrWhiteSpace(txtExam.Text)){
+            if (String.IsNullOrWhiteSpace(txtExam.Text))
+            {
                 MessageBox.Show("Please enter an exam name.");
                 return false;
             }

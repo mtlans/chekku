@@ -1,6 +1,6 @@
 ﻿namespace Chekku
 {
-    partial class Exams
+    partial class Exams_Section
     {
         /// <summary>
         /// Required designer variable.

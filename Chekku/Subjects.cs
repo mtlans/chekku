@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Chekku
 {
@@ -57,7 +51,7 @@ namespace Chekku
                 cmbYear.SelectedItem = row.Cells[3].Value.ToString();
                 Oldid = row.Cells[4].Value.ToString();
             }
-            
+
             lblID.Text = Oldid;
 
         }
@@ -153,7 +147,7 @@ namespace Chekku
         private void BtnSaveChanges_Click(object sender, EventArgs e)
         {
             UpdateDetails();
-            refreshView();      
+            refreshView();
         }
 
 
@@ -168,7 +162,7 @@ namespace Chekku
                     {
                         // MessageBox.Show(Newid);
                         sqlCommand.CommandType = CommandType.StoredProcedure;
-                    
+
                         sqlCommand.Parameters.Add(new SqlParameter("@SubjectID", SqlDbType.VarChar, 50));
                         sqlCommand.Parameters["@SubjectID"].Value = Oldid;
 
@@ -269,10 +263,10 @@ namespace Chekku
             {
                 MessageBox.Show("Please select a subject to delete.");
             }
-            
+
         }
 
-     
+
         private void DgvViewSubjects_Selectionhanged(object sender, EventArgs e)
         {
         }
@@ -321,7 +315,7 @@ namespace Chekku
             if (!String.IsNullOrWhiteSpace(txtSearch.Text) && cmbSearchTerm.SelectedIndex > 0 && cmbSearchYear.SelectedIndex > 0)
             {
                 (dgvViewSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("SubjectCode LIKE '{0}%' AND Term = '{1}' AND SchoolYear LIKE '{2}'", txtSearch.Text, Convert.ToInt32(cmbSearchTerm.SelectedItem.ToString()), cmbSearchYear.SelectedItem.ToString());
-                lblCHOICE.Text = "1"; 
+                lblCHOICE.Text = "1";
             }
             else if (!String.IsNullOrWhiteSpace(txtSearch.Text) && cmbSearchTerm.SelectedIndex > 0 && cmbSearchYear.SelectedIndex <= 0)
             {
@@ -336,7 +330,7 @@ namespace Chekku
             }
             else if (String.IsNullOrWhiteSpace(txtSearch.Text) && cmbSearchTerm.SelectedIndex > 0 && cmbSearchYear.SelectedIndex > 0)
             {
-                (dgvViewSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("Term = '{0}' AND SchoolYear = '{1}'",Convert.ToInt32(cmbSearchTerm.SelectedItem.ToString()), cmbSearchYear.SelectedItem.ToString());
+                (dgvViewSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("Term = '{0}' AND SchoolYear = '{1}'", Convert.ToInt32(cmbSearchTerm.SelectedItem.ToString()), cmbSearchYear.SelectedItem.ToString());
 
                 lblCHOICE.Text = "4";
             }
@@ -356,7 +350,7 @@ namespace Chekku
             {
                 lblCHOICE.Text = "7"; (dgvViewSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("SubjectCode LIKE '{0}%'", txtSearch.Text);
             }
-            
+
         }
 
 
@@ -384,5 +378,5 @@ namespace Chekku
                 cmbYear.SelectedIndex = -1;
             }
         }
-        }
+    }
 }

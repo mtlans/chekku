@@ -111,11 +111,11 @@
     <Compile Include="CreateExam_Details.Designer.cs">
       <DependentUpon>CreateExam_Details.cs</DependentUpon>
     </Compile>
-    <Compile Include="Exams.cs">
+    <Compile Include="Exams_Section.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Exams.Designer.cs">
-      <DependentUpon>Exams.cs</DependentUpon>
+    <Compile Include="Exams_Section.Designer.cs">
+      <DependentUpon>Exams_Section.cs</DependentUpon>
     </Compile>
     <Compile Include="Exam_Questions.cs">
       <SubType>Form</SubType>
@@ -196,8 +196,8 @@
     <EmbeddedResource Include="CreateExam_Details.resx">
       <DependentUpon>CreateExam_Details.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Exams.resx">
-      <DependentUpon>Exams.cs</DependentUpon>
+    <EmbeddedResource Include="Exams_Section.resx">
+      <DependentUpon>Exams_Section.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Exam_Questions.resx">
       <DependentUpon>Exam_Questions.cs</DependentUpon>

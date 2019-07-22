@@ -2,14 +2,10 @@
 using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Chekku
@@ -19,15 +15,17 @@ namespace Chekku
         string qcode = "";
         string examCode = "";
         string qcode2 = "";
+        int setNum = 1;
         List<Question> Items = new List<Question>();
         List<String> AnswerKey = new List<String>();
         List<String> toCheck = new List<String>();
-        public Exam_Questions(string code)
+        public Exam_Questions(string code, int set)
         {
             InitializeComponent();
             loadQuestions();
             SelectFirst();
             examCode = code;
+            setNum = set;
         }
 
         private void loadQuestions()
@@ -43,19 +41,17 @@ namespace Chekku
                     "WHERE ExamCode = '" + examCode + "'";
                 using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
                 {
-
-                    connection.Open();
-
-                    using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
-                    {
-                        DataTable dataTable = new DataTable();
-                        dataTable.Load(dataReader);
-                        this.dgvView.DataSource = dataTable;
-                        dataReader.Close();
-                    }
                     try
                     {
-                        
+                        connection.Open();
+
+                        using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                        {
+                            DataTable dataTable = new DataTable();
+                            dataTable.Load(dataReader);
+                            this.dgvView.DataSource = dataTable;
+                            dataReader.Close();
+                        }
                     }
                     catch
                     {
@@ -75,21 +71,21 @@ namespace Chekku
                 string sql = "SELECT DISTINCT Chekku.ExamItems.Question, Chekku.ExamItems.QuestionCode, Chekku.Questions.Answer FROM Chekku.ExamItems " +
                     "\nINNER JOIN Chekku.Questions ON Chekku.ExamItems.QuestionCode = Chekku.Questions.QuestionCode " +
                     "\nWHERE Chekku.ExamItems.ExamCode = '" + examCode + "'";
-                    
+
 
                 using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
                 {
-                    connection.Open();
-                    using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
-                    {
-                        DataTable dataTable = new DataTable();
-                        dataTable.Load(dataReader);
-                        this.dgvItems.DataSource = dataTable;
-                        dataReader.Close();
-                    }
+                   
                     try
                     {
-                        
+                        connection.Open();
+                        using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                        {
+                            DataTable dataTable = new DataTable();
+                            dataTable.Load(dataReader);
+                            this.dgvItems.DataSource = dataTable;
+                            dataReader.Close();
+                        }
                     }
                     catch
                     {
@@ -150,7 +146,6 @@ namespace Chekku
                             pbImage.Image = null;
                         }
                     }
-
                     myConnection.Close();
                 }
             }
@@ -222,25 +217,23 @@ namespace Chekku
                                 + "\nINNER JOIN Chekku.Questions ON Chekku.Qtags.QuestionCode = Chekku.Questions.QuestionCode WHERE Tag LIKE '" + word + "%'"
                                 + "\nINTERSECT";
                         }
-
                     }
                     sql += "\nEXCEPT\nSELECT Chekku.ExamItems.Question, Chekku.ExamItems.QuestionCode, Chekku.Questions.Answer FROM Chekku.ExamItems " +
                     "\nINNER JOIN Chekku.Questions ON Chekku.ExamItems.QuestionCode=Chekku.Questions.QuestionCode " +
                     "WHERE ExamCode = '" + examCode + "'";
                     using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
                     {
-                        connection.Open();
-
-                        using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
-                        {
-                            DataTable dataTable = new DataTable();
-                            dataTable.Load(dataReader);
-                            this.dgvView.DataSource = dataTable;
-                            dataReader.Close();
-                        }
                         try
                         {
+                            connection.Open();
 
+                            using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                            {
+                                DataTable dataTable = new DataTable();
+                                dataTable.Load(dataReader);
+                                this.dgvView.DataSource = dataTable;
+                                dataReader.Close();
+                            }
                         }
                         catch
                         {
@@ -297,7 +290,6 @@ namespace Chekku
                 txtT.Text = "";
                 pbI.Image = null;
             }
-
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
@@ -470,7 +462,7 @@ namespace Chekku
                 }
             }
             qcode2 = Code;
-           }
+        }
 
         private void BtnSearchItems_Click(object sender, EventArgs e)
         {
@@ -521,25 +513,24 @@ namespace Chekku
                                 + "\nINNER JOIN Chekku.Questions ON Chekku.Qtags.QuestionCode = Chekku.Questions.QuestionCode WHERE Tag LIKE '" + word + "%'"
                                 + "\nINTERSECT";
                         }
-
                     }
                     sql += "\nINTERSECT\nSELECT Chekku.ExamItems.Question, Chekku.ExamItems.QuestionCode, Chekku.Questions.Answer FROM Chekku.ExamItems " +
                     "\nINNER JOIN Chekku.Questions ON Chekku.ExamItems.QuestionCode=Chekku.Questions.QuestionCode " +
                     "WHERE ExamCode = '" + examCode + "'";
                     using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
                     {
-                        connection.Open();
 
-                        using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
-                        {
-                            DataTable dataTable = new DataTable();
-                            dataTable.Load(dataReader);
-                            this.dgvItems.DataSource = dataTable;
-                            dataReader.Close();
-                        }
                         try
                         {
+                            connection.Open();
 
+                            using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                            {
+                                DataTable dataTable = new DataTable();
+                                dataTable.Load(dataReader);
+                                this.dgvItems.DataSource = dataTable;
+                                dataReader.Close();
+                            }
                         }
                         catch
                         {
@@ -561,6 +552,96 @@ namespace Chekku
 
         private void BtnPDF_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void printAnswerKey()
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Answer Keys";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            string filename = examCode + " Answer Key.pdf";
+            FileStream fs = new FileStream(path + "/" + filename, FileMode.Create, FileAccess.Write, FileShare.None);
+            Document doc = new Document(PageSize.LETTER);
+            PdfWriter writer = PdfWriter.GetInstance(doc, fs);
+            doc.Open();
+            int i = 1;
+            foreach (var x in AnswerKey)
+            {
+                doc.Add(new Paragraph(i + ".) " + x));
+                i++;
+            }
+            doc.Close();
+        }
+
+        private void BtnTest_Click(object sender, EventArgs e)
+        {
+
+
+            Items = ShuffleList(Items);
+            System.Console.WriteLine("Shuffled: ");
+            foreach (var question in Items)
+            {
+                System.Console.WriteLine(question.Qcode);
+            }
+        }
+
+        private List<E> ShuffleList<E>(List<E> inputList)
+        {
+            List<E> randomList = new List<E>();
+
+            Random r = new Random();
+            int randomIndex = 0;
+            while (inputList.Count > 0)
+            {
+                randomIndex = r.Next(0, inputList.Count); //Choose random object in list
+                randomList.Add(inputList[randomIndex]);
+                inputList.RemoveAt(randomIndex);
+            }
+
+            return randomList;
+        }
+
+        private Random rng = new Random();
+
+        private List<E> Shuffle2<E>(List<E> inputList)
+        {
+            int n = inputList.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                E value = inputList[k];
+                inputList[k] = inputList[n];
+                inputList[n] = value;
+            }
+            return inputList;
+        }
+        private void BtnOrig_Click(object sender, EventArgs e)
+        {
+            foreach (var question in Items)
+            {
+                System.Console.WriteLine(question.Qcode);
+            }
+        }
+
+        private void BtnAnswers_Click(object sender, EventArgs e)
+        {
+            foreach (var answers in AnswerKey)
+            {
+                System.Console.WriteLine(answers);
+            }
+
+            foreach (var a in toCheck)
+            {
+                System.Console.WriteLine(a);
+            }
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
             AnswerKey.Clear();
             string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Exams";
             if (!Directory.Exists(path))
@@ -573,8 +654,7 @@ namespace Chekku
             PdfWriter writer = PdfWriter.GetInstance(doc, fs);
             doc.Open();
 
-
-            string que ="", answer ="" , ch1 = "", ch2 = "", ch3 = "";
+            string que = "", answer = "", ch1 = "", ch2 = "", ch3 = "";
             int hasImg = 0;
             int num = 1;
             List<String> ABCD = new List<String>();
@@ -585,10 +665,10 @@ namespace Chekku
 
             System.Drawing.Image i = null;
             //main loop
-            foreach(var question in Items)
+            foreach (var question in Items)
             {
                 List<String> Answers = new List<String>();
-                
+
                 question.Number = num.ToString();
                 using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
                 {
@@ -626,16 +706,14 @@ namespace Chekku
                         myConnection.Close();
                     }
                 }
-                if(hasImg == 1)
+                if (hasImg == 1)
                 {
                     iTextSharp.text.Image picture = iTextSharp.text.Image.GetInstance(i, System.Drawing.Imaging.ImageFormat.Jpeg);
                     picture.Alignment = iTextSharp.text.Image.ALIGN_CENTER;
                     doc.Add(picture);
                 }
-                //doc.Add(new Paragraph(num + ". " + que));
                 doc.Add(new Paragraph(num + ". " + que));
                 System.Console.WriteLine(num + ". " + que);
-                //Answers = ShuffleList(Answers);
                 Answers = Shuffle2(Answers);
 
                 foreach (var letter in ABCD.Zip(Answers, Tuple.Create))
@@ -653,90 +731,5 @@ namespace Chekku
             doc.Close();
             printAnswerKey();
         }
-
-        private void printAnswerKey()
-        {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Answer Keys";
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-            string filename = examCode + " Answer Key.pdf";
-            FileStream fs = new FileStream(path + "/" + filename, FileMode.Create, FileAccess.Write, FileShare.None);
-            Document doc = new Document(PageSize.LETTER);
-            PdfWriter writer = PdfWriter.GetInstance(doc, fs);
-            doc.Open();
-            int i = 1;
-            foreach(var x in AnswerKey)
-            {
-                doc.Add(new Paragraph(i + ".) " + x));
-                i++;
-            }
-            doc.Close();
-        }
-
-        private void BtnTest_Click(object sender, EventArgs e)
-        {
-            
-
-            Items = ShuffleList(Items);
-            System.Console.WriteLine("Shuffled: ");
-            foreach (var question in Items)
-            {
-                System.Console.WriteLine(question.Qcode);
-            }
-        }
-
-        private List<E> ShuffleList<E>(List<E> inputList)
-        {
-            List<E> randomList = new List<E>();
-
-            Random r = new Random();
-            int randomIndex = 0;
-            while(inputList.Count> 0)
-            {
-                randomIndex = r.Next(0, inputList.Count); //Choose random object in list
-                randomList.Add(inputList[randomIndex]);
-                inputList.RemoveAt(randomIndex);
-            }
-
-            return randomList;
-        }
-
-        private  Random rng = new Random();
-
-        private List<E> Shuffle2<E>(List<E> inputList)
-        {
-            int n = inputList.Count;
-            while (n > 1)
-            {
-                n--;
-                int k = rng.Next(n + 1);
-                E value = inputList[k];
-                inputList[k] = inputList[n];
-                inputList[n] = value;
-            }
-            return inputList;
-        }
-        private void BtnOrig_Click(object sender, EventArgs e)
-        {
-            foreach (var question in Items)
-            {
-                System.Console.WriteLine(question.Qcode);
-            }
-        }
-
-        private void BtnAnswers_Click(object sender, EventArgs e)
-        {
-            foreach(var answers in AnswerKey)
-            {
-                System.Console.WriteLine(answers);
-            }
-
-            foreach(var a in toCheck)
-            {
-                System.Console.WriteLine(a);
-            }
-        }
     }
-}   
+}

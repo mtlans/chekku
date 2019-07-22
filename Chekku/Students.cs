@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Chekku
 {
@@ -214,7 +208,7 @@ namespace Chekku
                 btnDelete.Enabled = true;
                 btnSaveChanges.Visible = false;
                 toggleEdit = 1;
-            }    
+            }
             else
             {
                 MessageBox.Show("Please select a student to edit.");
@@ -224,8 +218,8 @@ namespace Chekku
 
         private String CreateStudentIdentifier()
         {
-                string id = txtID.Text + txtName.Text;
-                return id;
+            string id = txtID.Text + txtName.Text;
+            return id;
         }
         private bool AreFieldsValid()
         {
@@ -260,7 +254,7 @@ namespace Chekku
             string toSearch = cmbSelect.SelectedItem.ToString();
             toSearch = toSearch.Replace(" ", String.Empty);
             if (toSearch.Equals("StudentName"))
-            { 
+            {
                 (dgvViewStudents.DataSource as DataTable).DefaultView.RowFilter = string.Format("StudentName LIKE '{0}%'", txtSearch.Text);
             }
             else
