@@ -9,12 +9,16 @@ namespace Chekku
     public partial class CreateExam_Details : Form
     {
         string subsectcode = "";
+        string id = ""; //subjectID
+        string code = ""; //sectioncode
         public CreateExam_Details(string subCode, string subsectCode)
         {
             InitializeComponent();
+            this.id = subCode;
+            this.code = subsectCode;
             loadDetails(subCode, subsectCode);
             subsectcode = subsectCode;
-            cmbSet.SelectedIndex = 1;
+            cmbSet.SelectedIndex = 0;
         }
 
         private void CreateExam_Details_Load(object sender, EventArgs e)
@@ -161,7 +165,7 @@ namespace Chekku
                         }
                         else
                         {
-                            Form frm = new Exam_Questions(code, Convert.ToInt32(cmbSet.SelectedItem));
+                            Form frm = new Exam_Questions(code, Convert.ToInt32(cmbSet.SelectedItem),id , this.code);
                             frm.Show();
                             this.Hide();
                         }
@@ -195,7 +199,11 @@ namespace Chekku
             }
         }
 
-
-
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            Form frm = new Exams_Section(id, code, lblSec.Text);
+            this.Hide();
+            frm.Show();
+        }
     }
 }

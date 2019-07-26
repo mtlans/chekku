@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
@@ -58,6 +59,11 @@ namespace Chekku
                             else
                             {
                                 MessageBox.Show("Subject is now added!");
+                                string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Exams/" + txtSubjectCode.Text + " " + cmbYear.SelectedItem.ToString() + " T" + cmbTerm.SelectedItem.ToString();
+                                if (!Directory.Exists(path))
+                                {
+                                 Directory.CreateDirectory(path);
+                                }
                                 this.Close();
                             }
                         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
@@ -9,13 +10,15 @@ namespace Chekku
     public partial class Add_Section : Form
     {
 
-        public string SubjectID { get; set; }
+        public string subCode { get; set; }
         public string SubjectName { get; set; }
-        public Add_Section(string SubjectID, string SubjectName)
+        public string subID = "";
+        public Add_Section(string subCode, string SubjectName, string SUBID)
         {
             InitializeComponent();
-            this.SubjectID = SubjectID;
+            this.subCode = subCode;
             this.SubjectName = SubjectName;
+            this.subID = SUBID;
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
@@ -35,7 +38,7 @@ namespace Chekku
                         sqlCommand.Parameters["@SubSectCode"].Value = code;
 
                         sqlCommand.Parameters.Add(new SqlParameter("@SubjectID", SqlDbType.VarChar, 8000));
-                        sqlCommand.Parameters["@SubjectID"].Value = SubjectID;
+                        sqlCommand.Parameters["@SubjectID"].Value = subCode;
 
                         sqlCommand.Parameters.Add(new SqlParameter("@SectionName", SqlDbType.VarChar, 50));
                         sqlCommand.Parameters["@SectionName"].Value = txtSection.Text;
@@ -43,19 +46,20 @@ namespace Chekku
                         var returnParameter = sqlCommand.Parameters.Add("@ReturnVal", SqlDbType.Int);
                         returnParameter.Direction = ParameterDirection.ReturnValue;
 
-
+                        connection.Open();
+                        sqlCommand.ExecuteNonQuery();
+                        checkState = (Int32)returnParameter.Value;
 
                         try
                         {
-                            connection.Open();
-                            sqlCommand.ExecuteNonQuery();
-                            checkState = (Int32)returnParameter.Value;
+                            
                             if (checkState == 0)
                             {
                                 MessageBox.Show("This section already exists!");
                             }
                             else
                             {
+                                MakeFolder();
                                 MessageBox.Show("Section is now added!");
                                 Form sect = new Section();
                                 sect.Show();
@@ -225,6 +229,38 @@ namespace Chekku
             Form section = new Section();
             section.Show();
             this.Hide();
+        }
+
+
+        private void MakeFolder()
+        {
+            string sub = "";
+            string term = "";
+            string year = "";
+            using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
+            {
+                string oString = "Select * from Chekku.Subjects where SubjectID=@ID";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@ID", subID);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        sub = oReader["SubjectCode"].ToString();
+                        term = oReader["Term"].ToString();
+                        year = oReader["SchoolYear"].ToString();
+                    }
+
+                    myConnection.Close();
+                }
+            }
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Exams/" + sub + " " + year + " T" + term + "/" + txtSection.Text;
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Chekku
@@ -10,8 +11,11 @@ namespace Chekku
 
 
         string id = "";
-        String oldname = "";
+        string oldname = "";
         string code = "";
+        string oldpath = "";
+
+        string subjectID = ""; //pang iba ng folderhuhu
         public Section()
         {
             InitializeComponent();
@@ -26,7 +30,7 @@ namespace Chekku
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
             {
-                const string sql = "SELECT SubjectCode, SubjectName, Term, SchoolYear FROM Chekku.Subjects";
+                const string sql = "SELECT SubjectCode, SubjectName, Term, SchoolYear, SubjectID FROM Chekku.Subjects";
 
                 using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
                 {
@@ -55,6 +59,7 @@ namespace Chekku
             this.dgvSubjects.Columns[1].Visible = false;
             this.dgvSubjects.Columns[2].Visible = false;
             this.dgvSubjects.Columns[3].Visible = false;
+            this.dgvSubjects.Columns[4].Visible = false;
             ViewSections();
             //if (dgvSubjects.Rows.Count > 0)
             //{
@@ -112,6 +117,7 @@ namespace Chekku
                 //populate
                 txtCode.Text = row.Cells[0].Value.ToString();
                 System.Console.WriteLine("PUmasok dito." + i);
+                this.subjectID = row.Cells[4].Value.ToString();
             }
             i++;
             ViewSections();
@@ -187,7 +193,7 @@ namespace Chekku
             {
                 getCode();
                 getSubID();
-                Form Add = new Add_Section(id, txtCode.Text);
+                Form Add = new Add_Section(id, txtCode.Text, this.subjectID);
                 Add.Show();
                 this.Hide();
             }
@@ -263,6 +269,8 @@ namespace Chekku
                 code = row.Cells[1].Value.ToString();
                 oldname = txtSection.Text;
             }
+            oldpath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Exams/" + txtCode.Text + " " +
+                    cmbSearchYear.SelectedItem.ToString() + " T" + cmbSearchTerm.SelectedItem.ToString() + "/" + txtSection.Text ;
         }
 
         private void Section_Load(object sender, EventArgs e)
@@ -278,8 +286,10 @@ namespace Chekku
             {
                 var row = dgvSubjects.Rows[0];
                 txtCode.Text = row.Cells[0].Value.ToString();
+                this.subjectID = row.Cells[4].Value.ToString();
                 dgvSubjects.CurrentCell = row.Cells[0];
                 oldname = txtSection.Text;
+
             }
             else
             {
@@ -297,8 +307,9 @@ namespace Chekku
                 lbl1.Text = dgvSections.Rows.Count.ToString();
                 lbl2.Text = dgvSubjects.Rows.Count.ToString();
                 dgvSections.CurrentCell = row.Cells[0];
-
                 code = row.Cells[1].Value.ToString();
+               oldpath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Exams/" + txtCode.Text + " " +
+                   cmbSearchYear.SelectedItem.ToString() + " T" + cmbSearchTerm.SelectedItem.ToString() + "/" + txtSection.Text;
             }
             else
             {
@@ -376,6 +387,9 @@ namespace Chekku
                         var returnParameter = sqlCommand.Parameters.Add("@ReturnVal", SqlDbType.Int);
                         returnParameter.Direction = ParameterDirection.ReturnValue;
 
+                        string NewPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Exams/" + txtCode.Text + " " +
+                                cmbSearchYear.SelectedItem.ToString() + " T" + cmbSearchTerm.SelectedItem.ToString() + "/" + txtSection.Text;
+                        Directory.Move(oldpath, NewPath);
                         try
                         {
                             connection.Open();
@@ -388,6 +402,7 @@ namespace Chekku
                             else
                             {
                                 MessageBox.Show("Section is now updated!");
+                                
                             }
                         }
                         catch

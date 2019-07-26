@@ -7,15 +7,19 @@ namespace Chekku
 {
     public partial class Exams_Section : Form
     {
-        public Exams_Section()
+        string id = ""; //subjectID
+        string code = ""; //subSectCode
+        public Exams_Section(string id, string code, string section)
         {
             InitializeComponent();
+            this.id = id;
+            this.code = code;
             loadExams();
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            Form frm = new CreateExam();
+            Form frm = new CreateExam_Details(id, code);
             this.Hide();
             frm.Show();
         }
@@ -24,9 +28,7 @@ namespace Chekku
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
             {
-                //const string sql = "SELECT DISTINCT Question, QuestionCode FROM Chekku.QTags";
-
-                string sql = "SELECT ExamName FROM Chekku.Exams";
+                string sql = "SELECT ExamName FROM Chekku.Exams WHERE SubSectCode ='" + code+"'";
                 using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
                 {
                     try
@@ -51,6 +53,13 @@ namespace Chekku
                     }
                 }
             }
+        }
+
+        private void BtnBack_Click(object sender, EventArgs e)
+        {
+            Form frm = new Exams();
+            frm.Show();
+            this.Hide();
         }
     }
 }

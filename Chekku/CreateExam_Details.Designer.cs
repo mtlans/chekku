@@ -43,6 +43,7 @@
             this.btnCreate = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.cmbSet = new System.Windows.Forms.ComboBox();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -185,11 +186,23 @@
             this.cmbSet.Size = new System.Drawing.Size(213, 24);
             this.cmbSet.TabIndex = 17;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(42, 367);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(133, 62);
+            this.btnCancel.TabIndex = 18;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            // 
             // CreateExam_Details
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(436, 482);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.cmbSet);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnCreate);
@@ -231,5 +244,6 @@
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cmbSet;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

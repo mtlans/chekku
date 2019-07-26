@@ -46,21 +46,26 @@
             this.txtB = new System.Windows.Forms.RichTextBox();
             this.txtA = new System.Windows.Forms.RichTextBox();
             this.txtQ = new System.Windows.Forms.RichTextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.dgvView = new System.Windows.Forms.DataGridView();
-            this.btnSearchItems = new System.Windows.Forms.Button();
             this.txtSearch2 = new System.Windows.Forms.TextBox();
             this.dgvItems = new System.Windows.Forms.DataGridView();
             this.btnUn = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.btnPDF = new System.Windows.Forms.Button();
-            this.btnTest = new System.Windows.Forms.Button();
-            this.btnOrig = new System.Windows.Forms.Button();
-            this.btnAnswers = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lblNumber = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.lblSec = new System.Windows.Forms.Label();
+            this.lblSY = new System.Windows.Forms.Label();
+            this.lblTerm = new System.Windows.Forms.Label();
+            this.lblDesc = new System.Windows.Forms.Label();
+            this.lblSub = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbI)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvView)).BeginInit();
@@ -221,24 +226,14 @@
             this.txtQ.TabIndex = 57;
             this.txtQ.Text = "";
             // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(537, 391);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(83, 34);
-            this.btnSearch.TabIndex = 67;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
-            // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(21, 398);
+            this.txtSearch.Location = new System.Drawing.Point(121, 398);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(499, 22);
             this.txtSearch.TabIndex = 66;
+            this.txtSearch.TextChanged += new System.EventHandler(this.TxtSearch_TextChanged);
             // 
             // dgvView
             // 
@@ -268,24 +263,14 @@
             this.dgvView.TabIndex = 65;
             this.dgvView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvView_CellClick);
             // 
-            // btnSearchItems
-            // 
-            this.btnSearchItems.Location = new System.Drawing.Point(1381, 391);
-            this.btnSearchItems.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnSearchItems.Name = "btnSearchItems";
-            this.btnSearchItems.Size = new System.Drawing.Size(83, 34);
-            this.btnSearchItems.TabIndex = 70;
-            this.btnSearchItems.Text = "Search";
-            this.btnSearchItems.UseVisualStyleBackColor = true;
-            this.btnSearchItems.Click += new System.EventHandler(this.BtnSearchItems_Click);
-            // 
             // txtSearch2
             // 
-            this.txtSearch2.Location = new System.Drawing.Point(865, 398);
+            this.txtSearch2.Location = new System.Drawing.Point(965, 398);
             this.txtSearch2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSearch2.Name = "txtSearch2";
             this.txtSearch2.Size = new System.Drawing.Size(499, 22);
             this.txtSearch2.TabIndex = 69;
+            this.txtSearch2.TextChanged += new System.EventHandler(this.TxtSearch2_TextChanged);
             // 
             // dgvItems
             // 
@@ -337,50 +322,6 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
-            // btnPDF
-            // 
-            this.btnPDF.Location = new System.Drawing.Point(1312, 779);
-            this.btnPDF.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnPDF.Name = "btnPDF";
-            this.btnPDF.Size = new System.Drawing.Size(152, 68);
-            this.btnPDF.TabIndex = 73;
-            this.btnPDF.Text = "Create PDF";
-            this.btnPDF.UseVisualStyleBackColor = true;
-            this.btnPDF.Click += new System.EventHandler(this.BtnPDF_Click);
-            // 
-            // btnTest
-            // 
-            this.btnTest.Location = new System.Drawing.Point(1003, 789);
-            this.btnTest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(261, 58);
-            this.btnTest.TabIndex = 74;
-            this.btnTest.Text = "test";
-            this.btnTest.UseVisualStyleBackColor = true;
-            this.btnTest.Click += new System.EventHandler(this.BtnTest_Click);
-            // 
-            // btnOrig
-            // 
-            this.btnOrig.Location = new System.Drawing.Point(715, 789);
-            this.btnOrig.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnOrig.Name = "btnOrig";
-            this.btnOrig.Size = new System.Drawing.Size(261, 58);
-            this.btnOrig.TabIndex = 75;
-            this.btnOrig.Text = "test";
-            this.btnOrig.UseVisualStyleBackColor = true;
-            this.btnOrig.Click += new System.EventHandler(this.BtnOrig_Click);
-            // 
-            // btnAnswers
-            // 
-            this.btnAnswers.Location = new System.Drawing.Point(423, 789);
-            this.btnAnswers.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnAnswers.Name = "btnAnswers";
-            this.btnAnswers.Size = new System.Drawing.Size(261, 58);
-            this.btnAnswers.TabIndex = 76;
-            this.btnAnswers.Text = "AnswerKey";
-            this.btnAnswers.UseVisualStyleBackColor = true;
-            this.btnAnswers.Click += new System.EventHandler(this.BtnAnswers_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -412,24 +353,130 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(21, 789);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(154, 58);
+            this.btnBack.TabIndex = 80;
+            this.btnBack.Text = "Cancel";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.BtnBack_Click);
+            // 
+            // lblSec
+            // 
+            this.lblSec.AutoSize = true;
+            this.lblSec.Location = new System.Drawing.Point(913, 31);
+            this.lblSec.Name = "lblSec";
+            this.lblSec.Size = new System.Drawing.Size(59, 17);
+            this.lblSec.TabIndex = 90;
+            this.lblSec.Text = "Section:";
+            // 
+            // lblSY
+            // 
+            this.lblSY.AutoSize = true;
+            this.lblSY.Location = new System.Drawing.Point(594, 66);
+            this.lblSY.Name = "lblSY";
+            this.lblSY.Size = new System.Drawing.Size(89, 17);
+            this.lblSY.TabIndex = 89;
+            this.lblSY.Text = "School Year:";
+            // 
+            // lblTerm
+            // 
+            this.lblTerm.AutoSize = true;
+            this.lblTerm.Location = new System.Drawing.Point(594, 31);
+            this.lblTerm.Name = "lblTerm";
+            this.lblTerm.Size = new System.Drawing.Size(45, 17);
+            this.lblTerm.TabIndex = 88;
+            this.lblTerm.Text = "Term:";
+            // 
+            // lblDesc
+            // 
+            this.lblDesc.AutoSize = true;
+            this.lblDesc.Location = new System.Drawing.Point(182, 65);
+            this.lblDesc.Name = "lblDesc";
+            this.lblDesc.Size = new System.Drawing.Size(83, 17);
+            this.lblDesc.TabIndex = 87;
+            this.lblDesc.Text = "Description:";
+            // 
+            // lblSub
+            // 
+            this.lblSub.AutoSize = true;
+            this.lblSub.Location = new System.Drawing.Point(182, 31);
+            this.lblSub.Name = "lblSub";
+            this.lblSub.Size = new System.Drawing.Size(59, 17);
+            this.lblSub.TabIndex = 86;
+            this.lblSub.Text = "Subject:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(777, 31);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(59, 17);
+            this.label5.TabIndex = 85;
+            this.label5.Text = "Section:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(458, 66);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(89, 17);
+            this.label4.TabIndex = 84;
+            this.label4.Text = "School Year:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(458, 31);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(45, 17);
+            this.label3.TabIndex = 83;
+            this.label3.Text = "Term:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(46, 65);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(83, 17);
+            this.label6.TabIndex = 82;
+            this.label6.Text = "Description:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(46, 31);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(59, 17);
+            this.label7.TabIndex = 81;
+            this.label7.Text = "Subject:";
+            // 
             // Exam_Questions
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1684, 917);
+            this.Controls.Add(this.lblSec);
+            this.Controls.Add(this.lblSY);
+            this.Controls.Add(this.lblTerm);
+            this.Controls.Add(this.lblDesc);
+            this.Controls.Add(this.lblSub);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblNumber);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnAnswers);
-            this.Controls.Add(this.btnOrig);
-            this.Controls.Add(this.btnTest);
-            this.Controls.Add(this.btnPDF);
             this.Controls.Add(this.btnUn);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.btnSearchItems);
             this.Controls.Add(this.txtSearch2);
             this.Controls.Add(this.dgvItems);
-            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.dgvView);
             this.Controls.Add(this.txtT);
@@ -479,20 +526,25 @@
         private System.Windows.Forms.RichTextBox txtB;
         private System.Windows.Forms.RichTextBox txtA;
         private System.Windows.Forms.RichTextBox txtQ;
-        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.DataGridView dgvView;
-        private System.Windows.Forms.Button btnSearchItems;
         private System.Windows.Forms.TextBox txtSearch2;
         private System.Windows.Forms.DataGridView dgvItems;
         private System.Windows.Forms.Button btnUn;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnPDF;
-        private System.Windows.Forms.Button btnTest;
-        private System.Windows.Forms.Button btnOrig;
-        private System.Windows.Forms.Button btnAnswers;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblNumber;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Label lblSec;
+        private System.Windows.Forms.Label lblSY;
+        private System.Windows.Forms.Label lblTerm;
+        private System.Windows.Forms.Label lblDesc;
+        private System.Windows.Forms.Label lblSub;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }

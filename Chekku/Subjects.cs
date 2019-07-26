@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Chekku
@@ -9,7 +10,7 @@ namespace Chekku
     {
 
         string Oldid = "";
-
+        string oldPath = "";
         public Subjects()
         {
             InitializeComponent();
@@ -53,6 +54,7 @@ namespace Chekku
             }
 
             lblID.Text = Oldid;
+            oldPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Exams/" + txtCode.Text + " " + txtYear.Text + " T" + txtTerm.Text;
 
         }
 
@@ -181,7 +183,7 @@ namespace Chekku
                         var returnParameter = sqlCommand.Parameters.Add("@ReturnVal", SqlDbType.Int);
                         returnParameter.Direction = ParameterDirection.ReturnValue;
 
-
+                        
                         try
                         {
                             connection.Open();
@@ -190,10 +192,14 @@ namespace Chekku
                             if (checkState == 0)
                             {
                                 MessageBox.Show("This subject already exists!");
+                                
                             }
                             else
                             {
                                 MessageBox.Show("Subject is now updated!");
+                                string NewPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Exams/" + txtCode.Text + " " +
+                                cmbYear.SelectedItem.ToString() + " T" + cmbTerm.SelectedItem.ToString();
+                                Directory.Move(oldPath, NewPath);
                             }
                         }
                         catch
@@ -206,6 +212,9 @@ namespace Chekku
                         }
                     }
                 }
+                
+
+
                 txtCode.Enabled = false;
                 txtName.Enabled = false;
                 cmbTerm.Enabled = false;
@@ -255,9 +264,8 @@ namespace Chekku
                         }
                     }
                 }
+                
                 refreshView();
-                dgvViewSubjects.CurrentCell = null;
-                ResetFields();
             }
             else
             {
@@ -271,13 +279,6 @@ namespace Chekku
         {
         }
 
-        private void ResetFields()
-        {
-            txtCode.Text = "";
-            txtName.Text = "";
-            cmbTerm.Text = "";
-            cmbYear.Text = "";
-        }
 
         private bool AreFieldsValid()
         {
@@ -367,6 +368,7 @@ namespace Chekku
                 cmbYear.SelectedItem = row.Cells[3].Value.ToString();
                 Oldid = row.Cells[4].Value.ToString();
                 dgvViewSubjects.CurrentCell = row.Cells[0];
+                oldPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Exams/" + txtCode.Text + " " + txtYear.Text + " " + txtTerm.Text;
             }
             else
             {

@@ -269,7 +269,7 @@ namespace Chekku
         private string SaveImage()
         {
             string imgLocation = "";
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Question Images";
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Chekku/Question Images";
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);

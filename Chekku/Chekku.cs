@@ -12,7 +12,7 @@ namespace Chekku
 
         private void BtnExams_Click(object sender, EventArgs e)
         {
-            Form frm = new Exams_Section();
+            Form frm = new Exams();
             frm.Show();
             this.Hide();
         }
