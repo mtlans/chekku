@@ -14,13 +14,31 @@ namespace Chekku
 
     public partial class AddQuestion : Form
     {
+        bool isImported = false;
         public AddQuestion()
         {
             InitializeComponent();
             code = generateQuestionCode();
         }
 
-
+        public AddQuestion(string q, string a, string c1, string c2, string c3, int hI, string path)
+        {
+            InitializeComponent();
+            code = generateQuestionCode();
+            txtQuestion.Text = q;
+            txtAnswer.Text = a;
+            txtCh1.Text = c1;
+            txtCh2.Text = c2;
+            txtCh3.Text = c3;
+            hasImage = hI;
+            isImported = true;
+            if(hI == 1)
+            {
+                pbox.Image = Image.FromFile(path);
+                origfile = path;
+            }
+            btnImage.Visible = false;
+        }
 
 
         private void setPicture(string ext) //EQUATION TO
@@ -55,7 +73,6 @@ namespace Chekku
         }
 
 
-        int hasEquation = 0;
         int hasImage = 0;
         string code = "";
 
@@ -71,22 +88,22 @@ namespace Chekku
                         sqlCommand.CommandType = CommandType.StoredProcedure;
 
                         sqlCommand.Parameters.Add(new SqlParameter("@Question", SqlDbType.NVarChar, 50));
-                        sqlCommand.Parameters["@Question"].Value = txtQuestion.Text;
+                        sqlCommand.Parameters["@Question"].Value = txtQuestion.Text.Trim();
 
                         sqlCommand.Parameters.Add(new SqlParameter("@QuestionCode", SqlDbType.VarChar, 50));
                         sqlCommand.Parameters["@QuestionCode"].Value = code;
 
                         sqlCommand.Parameters.Add(new SqlParameter("@Answer", SqlDbType.NVarChar, 8000));
-                        sqlCommand.Parameters["@Answer"].Value = txtAnswer.Text;
+                        sqlCommand.Parameters["@Answer"].Value = txtAnswer.Text.Trim();
 
                         sqlCommand.Parameters.Add(new SqlParameter("@Choice1", SqlDbType.NVarChar, 8000));
-                        sqlCommand.Parameters["@Choice1"].Value = txtCh1.Text;
+                        sqlCommand.Parameters["@Choice1"].Value = txtCh1.Text.Trim();
 
                         sqlCommand.Parameters.Add(new SqlParameter("@Choice2", SqlDbType.NVarChar, 8000));
-                        sqlCommand.Parameters["@Choice2"].Value = txtCh2.Text;
+                        sqlCommand.Parameters["@Choice2"].Value = txtCh2.Text.Trim();
 
                         sqlCommand.Parameters.Add(new SqlParameter("@Choice3", SqlDbType.NVarChar, 8000));
-                        sqlCommand.Parameters["@Choice3"].Value = txtCh3.Text;
+                        sqlCommand.Parameters["@Choice3"].Value = txtCh3.Text.Trim();
 
                         sqlCommand.Parameters.Add(new SqlParameter("@hasImage", SqlDbType.Bit));
                         sqlCommand.Parameters["@hasImage"].Value = hasImage;
@@ -257,12 +274,12 @@ namespace Chekku
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = "(*.jpg;*.jpeg;*.png;) | *.jpg; *.jpeg; *.png; ";
-            if (dialog.ShowDialog() == DialogResult.OK) ;
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
                 pbox.Image = Image.FromFile(dialog.FileName);
                 origfile = dialog.FileName;
             }
-            lblimg.Text = origfile;
+            //lblimg.Text = origfile;
         }
 
 
@@ -277,7 +294,7 @@ namespace Chekku
 
             string imgname = code + ".jpg";
             string pathstring = System.IO.Path.Combine(path, imgname);
-            lblimg.Text = pathstring;
+            //lblimg.Text = pathstring;
             System.IO.File.Copy(origfile, pathstring);
             return pathstring;
         }
@@ -336,10 +353,30 @@ namespace Chekku
                         }
                     }
                 }
+                if (!isImported)
+                {
+                    MessageBox.Show("Question is now added!");
+                    Form ques = new Questions();
+                    ques.Show();
+                    this.Close();
+                }
+                else
+                {
+                    this.Close();
+                }
+            }
+        }
 
-                MessageBox.Show("Question is now added!");
-                Form ques = new Questions();
-                ques.Show();
+        private void BtnBack_Click(object sender, EventArgs e)
+        {
+            if (!isImported)
+            {
+                Form frm = new Questions();
+                frm.Show();
+                this.Hide();
+            }
+            else
+            {
                 this.Close();
             }
         }

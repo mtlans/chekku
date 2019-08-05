@@ -21,8 +21,8 @@ namespace Chekku
             InitializeComponent();
 
             View();
-            cmbSearchTerm.SelectedIndex = 0;
-            cmbSearchYear.SelectedIndex = 0;
+            cmbSearchTerm.selectedIndex = 0;
+            cmbSearchYear.selectedIndex = 0;
             oldname = txtSection.Text;
         }
 
@@ -129,62 +129,54 @@ namespace Chekku
         private void Filter()
         {
 
-            if (!String.IsNullOrWhiteSpace(txtSearch.Text) && cmbSearchTerm.SelectedIndex > -1 && cmbSearchYear.SelectedIndex > -1)
+            if (!String.IsNullOrWhiteSpace(txtSearch.text) && cmbSearchTerm.selectedIndex > -1 && cmbSearchYear.selectedIndex > -1)
             {
-                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("SubjectCode LIKE '{0}%' AND Term = '{1}' AND SchoolYear LIKE '{2}'", txtSearch.Text, Convert.ToInt32(cmbSearchTerm.SelectedItem.ToString()), cmbSearchYear.SelectedItem.ToString());
-
+                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("SubjectCode LIKE '{0}%' AND Term = '{1}' AND SchoolYear LIKE '{2}'", txtSearch.text, Convert.ToInt32(cmbSearchTerm.selectedValue.ToString()), cmbSearchYear.selectedValue.ToString());
             }
-            else if (!String.IsNullOrWhiteSpace(txtSearch.Text) && cmbSearchTerm.SelectedIndex > 0 && cmbSearchYear.SelectedIndex <= 0)
+            else if (!String.IsNullOrWhiteSpace(txtSearch.text) && cmbSearchTerm.selectedIndex > 0 && cmbSearchYear.selectedIndex <= 0)
             {
-                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("SubjectCode LIKE '{0}%' AND Term = '{1}'", txtSearch.Text, Convert.ToInt32(cmbSearchTerm.SelectedItem.ToString()));
-
-
-            }
-            else if (!String.IsNullOrWhiteSpace(txtSearch.Text) && cmbSearchTerm.SelectedIndex <= 0 && cmbSearchYear.SelectedIndex > 0)
-            {
-
-                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("SubjectCode LIKE '{0}%' AND SchoolYear = '{1}'", txtSearch.Text, cmbSearchYear.SelectedItem.ToString());
-            }
-            else if (String.IsNullOrWhiteSpace(txtSearch.Text) && cmbSearchTerm.SelectedIndex > -1 && cmbSearchYear.SelectedIndex > -1)
-            {
-                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("Term = '{0}' AND SchoolYear = '{1}'", Convert.ToInt32(cmbSearchTerm.SelectedItem.ToString()), cmbSearchYear.SelectedItem.ToString());
+                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("SubjectCode LIKE '{0}%' AND Term = '{1}'", txtSearch.text, Convert.ToInt32(cmbSearchTerm.selectedValue.ToString()));
 
 
             }
-            else if (String.IsNullOrWhiteSpace(txtSearch.Text) && cmbSearchTerm.SelectedIndex > 0 && cmbSearchYear.SelectedIndex <= 0)
+            else if (!String.IsNullOrWhiteSpace(txtSearch.text) && cmbSearchTerm.selectedIndex <= 0 && cmbSearchYear.selectedIndex > 0)
             {
-                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("Term = '{0}' ", Convert.ToInt32(cmbSearchTerm.SelectedItem.ToString()));
+
+                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("SubjectCode LIKE '{0}%' AND SchoolYear = '{1}'", txtSearch.text, cmbSearchYear.selectedValue.ToString());
+            }
+            else if (String.IsNullOrWhiteSpace(txtSearch.text) && cmbSearchTerm.selectedIndex > -1 && cmbSearchYear.selectedIndex > -1)
+            {
+                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("Term = '{0}' AND SchoolYear = '{1}'", Convert.ToInt32(cmbSearchTerm.selectedValue.ToString()), cmbSearchYear.selectedValue.ToString());
 
 
             }
-            else if (String.IsNullOrWhiteSpace(txtSearch.Text) && cmbSearchTerm.SelectedIndex <= 0 && cmbSearchYear.SelectedIndex > 0)
+            else if (String.IsNullOrWhiteSpace(txtSearch.text) && cmbSearchTerm.selectedIndex > 0 && cmbSearchYear.selectedIndex <= 0)
             {
-                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("SchoolYear = '{0}' ", cmbSearchYear.SelectedItem.ToString());
+                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("Term = '{0}' ", Convert.ToInt32(cmbSearchTerm.selectedValue.ToString()));
+
+
+            }
+            else if (String.IsNullOrWhiteSpace(txtSearch.text) && cmbSearchTerm.selectedIndex <= 0 && cmbSearchYear.selectedIndex > 0)
+            {
+                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("SchoolYear = '{0}' ", cmbSearchYear.selectedValue.ToString());
 
 
             }
             else
             {
-                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("SubjectCode LIKE '{0}%'", txtSearch.Text);
+                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("SubjectCode LIKE '{0}%'", txtSearch.text);
             }
 
         }
 
-        private void TxtSearch_TextChanged(object sender, EventArgs e)
-        {
-            Filter();
-            SelectFirst();
-            ViewSections();
-            selectSections();
-        }
 
-        private void CmbSearchYear_SelectedIndexChanged(object sender, EventArgs e)
+        private void CmbSearchYear_selectedIndexChanged(object sender, EventArgs e)
         {
             Filter();
             SelectFirst();
             ViewSections(); selectSections();
-            //lbl1.Text = cmbSearchTerm.SelectedIndex.ToString();
-            // lbl2.Text = cmbSearchYear.SelectedIndex.ToString();
+            //lbl1.Text = cmbSearchTerm.selectedIndex.ToString();
+            // lbl2.Text = cmbSearchYear.selectedIndex.ToString();
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
@@ -269,8 +261,8 @@ namespace Chekku
                 code = row.Cells[1].Value.ToString();
                 oldname = txtSection.Text;
             }
-            oldpath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Exams/" + txtCode.Text + " " +
-                    cmbSearchYear.SelectedItem.ToString() + " T" + cmbSearchTerm.SelectedItem.ToString() + "/" + txtSection.Text ;
+            oldpath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/" + txtCode.Text + " " +
+                    cmbSearchYear.selectedValue.ToString() + " T" + cmbSearchTerm.selectedValue.ToString() + "/" + txtSection.Text ;
         }
 
         private void Section_Load(object sender, EventArgs e)
@@ -304,12 +296,10 @@ namespace Chekku
             {
                 var row = dgvSections.Rows[0];
                 txtSection.Text = row.Cells[0].Value.ToString();
-                lbl1.Text = dgvSections.Rows.Count.ToString();
-                lbl2.Text = dgvSubjects.Rows.Count.ToString();
                 dgvSections.CurrentCell = row.Cells[0];
                 code = row.Cells[1].Value.ToString();
-               oldpath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Exams/" + txtCode.Text + " " +
-                   cmbSearchYear.SelectedItem.ToString() + " T" + cmbSearchTerm.SelectedItem.ToString() + "/" + txtSection.Text;
+               oldpath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/" + txtCode.Text + " " +
+                   cmbSearchYear.selectedValue.ToString() + " T" + cmbSearchTerm.selectedValue.ToString() + "/" + txtSection.Text;
             }
             else
             {
@@ -387,8 +377,8 @@ namespace Chekku
                         var returnParameter = sqlCommand.Parameters.Add("@ReturnVal", SqlDbType.Int);
                         returnParameter.Direction = ParameterDirection.ReturnValue;
 
-                        string NewPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Exams/" + txtCode.Text + " " +
-                                cmbSearchYear.SelectedItem.ToString() + " T" + cmbSearchTerm.SelectedItem.ToString() + "/" + txtSection.Text;
+                        string NewPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/" + txtCode.Text + " " +
+                                cmbSearchYear.selectedValue.ToString() + " T" + cmbSearchTerm.selectedValue.ToString() + "/" + txtSection.Text;
                         Directory.Move(oldpath, NewPath);
                         try
                         {
@@ -425,7 +415,7 @@ namespace Chekku
             else
             {
                 MessageBox.Show("Please select a section to edit.");
-                txtSearch.Clear();
+                txtSearch.ResetText();
             }
         }
 
@@ -480,16 +470,45 @@ namespace Chekku
 
         private void BtnEnroll_Click(object sender, EventArgs e)
         {
-            Form enroll = new Section_Enrolled(id, code, txtSection.Text);
-            this.Hide();
-            enroll.Show();
+            if(!String.IsNullOrWhiteSpace(txtCode.Text) && !String.IsNullOrWhiteSpace(txtSection.Text)){
+                Form enroll = new Section_Enrolled(id, code, txtSection.Text);
+                this.Hide();
+                enroll.Show();
+            }
+            else
+            {
+                MessageBox.Show("No section selected", "Please select a section.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void getCode()
         {
 
         }
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
 
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        private void Panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void TxtSearch_OnTextChange(object sender, EventArgs e)
+        {
+            System.Console.WriteLine(txtSearch.text);
+            Filter();
+            SelectFirst();
+            ViewSections();
+            selectSections();
+        }
     }
 }
 

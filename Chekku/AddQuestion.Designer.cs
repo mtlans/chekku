@@ -41,56 +41,61 @@
             this.lblX = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtTags = new System.Windows.Forms.TextBox();
-            this.btnTest = new System.Windows.Forms.Button();
             this.lblTags = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbox)).BeginInit();
             this.SuspendLayout();
             // 
             // txtCh3
             // 
-            this.txtCh3.Location = new System.Drawing.Point(35, 423);
+            this.txtCh3.Location = new System.Drawing.Point(26, 344);
+            this.txtCh3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtCh3.Name = "txtCh3";
-            this.txtCh3.Size = new System.Drawing.Size(496, 57);
+            this.txtCh3.Size = new System.Drawing.Size(373, 47);
             this.txtCh3.TabIndex = 45;
             this.txtCh3.Text = "";
             // 
             // txtCh2
             // 
-            this.txtCh2.Location = new System.Drawing.Point(35, 360);
+            this.txtCh2.Location = new System.Drawing.Point(26, 292);
+            this.txtCh2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtCh2.Name = "txtCh2";
-            this.txtCh2.Size = new System.Drawing.Size(496, 57);
+            this.txtCh2.Size = new System.Drawing.Size(373, 47);
             this.txtCh2.TabIndex = 44;
             this.txtCh2.Text = "";
             // 
             // txtCh1
             // 
-            this.txtCh1.Location = new System.Drawing.Point(35, 297);
+            this.txtCh1.Location = new System.Drawing.Point(26, 241);
+            this.txtCh1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtCh1.Name = "txtCh1";
-            this.txtCh1.Size = new System.Drawing.Size(496, 57);
+            this.txtCh1.Size = new System.Drawing.Size(373, 47);
             this.txtCh1.TabIndex = 43;
             this.txtCh1.Text = "";
             // 
             // txtAnswer
             // 
-            this.txtAnswer.Location = new System.Drawing.Point(35, 209);
+            this.txtAnswer.Location = new System.Drawing.Point(26, 170);
+            this.txtAnswer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtAnswer.Name = "txtAnswer";
-            this.txtAnswer.Size = new System.Drawing.Size(496, 57);
+            this.txtAnswer.Size = new System.Drawing.Size(373, 47);
             this.txtAnswer.TabIndex = 42;
             this.txtAnswer.Text = "";
             // 
             // txtQuestion
             // 
-            this.txtQuestion.Location = new System.Drawing.Point(35, 46);
+            this.txtQuestion.Location = new System.Drawing.Point(26, 37);
+            this.txtQuestion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtQuestion.Name = "txtQuestion";
-            this.txtQuestion.Size = new System.Drawing.Size(496, 127);
+            this.txtQuestion.Size = new System.Drawing.Size(373, 104);
             this.txtQuestion.TabIndex = 41;
             this.txtQuestion.Text = "";
             // 
             // btnImage
             // 
-            this.btnImage.Location = new System.Drawing.Point(645, 423);
+            this.btnImage.Location = new System.Drawing.Point(449, 227);
+            this.btnImage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnImage.Name = "btnImage";
-            this.btnImage.Size = new System.Drawing.Size(425, 57);
+            this.btnImage.Size = new System.Drawing.Size(319, 46);
             this.btnImage.TabIndex = 47;
             this.btnImage.Text = "Add Image";
             this.btnImage.UseVisualStyleBackColor = true;
@@ -98,9 +103,10 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(877, 612);
+            this.btnAdd.Location = new System.Drawing.Point(623, 489);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(193, 56);
+            this.btnAdd.Size = new System.Drawing.Size(145, 46);
             this.btnAdd.TabIndex = 50;
             this.btnAdd.Text = "Add Question";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -108,18 +114,21 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(35, 602);
+            this.btnBack.Location = new System.Drawing.Point(26, 489);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(193, 56);
+            this.btnBack.Size = new System.Drawing.Size(145, 46);
             this.btnBack.TabIndex = 51;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.BtnBack_Click);
             // 
             // pbox
             // 
-            this.pbox.Location = new System.Drawing.Point(645, 209);
+            this.pbox.Location = new System.Drawing.Point(449, 37);
+            this.pbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pbox.Name = "pbox";
-            this.pbox.Size = new System.Drawing.Size(425, 192);
+            this.pbox.Size = new System.Drawing.Size(319, 156);
             this.pbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbox.TabIndex = 56;
             this.pbox.TabStop = false;
@@ -127,64 +136,58 @@
             // lblimg
             // 
             this.lblimg.AutoSize = true;
-            this.lblimg.Location = new System.Drawing.Point(674, 174);
+            this.lblimg.Location = new System.Drawing.Point(163, 15);
+            this.lblimg.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblimg.Name = "lblimg";
-            this.lblimg.Size = new System.Drawing.Size(46, 17);
+            this.lblimg.Size = new System.Drawing.Size(35, 13);
             this.lblimg.TabIndex = 57;
             this.lblimg.Text = "label1";
             // 
             // lblX
             // 
             this.lblX.AutoSize = true;
-            this.lblX.Location = new System.Drawing.Point(470, 19);
+            this.lblX.Location = new System.Drawing.Point(352, 15);
+            this.lblX.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblX.Name = "lblX";
-            this.lblX.Size = new System.Drawing.Size(46, 17);
+            this.lblX.Size = new System.Drawing.Size(35, 13);
             this.lblX.TabIndex = 58;
             this.lblX.Text = "label1";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 510);
+            this.label1.Location = new System.Drawing.Point(24, 414);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 17);
+            this.label1.Size = new System.Drawing.Size(31, 13);
             this.label1.TabIndex = 59;
             this.label1.Text = "Tags";
             this.label1.Visible = false;
             // 
             // txtTags
             // 
-            this.txtTags.Location = new System.Drawing.Point(78, 510);
+            this.txtTags.Location = new System.Drawing.Point(58, 414);
+            this.txtTags.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtTags.Name = "txtTags";
-            this.txtTags.Size = new System.Drawing.Size(453, 22);
+            this.txtTags.Size = new System.Drawing.Size(341, 20);
             this.txtTags.TabIndex = 60;
-            // 
-            // btnTest
-            // 
-            this.btnTest.Location = new System.Drawing.Point(573, 508);
-            this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(147, 74);
-            this.btnTest.TabIndex = 61;
-            this.btnTest.Text = "Test";
-            this.btnTest.UseVisualStyleBackColor = true;
-            this.btnTest.Click += new System.EventHandler(this.BtnTest_Click);
             // 
             // lblTags
             // 
             this.lblTags.AutoSize = true;
-            this.lblTags.Location = new System.Drawing.Point(374, 549);
+            this.lblTags.Location = new System.Drawing.Point(280, 446);
+            this.lblTags.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTags.Name = "lblTags";
-            this.lblTags.Size = new System.Drawing.Size(46, 17);
+            this.lblTags.Size = new System.Drawing.Size(35, 13);
             this.lblTags.TabIndex = 62;
             this.lblTags.Text = "label2";
             // 
             // AddQuestion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1093, 689);
+            this.ClientSize = new System.Drawing.Size(820, 560);
             this.Controls.Add(this.lblTags);
-            this.Controls.Add(this.btnTest);
             this.Controls.Add(this.txtTags);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblX);
@@ -198,6 +201,7 @@
             this.Controls.Add(this.txtCh1);
             this.Controls.Add(this.txtAnswer);
             this.Controls.Add(this.txtQuestion);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "AddQuestion";
             this.Text = "AddQuestion";
             ((System.ComponentModel.ISupportInitialize)(this.pbox)).EndInit();
@@ -221,7 +225,6 @@
         private System.Windows.Forms.Label lblX;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtTags;
-        private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.Label lblTags;
     }
 }

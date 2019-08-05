@@ -255,7 +255,7 @@ namespace Chekku
                     myConnection.Close();
                 }
             }
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Exams/" + sub + " " + year + " T" + term + "/" + txtSection.Text;
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/" + sub + " " + year + " T" + term + "/" + txtSection.Text;
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);

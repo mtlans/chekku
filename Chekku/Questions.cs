@@ -251,22 +251,22 @@ namespace Chekku
                             sqlCommand.CommandType = CommandType.StoredProcedure;
 
                             sqlCommand.Parameters.Add(new SqlParameter("@Question", SqlDbType.NVarChar, 50));
-                            sqlCommand.Parameters["@Question"].Value = txtQuestion.Text;
+                            sqlCommand.Parameters["@Question"].Value = txtQuestion.Text.Trim();
 
                             sqlCommand.Parameters.Add(new SqlParameter("@QuestionCode", SqlDbType.VarChar, 50));
                             sqlCommand.Parameters["@QuestionCode"].Value = qcode;
 
                             sqlCommand.Parameters.Add(new SqlParameter("@Answer", SqlDbType.NVarChar, 8000));
-                            sqlCommand.Parameters["@Answer"].Value = txtAnswer.Text;
+                            sqlCommand.Parameters["@Answer"].Value = txtAnswer.Text.Trim();
 
                             sqlCommand.Parameters.Add(new SqlParameter("@Choice1", SqlDbType.NVarChar, 8000));
-                            sqlCommand.Parameters["@Choice1"].Value = txtCh1.Text;
+                            sqlCommand.Parameters["@Choice1"].Value = txtCh1.Text.Trim();
 
                             sqlCommand.Parameters.Add(new SqlParameter("@Choice2", SqlDbType.NVarChar, 8000));
-                            sqlCommand.Parameters["@Choice2"].Value = txtCh2.Text;
+                            sqlCommand.Parameters["@Choice2"].Value = txtCh2.Text.Trim();
 
                             sqlCommand.Parameters.Add(new SqlParameter("@Choice3", SqlDbType.NVarChar, 8000));
-                            sqlCommand.Parameters["@Choice3"].Value = txtCh3.Text;
+                            sqlCommand.Parameters["@Choice3"].Value = txtCh3.Text.Trim();
 
                             sqlCommand.Parameters.Add(new SqlParameter("@hasImage", SqlDbType.Bit));
                             sqlCommand.Parameters["@hasImage"].Value = hasImage;
@@ -348,8 +348,6 @@ namespace Chekku
         int toggleEdit = 1;
         private void BtnEdit_Click(object sender, EventArgs e)
         {
-
-
             if (String.IsNullOrWhiteSpace(txtQuestion.Text))
             {
                 MessageBox.Show("Please select a question first.");
@@ -357,6 +355,7 @@ namespace Chekku
             }
             if (toggleEdit == 1)
             {
+                btnSave.Visible = true;
                 btnAdd.Enabled = false;
                 btnDelete.Enabled = false;
                 btnEditPic.Visible = true;
@@ -370,6 +369,7 @@ namespace Chekku
             }
             else
             {
+                btnSave.Visible = false;
                 btnAdd.Enabled = true;
                 btnDelete.Enabled = true;
                 btnEditPic.Visible = false;
@@ -499,6 +499,11 @@ namespace Chekku
                 origfile = dialog.FileName;
             }
             lblText.Text = origfile;
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Chekku/Question Images";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
         }
 
 
@@ -617,6 +622,7 @@ namespace Chekku
         private void BtnSave_Click(object sender, EventArgs e)
         {
             UpdateDetails();
+            btnSave.Visible = false;
             btnAdd.Enabled = true;
             btnDelete.Enabled = true;
             btnEditPic.Visible = false;
@@ -744,6 +750,20 @@ namespace Chekku
                 refreshView();
             }
             SelectFirst();
+        }
+
+        private void BtnExport_Click(object sender, EventArgs e)
+        {
+            Form frm = new Export_Questions();
+            frm.Show();
+            this.Close();
+        }
+
+        private void BtnImport_Click(object sender, EventArgs e)
+        {
+            Form frm = new Import_QuestionBank();
+            frm.Show();
+            this.Close();
         }
 
 

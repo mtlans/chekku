@@ -1,77 +1,29 @@
-﻿using iTextSharp.text;
-using iTextSharp.text.pdf;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Chekku
 {
-    public partial class Exam_Questions : Form
+    public partial class Export_Questions : Form
     {
-        string id = ""; //subjectID
-        string subsectcode = ""; //sectioncode
+        string examCode = "TEMP";
         string qcode = "";
-        string examCode = "";
         string qcode2 = "";
-        int setNum = 1;
         List<Question> Items = new List<Question>();
-        List<int>Sets = new List<int>();
-        List<String> AnswerKey = new List<String>();
-        List<String> toCheck = new List<String>();
-        public Exam_Questions(string excode, int set, string subid, string subsectCode)
+
+        public Export_Questions()
         {
             InitializeComponent();
             loadQuestions();
-            loadDetails(subid, subsectCode);
-            id = subid;
-            subsectcode = subsectCode;
             SelectFirst();
-            examCode = excode;
-            setNum = set;
-            for(int i = 1; i<=set; i++)
-            {
-                Sets.Add(i);
-                System.Console.WriteLine("Set: " + i);
-            }
-        }
-
-        private void loadDetails(string subCode, string subsectCode)
-        {
-            using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
-            {
-                string oString = "Select * from Chekku.Subjects where SubjectID=@SubjectID";
-                SqlCommand oCmd = new SqlCommand(oString, myConnection);
-                oCmd.Parameters.AddWithValue("@SubjectID", subCode);
-                myConnection.Open();
-                using (SqlDataReader oReader = oCmd.ExecuteReader())
-                {
-                    while (oReader.Read())
-                    {
-                        lblSub.Text = oReader["SubjectCode"].ToString();
-                        lblDesc.Text = oReader["SubjectName"].ToString();
-                        lblTerm.Text = oReader["Term"].ToString();
-                        lblSY.Text = oReader["SchoolYear"].ToString();
-                    }
-                    myConnection.Close();
-                }
-                oString = "Select * from Chekku.Section where SubSectCode=@SubSectCode";
-                oCmd = new SqlCommand(oString, myConnection);
-                oCmd.Parameters.AddWithValue("@SubSectCode", subsectCode);
-                myConnection.Open();
-                using (SqlDataReader oReader = oCmd.ExecuteReader())
-                {
-                    while (oReader.Read())
-                    {
-                        lblSec.Text = oReader["SectionName"].ToString();
-                    }
-                    myConnection.Close();
-                }
-
-            }
         }
 
         private void loadQuestions()
@@ -121,7 +73,7 @@ namespace Chekku
 
                 using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
                 {
-                   
+
                     try
                     {
                         connection.Open();
@@ -213,6 +165,61 @@ namespace Chekku
             }
             qcode = Code;
         }
+
+        public void FillContent2(string Code)
+        {
+            int hasImg;
+            using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
+            {
+                string oString = "Select * from Chekku.Questions where QuestionCode=@Code";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@Code", Code);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        txtQ.Text = oReader["Question"].ToString();
+                        txtA.Text = oReader["Answer"].ToString();
+                        txtB.Text = oReader["Choice1"].ToString();
+                        txtC.Text = oReader["Choice2"].ToString();
+                        txtD.Text = oReader["Choice3"].ToString();
+                        hasImg = Convert.ToInt32(oReader["hasImage"]);
+                        if (hasImg == 1)
+                        {
+                            byte[] picArr = (byte[])oReader["Image"];
+                            MemoryStream ms = new MemoryStream(picArr);
+                            ms.Seek(0, SeekOrigin.Begin);
+                            pbI.Image = System.Drawing.Image.FromStream(ms);
+                        }
+                        else
+                        {
+                            pbI.Image = null;
+                        }
+                    }
+
+                    myConnection.Close();
+                }
+            }
+
+            using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
+            {
+                string oString = "Select * from Chekku.QTagString where QuestionCode=@Code";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@Code", Code);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        txtT.Text = oReader["Tagline"].ToString();
+                    }
+                    myConnection.Close();
+                }
+            }
+            qcode2 = Code;
+        }
+
 
         private void SelectFirst()
         {
@@ -372,60 +379,6 @@ namespace Chekku
             }
         }
 
-        public void FillContent2(string Code)
-        {
-            int hasImg;
-            using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
-            {
-                string oString = "Select * from Chekku.Questions where QuestionCode=@Code";
-                SqlCommand oCmd = new SqlCommand(oString, myConnection);
-                oCmd.Parameters.AddWithValue("@Code", Code);
-                myConnection.Open();
-                using (SqlDataReader oReader = oCmd.ExecuteReader())
-                {
-                    while (oReader.Read())
-                    {
-                        txtQ.Text = oReader["Question"].ToString();
-                        txtA.Text = oReader["Answer"].ToString();
-                        txtB.Text = oReader["Choice1"].ToString();
-                        txtC.Text = oReader["Choice2"].ToString();
-                        txtD.Text = oReader["Choice3"].ToString();
-                        hasImg = Convert.ToInt32(oReader["hasImage"]);
-                        if (hasImg == 1)
-                        {
-                            byte[] picArr = (byte[])oReader["Image"];
-                            MemoryStream ms = new MemoryStream(picArr);
-                            ms.Seek(0, SeekOrigin.Begin);
-                            pbI.Image = System.Drawing.Image.FromStream(ms);
-                        }
-                        else
-                        {
-                            pbI.Image = null;
-                        }
-                    }
-
-                    myConnection.Close();
-                }
-            }
-
-            using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
-            {
-                string oString = "Select * from Chekku.QTagString where QuestionCode=@Code";
-                SqlCommand oCmd = new SqlCommand(oString, myConnection);
-                oCmd.Parameters.AddWithValue("@Code", Code);
-                myConnection.Open();
-                using (SqlDataReader oReader = oCmd.ExecuteReader())
-                {
-                    while (oReader.Read())
-                    {
-                        txtT.Text = oReader["Tagline"].ToString();
-                    }
-                    myConnection.Close();
-                }
-            }
-            qcode2 = Code;
-        }
-
         private void TxtSearch_TextChanged(object sender, EventArgs e)
         {
             Search();
@@ -516,9 +469,14 @@ namespace Chekku
             SelectFirst();
         }
 
+        private void TxtSearch2_TextChanged(object sender, EventArgs e)
+        {
+            Search2();
+        }
+
         private void Search2()
         {
-              string search = "";
+            string search = "";
             string count = "0";
             if (!String.IsNullOrEmpty(txtSearch2.Text))
             {
@@ -602,12 +560,12 @@ namespace Chekku
             SelectFirst();
         }
 
-        private void TxtSearch2_TextChanged(object sender, EventArgs e)
+        private void BtnBack_Click(object sender, EventArgs e)
         {
-            Search2();
+            DeleteTemp();
         }
 
-        private void BtnBack_Click(object sender, EventArgs e)
+        private void DeleteTemp()
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
             {
@@ -621,7 +579,7 @@ namespace Chekku
                     {
                         connection.Open();
                         sqlCommand.ExecuteNonQuery();
-                        Form frm = new Exams_Section(id, subsectcode, lblSec.Text);
+                        Form frm = new Questions();
                         frm.Show();
                         this.Hide();
                     }
@@ -636,241 +594,95 @@ namespace Chekku
                 }
             }
         }
-
-
-
-        //GAWAAN NG PDF
-        private void BtnSave_Click(object sender, EventArgs e)
+        private void BtnExport_Click(object sender, EventArgs e)
         {
-            foreach (int number in Sets)
+            if(!(Items.Count == 0))
             {
-                ShuffleItems();
-                CreatePDFandAnswerKey(number);
+                GetFileName a = new GetFileName();
+                a.ShowDialog();
+                a.Hide();
+                string filename = a.filename;
+                string path = a.path;
+                a.Dispose();
+                if (!filename.Equals("cancelled"))
+                {
+                    CreateTextFile(filename, path);
+                }
             }
-            MessageBox.Show("Exam is now saved! Check the desktop folder for the PDF and Answer Key.");
-           
-            Form frm = new Exams_Section(id, subsectcode, lblSec.Text);
-            this.Hide();
-            frm.Show();
+            else
+            {
+                MessageBox.Show("Please choose questions to export.");
+            }
         }
 
-
-
-        private void CreatePDFandAnswerKey(int SetNum)
+        private void CreateTextFile(string filename, string path)
         {
-            string sub = lblSub.Text;
-            string term = lblTerm.Text;
-            string year = lblSY.Text;
-            string sect = lblSec.Text;
-            AnswerKey.Clear();
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/"+sub+" " + year + " T"  + term + "/" + sect + "/Exams";
-            if (!Directory.Exists(path))
+            string Open = path + "/" + filename + ".txt";
+            var delimiter = "@@@";
+
+            using (var writer = new StreamWriter(Open))
             {
-                Directory.CreateDirectory(path);
-            }
-            string answerKeyPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/" + sub + " " + year + " T" + term + "/" + sect + "/Answer Keys" ;
-            string filename = examCode + " " + SetNum + ".pdf";
-            string Open = path + "/" + filename;
-            FileStream fs = new FileStream(Open, FileMode.Create, FileAccess.Write, FileShare.None);
-            Document doc = new Document(PageSize.LETTER);
-            PdfWriter writer = PdfWriter.GetInstance(doc, fs);
-            doc.Open();
-
-            string que = "", answer = "", ch1 = "", ch2 = "", ch3 = "";
-            int hasImg = 0;
-            int num = 1;
-            List<String> ABCD = new List<String>();
-            ABCD.Add("A");
-            ABCD.Add("B");
-            ABCD.Add("C");
-            ABCD.Add("D");
-
-            System.Drawing.Image i = null;
-            //main loop
-            foreach (var question in Items)
-            {
-                List<String> Answers = new List<String>();
-
-                question.Number = num;
-                using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
+                int num = 1;
+                foreach (var question in Items)
                 {
-                    string oString = "Select * from Chekku.Questions where QuestionCode=@Code";
-                    SqlCommand oCmd = new SqlCommand(oString, myConnection);
-                    oCmd.Parameters.AddWithValue("@Code", question.Qcode);
-                    myConnection.Open();
-                    using (SqlDataReader oReader = oCmd.ExecuteReader())
+                    string que = "", answer = "", ch1 = "", ch2 = "", ch3 = "";
+                    int hasImg = 0;
+                    List<String> line = new List<String>();
+                    using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
                     {
-                        while (oReader.Read())
+                        string oString = "Select * from Chekku.Questions where QuestionCode=@Code";
+                        SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                        oCmd.Parameters.AddWithValue("@Code", question.Qcode);
+                        myConnection.Open();
+                        using (SqlDataReader oReader = oCmd.ExecuteReader())
                         {
-                            que = oReader["Question"].ToString();
-                            answer = oReader["Answer"].ToString();
-                            Answers.Add(answer);
-                            toCheck.Add(answer);
-                            ch1 = oReader["Choice1"].ToString();
-                            Answers.Add(ch1);
-                            ch2 = oReader["Choice2"].ToString();
-                            Answers.Add(ch2);
-                            ch3 = oReader["Choice3"].ToString();
-                            Answers.Add(ch3);
-                            hasImg = Convert.ToInt32(oReader["hasImage"]);
-                            if (hasImg == 1)
+                            while (oReader.Read())
                             {
-                                byte[] picArr = (byte[])oReader["Image"];
-                                MemoryStream ms = new MemoryStream(picArr);
-                                ms.Seek(0, SeekOrigin.Begin);
-                                i = System.Drawing.Image.FromStream(ms);
+                                que = oReader["Question"].ToString();
+                                answer = oReader["Answer"].ToString();
+                                ch1 = oReader["Choice1"].ToString();
+                                ch2 = oReader["Choice2"].ToString();
+                                ch3 = oReader["Choice3"].ToString();
+                                hasImg = Convert.ToInt32(oReader["hasImage"]);
+                                if (hasImg == 1)
+                                {
+                                    string imgpath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Chekku/Question Images";
+                                    string imgname = question.Qcode + ".jpg";
+                                    string imgloc = System.IO.Path.Combine(imgpath, imgname);
+
+                                    string imgOut = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Export Question Banks/" + filename + "/Images";
+                                    if (!Directory.Exists(imgOut))
+                                    {
+                                        Directory.CreateDirectory(imgOut);
+                                    }
+                                    string imgFinal = imgOut + "/"+ num.ToString() + ".jpg";
+                                    File.Copy(imgloc, imgFinal);
+                                }
+                                else
+                                {
+                                    //    i = null;
+                                }
                             }
-                            else
-                            {
-                                i = null;
-                            }
-                        }
-                        myConnection.Close();
-                    }
-                }
-                if (hasImg == 1)
-                {
-                    iTextSharp.text.Image picture = iTextSharp.text.Image.GetInstance(i, System.Drawing.Imaging.ImageFormat.Jpeg);
-                    picture.Alignment = iTextSharp.text.Image.ALIGN_CENTER;
-                    doc.Add(picture);
-                }
-                doc.Add(new Paragraph(num + ". " + que));
-                System.Console.WriteLine(num + ". " + que);
-                Answers = Shuffle2(Answers);
-
-                foreach (var letter in ABCD.Zip(Answers, Tuple.Create))
-                {
-                    System.Console.WriteLine(letter.Item1 + ".) " + letter.Item2);
-                    doc.Add(new Paragraph((letter.Item1 + ".) " + letter.Item2)));
-                    if (letter.Item2.Equals(answer))
-                    {
-                        AnswerKey.Add(letter.Item1);
-                    }
-                }
-
-                using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
-                {
-                    int checkState;
-
-                    using (SqlCommand sqlCommand = new SqlCommand("Chekku.addExamItemNumber", connection))
-                    {
-                        sqlCommand.CommandType = CommandType.StoredProcedure;
-
-                        sqlCommand.Parameters.Add(new SqlParameter("@ExamCode", SqlDbType.VarChar, 8000));
-                        sqlCommand.Parameters["@ExamCode"].Value = examCode;
-
-                        sqlCommand.Parameters.Add(new SqlParameter("@QuestionCode", SqlDbType.VarChar, 8000));
-                        sqlCommand.Parameters["@QuestionCode"].Value = question.Qcode;
-
-                        sqlCommand.Parameters.Add(new SqlParameter("@ItemNum", SqlDbType.Int));
-                        sqlCommand.Parameters["@ItemNum"].Value = num;
-
-                        sqlCommand.Parameters.Add(new SqlParameter("@SetNum", SqlDbType.Int));
-                        sqlCommand.Parameters["@SetNum"].Value = SetNum;
-
-                        var returnParameter = sqlCommand.Parameters.Add("@ReturnVal", SqlDbType.Int);
-                        returnParameter.Direction = ParameterDirection.ReturnValue;
-                        
-                        try
-                        {
-                            connection.Open();
-                            sqlCommand.ExecuteNonQuery();
-                            checkState = (Int32)returnParameter.Value;
-                            if (checkState == 0)
-                            {
-                                MessageBox.Show("Error!");
-                            }
-                            else
-                            {
-                                System.Console.WriteLine("Success adding: " + " " + num + " " + question.Qcode + "Set: " + SetNum);
-                            }
-                        }
-                        catch
-                        {
-                            MessageBox.Show("Error.");
-                        }
-                        finally
-                        {
-                            connection.Close();
+                            myConnection.Close();
                         }
                     }
+                    line.Add(num.ToString());
+                    line.Add(que);
+                    line.Add(answer);
+                    line.Add(ch1);
+                    line.Add(ch2);
+                    line.Add(ch3);
+                    line.Add(hasImg.ToString());
+                    var toWrite = string.Join(delimiter, line.ToArray());
+                    writer.WriteLine(toWrite);
+                    line.Clear();
+                    num++;
                 }
-
-
-                doc.Add(new Paragraph());
-                num++;
+                writer.Close();
             }
-            doc.Close();
-            printAnswerKey(SetNum, answerKeyPath);
-            System.Diagnostics.Process.Start(Open);
+            MessageBox.Show("Successfully created file!");
+            DeleteTemp();
         }
-
-        private void ShuffleItems()
-        {
-            Items = ShuffleList(Items);
-            System.Console.WriteLine("Shuffled: ");
-            foreach (var question in Items)
-            {
-                System.Console.WriteLine(question.Qcode);
-            }
-        }
-
-
-        private Random rng = new Random();
-
-        private List<E> ShuffleList<E>(List<E> inputList) //items
-        {
-            List<E> randomList = new List<E>();
-
-            Random r = new Random();
-            int randomIndex = 0;
-            while (inputList.Count > 0)
-            {
-                randomIndex = r.Next(0, inputList.Count); //Choose random object in list
-                randomList.Add(inputList[randomIndex]);
-                inputList.RemoveAt(randomIndex);
-            }
-
-            return randomList;
-        }
-
-
-        private List<E> Shuffle2<E>(List<E> inputList) //answers
-        {
-            int n = inputList.Count;
-            while (n > 1)
-            {
-                n--;
-                int k = rng.Next(n + 1);
-                E value = inputList[k];
-                inputList[k] = inputList[n];
-                inputList[n] = value;
-            }
-            return inputList;
-        }
-
-        private void printAnswerKey(int SetNum, string path)
-        {
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-            string filename = examCode + " " + SetNum + " Answer Key.pdf";
-            FileStream fs = new FileStream(path + "/" + filename, FileMode.Create, FileAccess.Write, FileShare.None);
-            Document doc = new Document(PageSize.LETTER);
-            PdfWriter writer = PdfWriter.GetInstance(doc, fs);
-            doc.Open();
-            int i = 1;
-            foreach (var x in AnswerKey)
-            {
-                doc.Add(new Paragraph(i + ".) " + x));
-                i++;
-            }
-            doc.Close();
-        }
-
-
-
-
+        //end
     }
 }
