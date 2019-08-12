@@ -18,22 +18,22 @@ namespace Chekku
             this.code = code;
             loadData();
             loadInfo(id);
-            cmbSelect.SelectedIndex = 1;
-            txtSection.Text = section;
+            cmbSelect.selectedIndex = 1;
+            lblSec.Text = section;
             // loadInfo(code);
         }
 
         private void BtnChange_Click(object sender, EventArgs e)
         {
-            Form enroll = new Section_Students(id, code, txtSection.Text);
-            this.Hide();
+            Form enroll = new Section_Students(id, code, lblSec.Text);
+            this.Close();
             enroll.Show();
         }
 
         private void BtnBack_Click(object sender, EventArgs e)
         {
             Form enroll = new Section();
-            this.Hide();
+            this.Close();
             enroll.Show();
         }
 
@@ -49,9 +49,9 @@ namespace Chekku
                 {
                     while (oReader.Read())
                     {
-                        txtSub.Text = oReader["SubjectCode"].ToString();
-                        txtTerm.Text = oReader["Term"].ToString();
-                        txtYear.Text = oReader["SchoolYear"].ToString();
+                        lblSub.Text = oReader["SubjectCode"].ToString();
+                        lblTerm.Text = oReader["Term"].ToString();
+                        lblSY.Text = oReader["SchoolYear"].ToString();
                     }
                     myConnection.Close();
                 }
@@ -62,20 +62,23 @@ namespace Chekku
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
             {
-                string sql = "SELECT StudentNo, StudentName FROM Chekku.SectionStudents WHERE SectStudCode = '" + code + "'";
+                string sql = "SELECT Chekku.SectionStudents.StudentNo, Chekku.Students.StudentName FROM Chekku.SectionStudents " +
+                    "INNER JOIN Chekku.Students ON Chekku.SectionStudents.StudentNo = Chekku.Students.StudentNo" +
+                    "\nWHERE SectStudCode = '" + code + "'";
 
                 using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
                 {
                     connection.Open();
+                    using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                    {
+                        DataTable dataTable = new DataTable();
+                        dataTable.Load(dataReader);
+                        this.dgvViewStudents.DataSource = dataTable;
+                        dataReader.Close();
+                    }
                     try
                     {
-                        using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
-                        {
-                            DataTable dataTable = new DataTable();
-                            dataTable.Load(dataReader);
-                            this.dgvViewStudents.DataSource = dataTable;
-                            dataReader.Close();
-                        }
+                        
                     }
                     catch
                     {
@@ -102,7 +105,7 @@ namespace Chekku
 
         private void CmbSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtSearch.Clear();
+            txtSearch.ResetText();
             Filter();
             SelectFirst();
         }
@@ -115,15 +118,15 @@ namespace Chekku
 
         private void Filter()
         {
-            string toSearch = cmbSelect.SelectedItem.ToString();
+            string toSearch = cmbSelect.selectedValue.ToString();
             toSearch = toSearch.Replace(" ", String.Empty);
             if (toSearch.Equals("StudentName"))
             {
-                (dgvViewStudents.DataSource as DataTable).DefaultView.RowFilter = string.Format("StudentName LIKE '{0}%'", txtSearch.Text);
+                (dgvViewStudents.DataSource as DataTable).DefaultView.RowFilter = string.Format("StudentName LIKE '{0}%'", txtSearch.text);
             }
             else
             {
-                (dgvViewStudents.DataSource as DataTable).DefaultView.RowFilter = string.Format("StudentNo LIKE '{0}%'", txtSearch.Text);
+                (dgvViewStudents.DataSource as DataTable).DefaultView.RowFilter = string.Format("StudentNo LIKE '{0}%'", txtSearch.text);
             }
         }
 

@@ -11,7 +11,6 @@ namespace Chekku
 {
     public partial class Questions : Form
     {
-        private const string Path = "D:/Test/   a.pdf";
         string qcode = "";
         int hasImage = 0;
 
@@ -53,6 +52,7 @@ namespace Chekku
                 txtQuestion.Text = "";
                 txtTags.Text = "";
                 pbImage.Image = null;
+                lblImg.Visible = false;
             }
         }
 
@@ -124,7 +124,7 @@ namespace Chekku
 
         public void FillContent(string Code)
         {
-            int hasImg, hasEq;
+            int hasImg;
             using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
             {
                 string oString = "Select * from Chekku.Questions where QuestionCode=@Code";
@@ -147,9 +147,12 @@ namespace Chekku
                             MemoryStream ms = new MemoryStream(picArr);
                             ms.Seek(0, SeekOrigin.Begin);
                             pbImage.Image = Image.FromStream(ms);
+                            Console.WriteLine("Image size: Height: " + pbImage.Image.Height.ToString() + " Width: " + pbImage.Image.Width.ToString());
+                            lblImg.Visible = true;
                         }
                         else
                         {
+                            lblImg.Visible = false;
                             pbImage.Image = null;
                         }
                     }
@@ -160,7 +163,7 @@ namespace Chekku
                 string imgname = qcode + ".jpg";
                 pathstring = System.IO.Path.Combine(path, imgname);
                 //lblimg.Text = pathstring;
-                origfile = pathstring; lblText.Text = origfile;
+                origfile = pathstring; 
             }
 
             using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
@@ -194,9 +197,9 @@ namespace Chekku
             //doc.Close();
             string search = "";
             string count = "0";
-            if (!String.IsNullOrEmpty(txtSearch.Text))
+            if (!String.IsNullOrEmpty(txtSearch.text))
             {
-                string tags = txtSearch.Text;
+                string tags = txtSearch.text;
                 string[] words = tags.Split(',');
                 List<string> noSpace = new List<string>();
                 foreach (string word in words)
@@ -359,12 +362,15 @@ namespace Chekku
                 btnAdd.Enabled = false;
                 btnDelete.Enabled = false;
                 btnEditPic.Visible = true;
+                btnRemoveImg.Visible = true;
                 txtQuestion.Enabled = true;
                 txtAnswer.Enabled = true;
                 txtCh1.Enabled = true;
                 txtCh2.Enabled = true;
                 txtCh3.Enabled = true;
                 txtTags.Enabled = true;
+                btnImport.Enabled = false;
+                btnExport.Enabled = false;
                 toggleEdit = 0;
             }
             else
@@ -373,12 +379,15 @@ namespace Chekku
                 btnAdd.Enabled = true;
                 btnDelete.Enabled = true;
                 btnEditPic.Visible = false;
+                btnRemoveImg.Visible = false;
                 txtQuestion.Enabled = false;
                 txtAnswer.Enabled = false;
                 txtCh1.Enabled = false;
                 txtCh2.Enabled = false;
                 txtCh3.Enabled = false;
                 txtTags.Enabled = false;
+                btnImport.Enabled = true;
+                btnExport.Enabled = true;
                 toggleEdit = 1;
             }
         }
@@ -498,7 +507,6 @@ namespace Chekku
                 pbImage.Image = Image.FromFile(dialog.FileName);
                 origfile = dialog.FileName;
             }
-            lblText.Text = origfile;
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Chekku/Question Images";
             if (!Directory.Exists(path))
             {
@@ -581,9 +589,8 @@ namespace Chekku
                 }
 
                 MessageBox.Show("Question is now updated!");
-                Form ques = new Questions();
-                ques.Show();
-                this.Close();
+                refreshView();
+                SelectFirst();
             }
 
             else
@@ -626,20 +633,23 @@ namespace Chekku
             btnAdd.Enabled = true;
             btnDelete.Enabled = true;
             btnEditPic.Visible = false;
+            btnRemoveImg.Visible = false;
             txtQuestion.Enabled = false;
             txtAnswer.Enabled = false;
             txtTags.Enabled = false;
             txtCh1.Enabled = false;
             txtCh2.Enabled = false;
             txtCh3.Enabled = false;
+            btnImport.Enabled = true;
+            btnExport.Enabled = true;
             toggleEdit = 1;
         }
 
         private void TxtSearch_TextChanged(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(txtSearch.Text))
+            if (!String.IsNullOrEmpty(txtSearch.text))
             {
-                string tags = txtSearch.Text;
+                string tags = txtSearch.text;
                 string[] words = tags.Split(',');
                 List<string> noSpace = new List<string>();
                 foreach (string word in words)
@@ -756,17 +766,37 @@ namespace Chekku
         {
             Form frm = new Export_Questions();
             frm.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void BtnImport_Click(object sender, EventArgs e)
         {
             Form frm = new Import_QuestionBank();
             frm.Show();
-            this.Close();
+            this.Hide();
         }
 
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
 
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        private void Questions_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void BtnRemoveImg_Click(object sender, EventArgs e)
+        {
+            pbImage.Image = null;
+        }
         //end
     }
 }

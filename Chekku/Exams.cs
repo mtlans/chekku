@@ -14,24 +14,33 @@ namespace Chekku
     public partial class Exams : Form
     {
         string id = "";
-        String oldname = "";
+        string oldname = "";
         string code = "";
         string SubSectCode = "";
 
         public Exams()
         {
             InitializeComponent();
-            View();
-            cmbSearchTerm.SelectedIndex = 0;
-            cmbSearchYear.SelectedIndex = 0;
+            
+            cmbSearchTerm.selectedIndex = 0;
+            cmbSearchYear.selectedIndex = 0;
             oldname = txtSection.Text;
+            View();
+            Filter();
+            SelectFirst();
+
+            ViewSections();
+            selectSections();
         }
 
         private void View()
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
             {
-                const string sql = "SELECT SubjectCode, SubjectName, Term, SchoolYear FROM Chekku.Subjects";
+
+                int termnum = Convert.ToInt32(cmbSearchTerm.selectedValue);
+                string yearnum = cmbSearchYear.selectedValue.ToString();
+                string sql = "SELECT SubjectCode, SubjectName, Term, SchoolYear, SubjectID FROM Chekku.Subjects";
 
                 using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
                 {
@@ -60,19 +69,12 @@ namespace Chekku
             this.dgvSubjects.Columns[1].Visible = false;
             this.dgvSubjects.Columns[2].Visible = false;
             this.dgvSubjects.Columns[3].Visible = false;
+            this.dgvSubjects.Columns[4].Visible = false;
             ViewSections();
-            //if (dgvSubjects.Rows.Count > 0)
-            //{
-            //    int index = dgvSubjects.FirstDisplayedScrollingRowIndex;
-
-            //    dgvSubjects.CurrentCell = dgvSubjects.Rows[index].Cells[0];
-            //    dgvSubjects.Rows[index].Selected = true;
-            //}
         }
 
         private void ViewSections()
         {
-
             //if (!String.IsNullOrWhiteSpace(txtCode.Text))
             //{
             getSubID();
@@ -124,6 +126,7 @@ namespace Chekku
         }
         public void getSubID()
         {
+            Console.WriteLine("pumasok dito. 54353");
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
             {
                 using (SqlCommand sqlCommand = new SqlCommand("Chekku.getSubjectID", connection))
@@ -133,25 +136,21 @@ namespace Chekku
                     sqlCommand.Parameters.Add(new SqlParameter("@SubjectCode", SqlDbType.VarChar, 8000));
                     sqlCommand.Parameters["@SubjectCode"].Value = txtCode.Text;
 
-                    sqlCommand.Parameters.Add(new SqlParameter("@Term", SqlDbType.VarChar, 8000));
-                    sqlCommand.Parameters["@Term"].Value = cmbSearchTerm.Text;
+                    sqlCommand.Parameters.Add(new SqlParameter("@Term", SqlDbType.Int));
+                    sqlCommand.Parameters["@Term"].Value = Convert.ToInt32(cmbSearchTerm.selectedValue);
 
                     sqlCommand.Parameters.Add(new SqlParameter("@SchoolYear", SqlDbType.VarChar, 8000));
-                    sqlCommand.Parameters["@SchoolYear"].Value = cmbSearchYear.Text;
+                    sqlCommand.Parameters["@SchoolYear"].Value = cmbSearchYear.selectedValue.ToString();
 
                     try
                     {
                         connection.Open();
-
-
                         id = (String)sqlCommand.ExecuteScalar();
+                        Console.WriteLine(id);
                         if (String.IsNullOrEmpty(id))
                         {
-                            id = "";
+                            id = "qwe";
                             oldname = txtSection.Text;
-                        }
-                        else
-                        {
                         }
                     }
                     catch
@@ -163,49 +162,48 @@ namespace Chekku
                         connection.Close();
                     }
                 }
-
             }
+            Console.WriteLine(id);
         }
         private void Filter()
         {
 
-            if (!String.IsNullOrWhiteSpace(txtSearch.Text) && cmbSearchTerm.SelectedIndex > -1 && cmbSearchYear.SelectedIndex > -1)
+            if (!String.IsNullOrWhiteSpace(txtSearch.text) && cmbSearchTerm.selectedIndex > -1 && cmbSearchYear.selectedIndex > -1)
             {
-                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("SubjectCode LIKE '{0}%' AND Term = '{1}' AND SchoolYear LIKE '{2}'", txtSearch.Text, Convert.ToInt32(cmbSearchTerm.SelectedItem.ToString()), cmbSearchYear.SelectedItem.ToString());
-
+                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("SubjectCode LIKE '{0}%' AND Term = '{1}' AND SchoolYear LIKE '{2}'", txtSearch.text, Convert.ToInt32(cmbSearchTerm.selectedValue.ToString()), cmbSearchYear.selectedValue.ToString());
             }
-            else if (!String.IsNullOrWhiteSpace(txtSearch.Text) && cmbSearchTerm.SelectedIndex > 0 && cmbSearchYear.SelectedIndex <= 0)
+            else if (!String.IsNullOrWhiteSpace(txtSearch.text) && cmbSearchTerm.selectedIndex > 0 && cmbSearchYear.selectedIndex <= 0)
             {
-                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("SubjectCode LIKE '{0}%' AND Term = '{1}'", txtSearch.Text, Convert.ToInt32(cmbSearchTerm.SelectedItem.ToString()));
-
-
-            }
-            else if (!String.IsNullOrWhiteSpace(txtSearch.Text) && cmbSearchTerm.SelectedIndex <= 0 && cmbSearchYear.SelectedIndex > 0)
-            {
-
-                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("SubjectCode LIKE '{0}%' AND SchoolYear = '{1}'", txtSearch.Text, cmbSearchYear.SelectedItem.ToString());
-            }
-            else if (String.IsNullOrWhiteSpace(txtSearch.Text) && cmbSearchTerm.SelectedIndex > -1 && cmbSearchYear.SelectedIndex > -1)
-            {
-                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("Term = '{0}' AND SchoolYear = '{1}'", Convert.ToInt32(cmbSearchTerm.SelectedItem.ToString()), cmbSearchYear.SelectedItem.ToString());
+                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("SubjectCode LIKE '{0}%' AND Term = '{1}'", txtSearch.text, Convert.ToInt32(cmbSearchTerm.selectedValue.ToString()));
 
 
             }
-            else if (String.IsNullOrWhiteSpace(txtSearch.Text) && cmbSearchTerm.SelectedIndex > 0 && cmbSearchYear.SelectedIndex <= 0)
+            else if (!String.IsNullOrWhiteSpace(txtSearch.text) && cmbSearchTerm.selectedIndex <= 0 && cmbSearchYear.selectedIndex > 0)
             {
-                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("Term = '{0}' ", Convert.ToInt32(cmbSearchTerm.SelectedItem.ToString()));
+
+                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("SubjectCode LIKE '{0}%' AND SchoolYear = '{1}'", txtSearch.text, cmbSearchYear.selectedValue.ToString());
+            }
+            else if (String.IsNullOrWhiteSpace(txtSearch.text) && cmbSearchTerm.selectedIndex > -1 && cmbSearchYear.selectedIndex > -1)
+            {
+                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("Term = '{0}' AND SchoolYear = '{1}'", Convert.ToInt32(cmbSearchTerm.selectedValue.ToString()), cmbSearchYear.selectedValue.ToString());
 
 
             }
-            else if (String.IsNullOrWhiteSpace(txtSearch.Text) && cmbSearchTerm.SelectedIndex <= 0 && cmbSearchYear.SelectedIndex > 0)
+            else if (String.IsNullOrWhiteSpace(txtSearch.text) && cmbSearchTerm.selectedIndex > 0 && cmbSearchYear.selectedIndex <= 0)
             {
-                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("SchoolYear = '{0}' ", cmbSearchYear.SelectedItem.ToString());
+                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("Term = '{0}' ", Convert.ToInt32(cmbSearchTerm.selectedValue.ToString()));
+
+
+            }
+            else if (String.IsNullOrWhiteSpace(txtSearch.text) && cmbSearchTerm.selectedIndex <= 0 && cmbSearchYear.selectedIndex > 0)
+            {
+                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("SchoolYear = '{0}' ", cmbSearchYear.selectedValue.ToString());
 
 
             }
             else
             {
-                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("SubjectCode LIKE '{0}%'", txtSearch.Text);
+                (dgvSubjects.DataSource as DataTable).DefaultView.RowFilter = string.Format("SubjectCode LIKE '{0}%'", txtSearch.text);
             }
 
         }
@@ -260,10 +258,7 @@ namespace Chekku
             {
                 var row = dgvSections.Rows[0];
                 txtSection.Text = row.Cells[0].Value.ToString();
-                lbl1.Text = dgvSections.Rows.Count.ToString();
-                lbl2.Text = dgvSubjects.Rows.Count.ToString();
                 dgvSections.CurrentCell = row.Cells[0];
-
                 code = row.Cells[1].Value.ToString();
             }
             else
@@ -276,9 +271,9 @@ namespace Chekku
 
         private void TxtSearchSection_TextChanged(object sender, EventArgs e)
         {
-            if (!String.IsNullOrWhiteSpace(txtSearchSection.Text))
+            if (!String.IsNullOrWhiteSpace(txtSearchSection.text))
             {
-                (dgvSections.DataSource as DataTable).DefaultView.RowFilter = string.Format("SectionName LIKE '{0}%'", txtSearchSection.Text);
+                (dgvSections.DataSource as DataTable).DefaultView.RowFilter = string.Format("SectionName LIKE '{0}%'", txtSearchSection.text);
             }
             else
             {
@@ -307,6 +302,26 @@ namespace Chekku
             Form frm = new Chekku();
             frm.Show();
             this.Hide();
+        }
+
+        private void Exams_Load(object sender, EventArgs e)
+        {
+
+        }
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        private void Exams_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
         }
     }
 }

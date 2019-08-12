@@ -229,6 +229,7 @@ namespace Chekku
                 string code = row.Cells[1].Value.ToString();
                 dgvView.CurrentCell = row.Cells[0];
                 FillContent(code);
+                Console.WriteLine(qcode);
             }
             else
             {
@@ -263,14 +264,19 @@ namespace Chekku
         {
             if (!String.IsNullOrWhiteSpace(txtQuestion.Text))
             {
+                Console.WriteLine("Step 1");
                 AddItem();
                 //Enrolled.RemoveAll(x => x.Id == txtID2.Text);
+                Console.WriteLine("Step 2");
                 Items.Add(new Question(qcode, txtQuestion.Text));
+                Console.WriteLine("Step 3");
                 loadQuestions();
+                Console.WriteLine("Step 4");
+                Search();
+                Console.WriteLine("Step 6");
                 SelectFirst();
             }
             lblNumber.Text = Items.Count.ToString();
-            Search();
             Search2();
         }
 
@@ -315,11 +321,11 @@ namespace Chekku
                 // MainList.Add(new Student(txtID2.Text, txtName2.Text));
                 RemoveItem();
                 loadQuestions();
+                Search2();
+                Search();
                 SelectFirst();
             }
             lblNumber.Text = Items.Count.ToString();
-            Search();
-            Search2();
         }
 
         private void RemoveItem()
@@ -388,16 +394,17 @@ namespace Chekku
         {
             string search = "";
             string count = "0";
-            if (!String.IsNullOrEmpty(txtSearch.Text))
+            if (!String.IsNullOrEmpty(txtSearch.text))
             {
-                string tags = txtSearch.Text;
+                Console.WriteLine("Pumasoko dito");
+                string tags = txtSearch.text;
                 string[] words = tags.Split(',');
                 List<string> noSpace = new List<string>();
                 foreach (string word in words)
                 {
                     //string trimmed = "'" + word.Trim() + "'";
                     noSpace.Add(word.Trim());
-                    //System.Console.WriteLine(trimmed);
+                    ////System.Console.WriteLine(trimmed);
                 }
                 int lastIndex = noSpace.Count - 1;
 
@@ -412,9 +419,9 @@ namespace Chekku
                         search += noSpace[i] + ", ";
                     }
                 }
-                System.Console.WriteLine(noSpace.Count);
+                //System.Console.WriteLine(noSpace.Count);
                 count = noSpace.Count.ToString();
-                System.Console.WriteLine(search);
+                //System.Console.WriteLine("Nakalagay sa search: " + search);
                 string sql = "";
                 String last = noSpace.Last();
                 using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
@@ -478,16 +485,16 @@ namespace Chekku
         {
             string search = "";
             string count = "0";
-            if (!String.IsNullOrEmpty(txtSearch2.Text))
+            if (!String.IsNullOrEmpty(txtSearch2.text))
             {
-                string tags = txtSearch2.Text;
+                string tags = txtSearch2.text;
                 string[] words = tags.Split(',');
                 List<string> noSpace = new List<string>();
                 foreach (string word in words)
                 {
                     //string trimmed = "'" + word.Trim() + "'";
                     noSpace.Add(word.Trim());
-                    //System.Console.WriteLine(trimmed);
+                    ////System.Console.WriteLine(trimmed);
                 }
                 int lastIndex = noSpace.Count - 1;
 
@@ -502,9 +509,9 @@ namespace Chekku
                         search += noSpace[i] + ", ";
                     }
                 }
-                System.Console.WriteLine(noSpace.Count);
+                //System.Console.WriteLine(noSpace.Count);
                 count = noSpace.Count.ToString();
-                System.Console.WriteLine(search);
+                //System.Console.WriteLine(search);
                 string sql = "";
                 String last = noSpace.Last();
                 using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
@@ -682,6 +689,25 @@ namespace Chekku
             }
             MessageBox.Show("Successfully created file!");
             DeleteTemp();
+        }
+
+        private void BtnExportAll_Click(object sender, EventArgs e)
+        {
+            int i = dgvView.RowCount;
+            Console.WriteLine("Row count: " + i);
+            for (int x=0; x<i; x++)
+            {
+                if (!String.IsNullOrWhiteSpace(txtQuestion.Text))
+                {
+                    AddItem();
+                    //Enrolled.RemoveAll(x => x.Id == txtID2.Text);
+                    Items.Add(new Question(qcode, txtQuestion.Text));
+                    loadQuestions();
+                    Search();
+                    SelectFirst();
+                }
+                lblNumber.Text = Items.Count.ToString();
+            }
         }
         //end
     }

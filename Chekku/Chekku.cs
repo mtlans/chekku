@@ -9,16 +9,6 @@ namespace Chekku
         public Chekku()
         {
             InitializeComponent();
-            btnExam.color = Color.FromArgb(1, 169, 156);
-            btnExam.colorActive = Color.FromArgb(0, 122, 110);
-            btnQuestions.color = Color.FromArgb(1, 169, 156);
-            btnQuestions.colorActive = Color.FromArgb(0, 122, 110);
-            btnSections.color = Color.FromArgb(1, 169, 156);
-            btnSections.colorActive = Color.FromArgb(0, 122, 110);
-            btnSubjects.color = Color.FromArgb(1, 169, 156);
-            btnSubjects.colorActive = Color.FromArgb(0, 122, 110);
-            btnStudents.color = Color.FromArgb(1, 169, 156);
-            btnStudents.colorActive = Color.FromArgb(0, 122, 110);
         }
 
         private void BtnExams_Click(object sender, EventArgs e)
@@ -55,6 +45,7 @@ namespace Chekku
             frm.Show();
             this.Hide();
         }
+
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
 
@@ -83,6 +74,13 @@ namespace Chekku
         private void BtnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Reports_Click(object sender, EventArgs e)
+        {
+            Form frm = new Reports();
+            frm.Show();
+            this.Hide();
         }
     }
 }

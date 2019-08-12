@@ -15,10 +15,14 @@ namespace Chekku
     public partial class AddQuestion : Form
     {
         bool isImported = false;
+        public int added = 1;
         public AddQuestion()
         {
             InitializeComponent();
             code = generateQuestionCode();
+
+            btnSkip.Visible = false;
+            btnAddImp.Visible = false;
         }
 
         public AddQuestion(string q, string a, string c1, string c2, string c3, int hI, string path)
@@ -34,10 +38,15 @@ namespace Chekku
             isImported = true;
             if(hI == 1)
             {
-                pbox.Image = Image.FromFile(path);
+                pbImage.Image = Image.FromFile(path);
                 origfile = path;
             }
-            btnImage.Visible = false;
+            btnEditPic.Visible = false;
+            btnRemoveImg.Visible = false;
+            btnSkip.Visible = true;
+            btnAddImp.Visible = true;
+            btnAdd.Visible = false;
+            btnCancel.Visible = false;
         }
 
 
@@ -68,7 +77,7 @@ namespace Chekku
             Bitmap b = new Bitmap(Bitmap.FromStream(m));
             //i = (Image)b;
 
-            pbox.Image = Bitmap.FromStream(m);
+            pbImage.Image = Bitmap.FromStream(m);
 
         }
 
@@ -154,8 +163,7 @@ namespace Chekku
 
         private bool checkFields()
         {
-
-            if (pbox.Image != null)
+            if (pbImage.Image != null)
             {
                 hasImage = 1;//meron
             }
@@ -276,7 +284,7 @@ namespace Chekku
             dialog.Filter = "(*.jpg;*.jpeg;*.png;) | *.jpg; *.jpeg; *.png; ";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                pbox.Image = Image.FromFile(dialog.FileName);
+                pbImage.Image = Image.FromFile(dialog.FileName);
                 origfile = dialog.FileName;
             }
             //lblimg.Text = origfile;
@@ -379,6 +387,32 @@ namespace Chekku
             {
                 this.Close();
             }
+        }
+
+        private void BtnRemoveImg_Click(object sender, EventArgs e)
+        {
+            pbImage.Image = null;
+        }
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        private void Panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void BtnSkip_Click(object sender, EventArgs e)
+        {
+            added = 0;
+            this.Close();
         }
 
 

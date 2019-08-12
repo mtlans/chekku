@@ -11,12 +11,12 @@ namespace Chekku
         {
             InitializeComponent();
         }
-        string num = "";
-
+        string oldnum = "";
+        string oldname = "";
         private void Students_Load(object sender, EventArgs e)
         {
             refreshView();
-            cmbSelect.SelectedIndex = 1;
+            cmbSelect.selectedIndex = 1;
             SelectFirst();
         }
 
@@ -67,11 +67,12 @@ namespace Chekku
                 //populate
                 txtID.Text = row.Cells[0].Value.ToString();
                 txtName.Text = row.Cells[1].Value.ToString();
+                oldnum = row.Cells[0].Value.ToString();
+                oldname = row.Cells[1].Value.ToString();
             }
-            num = txtID.Text;
         }
 
-        private void BtnAddStudents_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
             Form frm = new Add_Student();
             frm.ShowDialog();
@@ -87,7 +88,7 @@ namespace Chekku
                     sqlCommand.CommandType = CommandType.StoredProcedure;
 
                     sqlCommand.Parameters.Add(new SqlParameter("@StudentNo", SqlDbType.VarChar, 8000));
-                    sqlCommand.Parameters["@StudentNo"].Value = num;
+                    sqlCommand.Parameters["@StudentNo"].Value = txtID;
                     try
                     {
                         connection.Open();
@@ -133,23 +134,23 @@ namespace Chekku
             {
                 txtID.Enabled = true;
                 txtName.Enabled = true;
-                btnAddStudents.Enabled = false;
+                btnAdd.Enabled = false;
                 btnDelete.Enabled = false;
-                btnSaveChanges.Visible = true;
+                btnSave.Visible = true;
                 toggleEdit = 0;
             }
             else
             {
                 txtID.Enabled = false;
                 txtName.Enabled = false;
-                btnAddStudents.Enabled = true;
+                btnAdd.Enabled = true;
                 btnDelete.Enabled = true;
-                btnSaveChanges.Visible = false;
+                btnSave.Visible = false;
                 toggleEdit = 1;
             }
         }
 
-        private void BtnSaveChanges_Click(object sender, EventArgs e)
+        private void btnSaveChanges_Click(object sender, EventArgs e)
         {
             UpdateDetails();
             refreshView();
@@ -167,7 +168,10 @@ namespace Chekku
                         sqlCommand.CommandType = CommandType.StoredProcedure;
 
                         sqlCommand.Parameters.Add(new SqlParameter("@Oldno", SqlDbType.VarChar, 8000));
-                        sqlCommand.Parameters["@Oldno"].Value = num;
+                        sqlCommand.Parameters["@Oldno"].Value = oldnum;
+
+                        sqlCommand.Parameters.Add(new SqlParameter("@OldName", SqlDbType.VarChar, 8000));
+                        sqlCommand.Parameters["@OldName"].Value = oldname;
 
                         sqlCommand.Parameters.Add(new SqlParameter("@StudentNo", SqlDbType.VarChar, 8000));
                         sqlCommand.Parameters["@StudentNo"].Value = txtID.Text;
@@ -204,16 +208,17 @@ namespace Chekku
                 }
                 txtID.Enabled = false;
                 txtName.Enabled = false;
-                btnAddStudents.Enabled = true;
+                btnAdd.Enabled = true;
                 btnDelete.Enabled = true;
-                btnSaveChanges.Visible = false;
+                btnSave.Visible = false;
                 toggleEdit = 1;
             }
             else
             {
                 MessageBox.Show("Please select a student to edit.");
-                txtSearch.Clear();
-            }
+                txtSearch.ResetText();
+            }refreshView();
+            SelectFirst();
         }
 
         private String CreateStudentIdentifier()
@@ -239,7 +244,7 @@ namespace Chekku
 
         private void CmbSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtSearch.Clear();
+            txtSearch.ResetText();
             Filter();
             SelectFirst();
         }
@@ -251,15 +256,15 @@ namespace Chekku
         }
         private void Filter()
         {
-            string toSearch = cmbSelect.SelectedItem.ToString();
+            string toSearch = cmbSelect.selectedValue.ToString();
             toSearch = toSearch.Replace(" ", String.Empty);
             if (toSearch.Equals("StudentName"))
             {
-                (dgvViewStudents.DataSource as DataTable).DefaultView.RowFilter = string.Format("StudentName LIKE '{0}%'", txtSearch.Text);
+                (dgvViewStudents.DataSource as DataTable).DefaultView.RowFilter = string.Format("StudentName LIKE '{0}%'", txtSearch.text);
             }
             else
             {
-                (dgvViewStudents.DataSource as DataTable).DefaultView.RowFilter = string.Format("StudentNo LIKE '{0}%'", txtSearch.Text);
+                (dgvViewStudents.DataSource as DataTable).DefaultView.RowFilter = string.Format("StudentNo LIKE '{0}%'", txtSearch.text);
             }
         }
 
@@ -272,17 +277,35 @@ namespace Chekku
                 txtID.Text = row.Cells[0].Value.ToString();
                 txtName.Text = row.Cells[1].Value.ToString();
                 dgvViewStudents.CurrentCell = row.Cells[0];
+                oldnum = row.Cells[0].Value.ToString();
+                oldname = row.Cells[1].Value.ToString();
             }
             else
             {
                 txtID.Text = "";
                 txtName.Text = "";
             }
+
         }
 
         private void DgvViewStudents_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        private void Panel2_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
         }
     }
 }

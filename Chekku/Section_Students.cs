@@ -18,13 +18,13 @@ namespace Chekku
             InitializeComponent();
             this.id = id;
             this.code = code;
-            txtSection.Text = section;
+            lblSec.Text = section;
             loadInfo(id);
             //fillDataTable();
             refresh();
             SelectFirst();
-            cmbSelect.SelectedIndex = 1;
-            cmbSelect2.SelectedIndex = 1;
+            cmbSelect.selectedIndex = 1;
+            cmbSelect2.selectedIndex = 1;
         }
         private void Section_Students_Load(object sender, EventArgs e)
         {
@@ -54,9 +54,9 @@ namespace Chekku
                 {
                     while (oReader.Read())
                     {
-                        txtSub.Text = oReader["SubjectCode"].ToString();
-                        txtTerm.Text = oReader["Term"].ToString();
-                        txtYear.Text = oReader["SchoolYear"].ToString();
+                        lblSub.Text = oReader["SubjectCode"].ToString();
+                        lblTerm.Text = oReader["Term"].ToString();
+                        lblSY.Text = oReader["SchoolYear"].ToString();
                     }
                     myConnection.Close();
                 }
@@ -68,21 +68,22 @@ namespace Chekku
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
             {
                 string sql = "SELECT StudentNo, StudentName FROM Chekku.Students " +
-                    "EXCEPT\nSELECT StudentNo, StudentName FROM Chekku.SectionStudents " +
-                    "WHERE SectStudCode = '" + code + "'";
-
+                    "EXCEPT" +
+                    "\nSELECT Chekku.SectionStudents.StudentNo, Chekku.Students.StudentName FROM Chekku.SectionStudents " +
+                    "INNER JOIN Chekku.Students ON Chekku.SectionStudents.StudentNo = Chekku.Students.StudentNo" +
+                    "\nWHERE SectStudCode = '" + code + "'";
                 using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
                 {
-                    connection.Open();
+                    connection.Open(); using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                    {
+                        DataTable dataTable = new DataTable();
+                        dataTable.Load(dataReader);
+                        this.dgvViewStudents.DataSource = dataTable;
+                        dataReader.Close();
+                    }
                     try
                     {
-                        using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
-                        {
-                            DataTable dataTable = new DataTable();
-                            dataTable.Load(dataReader);
-                            this.dgvViewStudents.DataSource = dataTable;
-                            dataReader.Close();
-                        }
+                        
                     }
                     catch
                     {
@@ -97,8 +98,9 @@ namespace Chekku
 
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
             {
-                string sql = "SELECT StudentNo, StudentName FROM Chekku.SectionStudents WHERE SectStudCode = '" + code + "'";
-
+                string sql = "SELECT Chekku.SectionStudents.StudentNo, Chekku.Students.StudentName FROM Chekku.SectionStudents " +
+                    "INNER JOIN Chekku.Students ON Chekku.SectionStudents.StudentNo = Chekku.Students.StudentNo" +
+                    "\nWHERE SectStudCode = '" + code + "'";
                 using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
                 {
                     connection.Open();
@@ -148,7 +150,7 @@ namespace Chekku
 
         private void BtnBack_Click(object sender, EventArgs e)
         {
-            Form enroll = new Section_Enrolled(id, code, txtSection.Text);
+            Form enroll = new Section_Enrolled(id, code, lblSec.Text);
             this.Hide();
             enroll.Show();
         }
@@ -186,7 +188,7 @@ namespace Chekku
             if (!String.IsNullOrWhiteSpace(txtID.Text))
             {
                 //MainList.RemoveAll(x => x.Id == txtID.Text);
-                Enrolled.Add(new Student(txtID.Text, txtName.Text));
+                Enrolled.Add(new Student(txtID.Text));
                 Enroll();
             }
 
@@ -212,7 +214,7 @@ namespace Chekku
 
         private void CmbSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtSearch.Clear();
+            txtSearch.ResetText();
             Filter();
             SelectFirst();
         }
@@ -225,29 +227,29 @@ namespace Chekku
 
         private void Filter()
         {
-            string toSearch = cmbSelect.SelectedItem.ToString();
+            string toSearch = cmbSelect.selectedValue.ToString();
             toSearch = toSearch.Replace(" ", String.Empty);
             if (toSearch.Equals("StudentName"))
             {
-                (dgvViewStudents.DataSource as DataTable).DefaultView.RowFilter = string.Format("StudentName LIKE '{0}%'", txtSearch.Text);
+                (dgvViewStudents.DataSource as DataTable).DefaultView.RowFilter = string.Format("StudentName LIKE '{0}%'", txtSearch.text);
             }
             else
             {
-                (dgvViewStudents.DataSource as DataTable).DefaultView.RowFilter = string.Format("StudentNo LIKE '{0}%'", txtSearch.Text);
+                (dgvViewStudents.DataSource as DataTable).DefaultView.RowFilter = string.Format("StudentNo LIKE '{0}%'", txtSearch.text);
             }
         }
 
         private void Filter2()
         {
-            string toSearch = cmbSelect2.SelectedItem.ToString();
+            string toSearch = cmbSelect2.selectedValue.ToString();
             toSearch = toSearch.Replace(" ", String.Empty);
             if (toSearch.Equals("StudentName"))
             {
-                (dgvViewEnrolled.DataSource as DataTable).DefaultView.RowFilter = string.Format("StudentName LIKE '{0}%'", txtSearch2.Text);
+                (dgvViewEnrolled.DataSource as DataTable).DefaultView.RowFilter = string.Format("StudentName LIKE '{0}%'", txtSearch2.text);
             }
             else
             {
-                (dgvViewEnrolled.DataSource as DataTable).DefaultView.RowFilter = string.Format("StudentNo LIKE '{0}%'", txtSearch2.Text);
+                (dgvViewEnrolled.DataSource as DataTable).DefaultView.RowFilter = string.Format("StudentNo LIKE '{0}%'", txtSearch2.text);
             }
         }
 
@@ -261,9 +263,6 @@ namespace Chekku
 
                     sqlCommand.Parameters.Add(new SqlParameter("@StudentNo", SqlDbType.VarChar, 8000));
                     sqlCommand.Parameters["@StudentNo"].Value = txtID.Text;
-
-                    sqlCommand.Parameters.Add(new SqlParameter("@StudentName", SqlDbType.VarChar, 8000));
-                    sqlCommand.Parameters["@StudentName"].Value = txtName.Text;
 
                     sqlCommand.Parameters.Add(new SqlParameter("@SectStudCode", SqlDbType.VarChar, 50));
                     sqlCommand.Parameters["@SectStudCode"].Value = code;
@@ -319,7 +318,7 @@ namespace Chekku
 
         private void CmbSelect2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtSearch2.Clear();
+            txtSearch2.ResetText();
             Filter2();
             SelectFirst();
         }

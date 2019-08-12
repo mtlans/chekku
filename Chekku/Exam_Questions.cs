@@ -4,6 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -52,7 +55,6 @@ namespace Chekku
                     while (oReader.Read())
                     {
                         lblSub.Text = oReader["SubjectCode"].ToString();
-                        lblDesc.Text = oReader["SubjectName"].ToString();
                         lblTerm.Text = oReader["Term"].ToString();
                         lblSY.Text = oReader["SchoolYear"].ToString();
                     }
@@ -260,10 +262,10 @@ namespace Chekku
                 //Enrolled.RemoveAll(x => x.Id == txtID2.Text);
                 Items.Add(new Question(qcode, txtQuestion.Text));
                 loadQuestions();
+                Search();
                 SelectFirst();
             }
             lblNumber.Text = Items.Count.ToString();
-            Search();
             Search2();
         }
 
@@ -308,11 +310,11 @@ namespace Chekku
                 // MainList.Add(new Student(txtID2.Text, txtName2.Text));
                 RemoveItem();
                 loadQuestions();
+                Search2();
+                Search();
                 SelectFirst();
             }
             lblNumber.Text = Items.Count.ToString();
-            Search();
-            Search2();
         }
 
         private void RemoveItem()
@@ -435,9 +437,9 @@ namespace Chekku
         {
             string search = "";
             string count = "0";
-            if (!String.IsNullOrEmpty(txtSearch.Text))
+            if (!String.IsNullOrEmpty(txtSearch.text))
             {
-                string tags = txtSearch.Text;
+                string tags = txtSearch.text;
                 string[] words = tags.Split(',');
                 List<string> noSpace = new List<string>();
                 foreach (string word in words)
@@ -520,9 +522,9 @@ namespace Chekku
         {
               string search = "";
             string count = "0";
-            if (!String.IsNullOrEmpty(txtSearch2.Text))
+            if (!String.IsNullOrEmpty(txtSearch2.text))
             {
-                string tags = txtSearch2.Text;
+                string tags = txtSearch2.text;
                 string[] words = tags.Split(',');
                 List<string> noSpace = new List<string>();
                 foreach (string word in words)
@@ -663,12 +665,12 @@ namespace Chekku
             string year = lblSY.Text;
             string sect = lblSec.Text;
             AnswerKey.Clear();
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/"+sub+" " + year + " T"  + term + "/" + sect + "/Exams";
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Subjects/" + sub + " " + year + " T" + term + "/" + sect + "/Exams";
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
             }
-            string answerKeyPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/" + sub + " " + year + " T" + term + "/" + sect + "/Answer Keys" ;
+            string answerKeyPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Subjects/" + sub + " " + year + " T" + term + "/" + sect + "/Answer Keys";
             string filename = examCode + " " + SetNum + ".pdf";
             string Open = path + "/" + filename;
             FileStream fs = new FileStream(Open, FileMode.Create, FileAccess.Write, FileShare.None);
@@ -684,7 +686,11 @@ namespace Chekku
             ABCD.Add("B");
             ABCD.Add("C");
             ABCD.Add("D");
-
+            System.Drawing.Image logo = Properties.Resources.LOGO;
+            logo = resizeImage(logo,50, 50);
+            iTextSharp.text.Image itxtlogo = iTextSharp.text.Image.GetInstance(logo, System.Drawing.Imaging.ImageFormat.Png);
+            itxtlogo.Alignment = iTextSharp.text.Image.ALIGN_CENTER;
+            doc.Add(itxtlogo);
             System.Drawing.Image i = null;
             //main loop
             foreach (var question in Items)
@@ -730,24 +736,61 @@ namespace Chekku
                 }
                 if (hasImg == 1)
                 {
+                    Console.WriteLine("Pumasok dito. " + question.Qcode);
+                    Console.WriteLine("Image size: Height: " + i.Height.ToString() + " Width: " + i.Width.ToString());
+
+                    if (i.Width > 377)
+                    {
+                        if (i.Height > 230)
+                        {
+                            i = resizeImage(i, 377, 230);
+                        }
+                        else
+                        {
+                            i = resizeImage(i, i.Width, 230);
+                        }
+                    }
+                    else if(i.Height > 230)
+                    {
+                        if (i.Width > 377)
+                        {
+                            i = resizeImage(i, 377, 230);
+                        }
+                        else
+                        {
+                            i = resizeImage(i, 377, i.Height);
+                        }
+                    }
                     iTextSharp.text.Image picture = iTextSharp.text.Image.GetInstance(i, System.Drawing.Imaging.ImageFormat.Jpeg);
                     picture.Alignment = iTextSharp.text.Image.ALIGN_CENTER;
                     doc.Add(picture);
+                    Console.WriteLine();
+                    //doc.Add(new Paragraph("Image size: Height: " + i.Height.ToString() + " Width: " + i.Width.ToString()));
                 }
                 doc.Add(new Paragraph(num + ". " + que));
                 System.Console.WriteLine(num + ". " + que);
                 Answers = Shuffle2(Answers);
-
+                List<String> line = new List<String>();
                 foreach (var letter in ABCD.Zip(Answers, Tuple.Create))
                 {
-                    System.Console.WriteLine(letter.Item1 + ".) " + letter.Item2);
-                    doc.Add(new Paragraph((letter.Item1 + ".) " + letter.Item2)));
+                    line.Add(letter.Item1 + ".) " + letter.Item2);
                     if (letter.Item2.Equals(answer))
                     {
                         AnswerKey.Add(letter.Item1);
                     }
                 }
-
+                var kasya = string.Join(" ", line.ToArray());
+                if(kasya.Length > 60)
+                {
+                    foreach (var letter in ABCD.Zip(Answers, Tuple.Create))
+                    {
+                        doc.Add(new Paragraph((letter.Item1 + ".) " + letter.Item2)));
+                    }
+                }
+                else
+                {
+                    doc.Add(new Paragraph(kasya));
+                }
                 using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
                 {
                     int checkState;
@@ -868,9 +911,48 @@ namespace Chekku
             }
             doc.Close();
         }
+        public static System.Drawing.Image resizeImage(System.Drawing.Image image, int width, int height)
+        {
+            var destRect = new System.Drawing.Rectangle(0, 0, width, height);
+            var destImage = new Bitmap(width, height);
 
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
 
+            using (var graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
+                using (var wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
 
+            return destImage;
+        }
+
+        private void BtnAll_Click(object sender, EventArgs e)
+        {
+            int i = dgvView.RowCount;
+            Console.WriteLine("Row count: " + i);
+            for (int x = 0; x < i; x++)
+            {
+                if (!String.IsNullOrWhiteSpace(txtQuestion.Text))
+                {
+                    AddItem();
+                    //Enrolled.RemoveAll(x => x.Id == txtID2.Text);
+                    Items.Add(new Question(qcode, txtQuestion.Text));
+                    loadQuestions();
+                    Search();
+                    SelectFirst();
+                }
+                lblNumber.Text = Items.Count.ToString();
+            }
+        }
     }
 }

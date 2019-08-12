@@ -45,8 +45,6 @@ namespace Chekku
 
                         var returnParameter = sqlCommand.Parameters.Add("@ReturnVal", SqlDbType.Int);
                         returnParameter.Direction = ParameterDirection.ReturnValue;
-
-
                         try
                         {
                             connection.Open();
@@ -59,10 +57,10 @@ namespace Chekku
                             else
                             {
                                 MessageBox.Show("Subject is now added!");
-                                string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/" + txtSubjectCode.Text + " " + cmbYear.SelectedItem.ToString() + " T" + cmbTerm.SelectedItem.ToString();
+                                string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Subjects/" + txtSubjectCode.Text + " " + cmbYear.SelectedItem.ToString() + " T" + cmbTerm.SelectedItem.ToString();
                                 if (!Directory.Exists(path))
                                 {
-                                 Directory.CreateDirectory(path);
+                                    Directory.CreateDirectory(path);
                                 }
                                 this.Close();
                             }

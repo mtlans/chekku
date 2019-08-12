@@ -10,12 +10,20 @@
         private string ch2 = "";
         private string ch3 = "";
         private int hasImg = 0;
-
+        private int mistakes = 0;
+        private int setNum = 1;
 
         public Question(string code, string q)
         {
             qcode = code;
             question = q;
+        }
+
+        public Question(int s, int n, int m)
+        {
+            setNum = s;
+            itemNumber = n;
+            mistakes = m;
         }
 
         public Question(int n, string q, string a, string c1, string c2, string c3, int hI)
@@ -29,6 +37,7 @@
             itemNumber = n;
         }
 
+        
 
         public string Qcode
         {
@@ -40,6 +49,18 @@
         {
             get { return question; }
             set { question = value; }
+        }
+
+        public int SetNum
+        {
+            get { return setNum; }
+            set { setNum = value; }
+        }
+
+        public int Mistakes
+        {
+            get { return mistakes; }
+            set { mistakes = value; }
         }
 
         public int Number

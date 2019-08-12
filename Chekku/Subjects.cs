@@ -53,7 +53,7 @@ namespace Chekku
                 Oldid = row.Cells[4].Value.ToString();
             }
 
-            oldPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/" + txtCode.Text + " " + txtYear.Text + " T" + txtTerm.Text;
+            oldPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Subjects/" + txtCode.Text + " " + txtYear.Text + " T" + txtTerm.Text;
 
         }
 
@@ -192,8 +192,8 @@ namespace Chekku
                         else
                         {
                             MessageBox.Show("Subject is now updated!");
-                            string NewPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/" + txtCode.Text + " " +
-                            cmbYear.SelectedValue.ToString() + " T" + cmbTerm.SelectedValue.ToString();
+                            string NewPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Subjects/" + txtCode.Text + " " +
+                            cmbYear.SelectedItem.ToString() + " T" + cmbTerm.SelectedItem.ToString();
                             Directory.Move(oldPath, NewPath);
                         }
                         try
@@ -359,7 +359,7 @@ namespace Chekku
                 cmbYear.SelectedItem = row.Cells[3].Value.ToString();
                 Oldid = row.Cells[4].Value.ToString();
                 dgvView.CurrentCell = row.Cells[0];
-                oldPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/" + txtCode.Text + " " + txtYear.Text + " T" + txtTerm.Text;
+                oldPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Subjects/" + txtCode.Text + " " + txtYear.Text + " T" + txtTerm.Text;
             }
             else
             {

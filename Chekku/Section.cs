@@ -20,17 +20,23 @@ namespace Chekku
         {
             InitializeComponent();
 
-            View();
             cmbSearchTerm.selectedIndex = 0;
             cmbSearchYear.selectedIndex = 0;
             oldname = txtSection.Text;
+            View();
+            Filter();
+            SelectFirst();
+            ViewSections();
+            selectSections();
         }
 
         private void View()
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
             {
-                const string sql = "SELECT SubjectCode, SubjectName, Term, SchoolYear, SubjectID FROM Chekku.Subjects";
+                int termnum = Convert.ToInt32(cmbSearchTerm.selectedValue);
+                string yearnum = cmbSearchYear.selectedValue.ToString();
+                string sql = "SELECT SubjectCode, SubjectName, Term, SchoolYear, SubjectID FROM Chekku.Subjects";
 
                 using (SqlCommand sqlCommand = new SqlCommand(sql, connection))
                 {
@@ -61,13 +67,6 @@ namespace Chekku
             this.dgvSubjects.Columns[3].Visible = false;
             this.dgvSubjects.Columns[4].Visible = false;
             ViewSections();
-            //if (dgvSubjects.Rows.Count > 0)
-            //{
-            //    int index = dgvSubjects.FirstDisplayedScrollingRowIndex;
-
-            //    dgvSubjects.CurrentCell = dgvSubjects.Rows[index].Cells[0];
-            //    dgvSubjects.Rows[index].Selected = true;
-            //}
         }
 
         private void ViewSections()
@@ -123,7 +122,6 @@ namespace Chekku
             ViewSections();
             selectSections();
         }
-
 
 
         private void Filter()
@@ -186,7 +184,7 @@ namespace Chekku
                 getCode();
                 getSubID();
                 Form Add = new Add_Section(id, txtCode.Text, this.subjectID);
-                Add.Show();
+                Add.ShowDialog();
                 this.Hide();
             }
         }
@@ -194,6 +192,7 @@ namespace Chekku
 
         public void getSubID()
         {
+            Console.WriteLine("pumasok dito. 54353");
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
             {
                 using (SqlCommand sqlCommand = new SqlCommand("Chekku.getSubjectID", connection))
@@ -203,25 +202,21 @@ namespace Chekku
                     sqlCommand.Parameters.Add(new SqlParameter("@SubjectCode", SqlDbType.VarChar, 8000));
                     sqlCommand.Parameters["@SubjectCode"].Value = txtCode.Text;
 
-                    sqlCommand.Parameters.Add(new SqlParameter("@Term", SqlDbType.VarChar, 8000));
-                    sqlCommand.Parameters["@Term"].Value = cmbSearchTerm.Text;
-
+                    sqlCommand.Parameters.Add(new SqlParameter("@Term", SqlDbType.Int));
+                    sqlCommand.Parameters["@Term"].Value = Convert.ToInt32(cmbSearchTerm.selectedValue); 
+                    
                     sqlCommand.Parameters.Add(new SqlParameter("@SchoolYear", SqlDbType.VarChar, 8000));
-                    sqlCommand.Parameters["@SchoolYear"].Value = cmbSearchYear.Text;
+                    sqlCommand.Parameters["@SchoolYear"].Value = cmbSearchYear.selectedValue.ToString();
 
                     try
                     {
                         connection.Open();
-
-
                         id = (String)sqlCommand.ExecuteScalar();
+                        Console.WriteLine(id);
                         if (String.IsNullOrEmpty(id))
                         {
-                            id = "";
+                            id = "qwe";
                             oldname = txtSection.Text;
-                        }
-                        else
-                        {
                         }
                     }
                     catch
@@ -233,8 +228,8 @@ namespace Chekku
                         connection.Close();
                     }
                 }
-
             }
+            Console.WriteLine(id);
         }
 
 
@@ -261,15 +256,13 @@ namespace Chekku
                 code = row.Cells[1].Value.ToString();
                 oldname = txtSection.Text;
             }
-            oldpath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/" + txtCode.Text + " " +
+            oldpath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Subjects/" + txtCode.Text + " " +
                     cmbSearchYear.selectedValue.ToString() + " T" + cmbSearchTerm.selectedValue.ToString() + "/" + txtSection.Text ;
         }
 
         private void Section_Load(object sender, EventArgs e)
         {
             //SelectFirst();
-            ViewSections();
-            selectSections();
         }
 
         private void SelectFirst()
@@ -298,8 +291,8 @@ namespace Chekku
                 txtSection.Text = row.Cells[0].Value.ToString();
                 dgvSections.CurrentCell = row.Cells[0];
                 code = row.Cells[1].Value.ToString();
-               oldpath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/" + txtCode.Text + " " +
-                   cmbSearchYear.selectedValue.ToString() + " T" + cmbSearchTerm.selectedValue.ToString() + "/" + txtSection.Text;
+                oldpath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Subjects/" + txtCode.Text + " " +
+                cmbSearchYear.selectedValue.ToString() + " T" + cmbSearchTerm.selectedValue.ToString() + "/" + txtSection.Text;
             }
             else
             {
@@ -377,7 +370,7 @@ namespace Chekku
                         var returnParameter = sqlCommand.Parameters.Add("@ReturnVal", SqlDbType.Int);
                         returnParameter.Direction = ParameterDirection.ReturnValue;
 
-                        string NewPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/" + txtCode.Text + " " +
+                        string NewPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Subjects/" + txtCode.Text + " " +
                                 cmbSearchYear.selectedValue.ToString() + " T" + cmbSearchTerm.selectedValue.ToString() + "/" + txtSection.Text;
                         Directory.Move(oldpath, NewPath);
                         try
@@ -456,9 +449,9 @@ namespace Chekku
 
         private void TxtSearchSection_TextChanged(object sender, EventArgs e)
         {
-            if (!String.IsNullOrWhiteSpace(txtSearchSection.Text))
+            if (!String.IsNullOrWhiteSpace(txtSearchSection.text))
             {
-                (dgvSections.DataSource as DataTable).DefaultView.RowFilter = string.Format("SectionName LIKE '{0}%'", txtSearchSection.Text);
+                (dgvSections.DataSource as DataTable).DefaultView.RowFilter = string.Format("SectionName LIKE '{0}%'", txtSearchSection.text);
             }
             else
             {
@@ -503,7 +496,6 @@ namespace Chekku
 
         private void TxtSearch_OnTextChange(object sender, EventArgs e)
         {
-            System.Console.WriteLine(txtSearch.text);
             Filter();
             SelectFirst();
             ViewSections();
