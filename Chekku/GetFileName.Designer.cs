@@ -28,69 +28,139 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtFilename = new System.Windows.Forms.TextBox();
-            this.btnSubmit = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GetFileName));
+            this.btnCancel = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.btnUp = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.txtFilename = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 52);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Enter Filename:";
-            // 
-            // txtFilename
-            // 
-            this.txtFilename.Location = new System.Drawing.Point(108, 52);
-            this.txtFilename.Name = "txtFilename";
-            this.txtFilename.Size = new System.Drawing.Size(174, 20);
-            this.txtFilename.TabIndex = 1;
-            // 
-            // btnSubmit
-            // 
-            this.btnSubmit.Location = new System.Drawing.Point(201, 114);
-            this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(81, 34);
-            this.btnSubmit.TabIndex = 3;
-            this.btnSubmit.Text = "Submit";
-            this.btnSubmit.UseVisualStyleBackColor = true;
-            this.btnSubmit.Click += new System.EventHandler(this.BtnSubmit_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(24, 114);
+            this.btnCancel.ActiveBorderThickness = 1;
+            this.btnCancel.ActiveCornerRadius = 20;
+            this.btnCancel.ActiveFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
+            this.btnCancel.ActiveForecolor = System.Drawing.Color.White;
+            this.btnCancel.ActiveLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
+            this.btnCancel.BackColor = System.Drawing.SystemColors.Control;
+            this.btnCancel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCancel.BackgroundImage")));
+            this.btnCancel.ButtonText = "Cancel";
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.IdleBorderThickness = 1;
+            this.btnCancel.IdleCornerRadius = 20;
+            this.btnCancel.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
+            this.btnCancel.IdleForecolor = System.Drawing.Color.White;
+            this.btnCancel.IdleLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
+            this.btnCancel.Location = new System.Drawing.Point(24, 151);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(5);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(81, 34);
-            this.btnCancel.TabIndex = 4;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Size = new System.Drawing.Size(115, 53);
+            this.btnCancel.TabIndex = 66;
+            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            // 
+            // btnUp
+            // 
+            this.btnUp.ActiveBorderThickness = 1;
+            this.btnUp.ActiveCornerRadius = 20;
+            this.btnUp.ActiveFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
+            this.btnUp.ActiveForecolor = System.Drawing.Color.White;
+            this.btnUp.ActiveLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
+            this.btnUp.BackColor = System.Drawing.SystemColors.Control;
+            this.btnUp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnUp.BackgroundImage")));
+            this.btnUp.ButtonText = "Submit";
+            this.btnUp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUp.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUp.ForeColor = System.Drawing.Color.White;
+            this.btnUp.IdleBorderThickness = 1;
+            this.btnUp.IdleCornerRadius = 20;
+            this.btnUp.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
+            this.btnUp.IdleForecolor = System.Drawing.Color.White;
+            this.btnUp.IdleLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
+            this.btnUp.Location = new System.Drawing.Point(204, 151);
+            this.btnUp.Margin = new System.Windows.Forms.Padding(5);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(115, 53);
+            this.btnUp.TabIndex = 65;
+            this.btnUp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnUp.Visible = false;
+            this.btnUp.Click += new System.EventHandler(this.BtnSubmit_Click);
+            // 
+            // txtFilename
+            // 
+            this.txtFilename.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
+            this.txtFilename.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFilename.Location = new System.Drawing.Point(101, 94);
+            this.txtFilename.MaxLength = 50;
+            this.txtFilename.Multiline = true;
+            this.txtFilename.Name = "txtFilename";
+            this.txtFilename.Size = new System.Drawing.Size(218, 23);
+            this.txtFilename.TabIndex = 64;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Location = new System.Drawing.Point(-1, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(345, 46);
+            this.panel1.TabIndex = 63;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(105, 13);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(132, 21);
+            this.label3.TabIndex = 52;
+            this.label3.Text = "ENTER FILENAME";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(20, 94);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(76, 21);
+            this.label4.TabIndex = 67;
+            this.label4.Text = "Filename:";
             // 
             // GetFileName
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(344, 175);
+            this.ClientSize = new System.Drawing.Size(342, 218);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnSubmit);
+            this.Controls.Add(this.btnUp);
             this.Controls.Add(this.txtFilename);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GetFileName";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GetFileName";
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtFilename;
-        private System.Windows.Forms.Button btnSubmit;
-        private System.Windows.Forms.Button btnCancel;
+        private Bunifu.Framework.UI.BunifuThinButton2 btnCancel;
+        private Bunifu.Framework.UI.BunifuThinButton2 btnUp;
+        private WindowsFormsControlLibrary1.BunifuCustomTextbox txtFilename;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }

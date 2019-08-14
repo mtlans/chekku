@@ -7,9 +7,18 @@ namespace Chekku
 {
     public partial class Add_Student : Form
     {
+        int s = 0;
         public Add_Student()
         {
             InitializeComponent();
+        }
+        public Add_Student(string num, int state)
+        {
+            InitializeComponent();
+            btnCancel.Visible = false;
+            s = state;
+            txtID.Text = num;
+            txtID.Enabled = false;
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)

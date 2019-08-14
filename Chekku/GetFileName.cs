@@ -50,5 +50,9 @@ namespace Chekku
             this.Close();
         }
 
+        private void BtnUpload_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

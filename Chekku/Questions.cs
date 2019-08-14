@@ -771,7 +771,7 @@ namespace Chekku
 
         private void BtnImport_Click(object sender, EventArgs e)
         {
-            Form frm = new Import_QuestionBank();
+            Form frm = new Import(1);
             frm.Show();
             this.Hide();
         }

@@ -26,8 +26,8 @@ namespace Chekku.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\Lance\\source\\repos\\C" +
-            "hekku\\Chekku\\ChekkuDB.mdf;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\ChekkuDB.mdf;" +
+            "Integrated Security=True")]
         public string ChekkuConnectionString {
             get {
                 return ((string)(this["ChekkuConnectionString"]));

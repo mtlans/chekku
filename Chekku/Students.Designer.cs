@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Students));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnSaveChanges = new System.Windows.Forms.Button();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnEdit = new Bunifu.Framework.UI.BunifuFlatButton();
             this.btnAdd = new Bunifu.Framework.UI.BunifuFlatButton();
@@ -52,27 +50,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvViewStudents)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(267, 218);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 13);
-            this.label1.TabIndex = 25;
-            this.label1.Text = "Student No.";
-            // 
-            // btnSaveChanges
-            // 
-            this.btnSaveChanges.Location = new System.Drawing.Point(265, 258);
-            this.btnSaveChanges.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSaveChanges.Name = "btnSaveChanges";
-            this.btnSaveChanges.Size = new System.Drawing.Size(107, 32);
-            this.btnSaveChanges.TabIndex = 29;
-            this.btnSaveChanges.Text = "Save Changes";
-            this.btnSaveChanges.UseVisualStyleBackColor = true;
-            this.btnSaveChanges.Visible = false;
             // 
             // panel1
             // 
@@ -241,26 +218,26 @@
             this.dgvViewStudents.AllowUserToDeleteRows = false;
             this.dgvViewStudents.AllowUserToResizeColumns = false;
             this.dgvViewStudents.AllowUserToResizeRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvViewStudents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvViewStudents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvViewStudents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvViewStudents.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.dgvViewStudents.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvViewStudents.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvViewStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvViewStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvViewStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvViewStudents.DoubleBuffered = true;
             this.dgvViewStudents.EnableHeadersVisualStyles = false;
             this.dgvViewStudents.HeaderBgColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.dgvViewStudents.HeaderForeColor = System.Drawing.Color.White;
-            this.dgvViewStudents.Location = new System.Drawing.Point(239, 116);
+            this.dgvViewStudents.Location = new System.Drawing.Point(239, 119);
             this.dgvViewStudents.MultiSelect = false;
             this.dgvViewStudents.Name = "dgvViewStudents";
             this.dgvViewStudents.ReadOnly = true;
@@ -420,8 +397,6 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.dgvViewStudents);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnSaveChanges);
-            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Students";
@@ -439,8 +414,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnSaveChanges;
         private System.Windows.Forms.Panel panel1;
         private Bunifu.Framework.UI.BunifuFlatButton btnEdit;
         private Bunifu.Framework.UI.BunifuFlatButton btnAdd;

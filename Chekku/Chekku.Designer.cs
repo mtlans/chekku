@@ -64,7 +64,7 @@
             this.Reports.ImageZoom = 50;
             this.Reports.LabelPosition = 37;
             this.Reports.LabelText = "REPORTS";
-            this.Reports.Location = new System.Drawing.Point(701, 333);
+            this.Reports.Location = new System.Drawing.Point(698, 333);
             this.Reports.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.Reports.Name = "Reports";
             this.Reports.Size = new System.Drawing.Size(121, 161);
