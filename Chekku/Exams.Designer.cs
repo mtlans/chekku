@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Exams));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvSections = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.txtSearchSection = new Bunifu.Framework.UI.BunifuTextbox();
             this.txtSearch = new Bunifu.Framework.UI.BunifuTextbox();
@@ -40,13 +40,13 @@
             this.cmbSearchYear = new Bunifu.Framework.UI.BunifuDropdown();
             this.cmbSearchTerm = new Bunifu.Framework.UI.BunifuDropdown();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnExams = new Bunifu.Framework.UI.BunifuFlatButton();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSection = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.txtCode = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.bunifuFlatButton1 = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.btnExams = new Bunifu.Framework.UI.BunifuFlatButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSections)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubjects)).BeginInit();
             this.panel2.SuspendLayout();
@@ -59,20 +59,20 @@
             this.dgvSections.AllowUserToDeleteRows = false;
             this.dgvSections.AllowUserToResizeColumns = false;
             this.dgvSections.AllowUserToResizeRows = false;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvSections.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvSections.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvSections.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvSections.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.dgvSections.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvSections.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSections.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSections.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvSections.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSections.DoubleBuffered = true;
             this.dgvSections.EnableHeadersVisualStyles = false;
@@ -83,6 +83,7 @@
             this.dgvSections.Name = "dgvSections";
             this.dgvSections.ReadOnly = true;
             this.dgvSections.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvSections.RowHeadersWidth = 51;
             this.dgvSections.Size = new System.Drawing.Size(154, 242);
             this.dgvSections.TabIndex = 95;
             this.dgvSections.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvSections_CellClick);
@@ -95,6 +96,7 @@
             this.txtSearchSection.ForeColor = System.Drawing.Color.Black;
             this.txtSearchSection.Icon = ((System.Drawing.Image)(resources.GetObject("txtSearchSection.Icon")));
             this.txtSearchSection.Location = new System.Drawing.Point(427, 84);
+            this.txtSearchSection.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSearchSection.Name = "txtSearchSection";
             this.txtSearchSection.Size = new System.Drawing.Size(154, 24);
             this.txtSearchSection.TabIndex = 94;
@@ -109,6 +111,7 @@
             this.txtSearch.ForeColor = System.Drawing.Color.Black;
             this.txtSearch.Icon = ((System.Drawing.Image)(resources.GetObject("txtSearch.Icon")));
             this.txtSearch.Location = new System.Drawing.Point(224, 84);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(197, 24);
             this.txtSearch.TabIndex = 93;
@@ -121,20 +124,20 @@
             this.dgvSubjects.AllowUserToDeleteRows = false;
             this.dgvSubjects.AllowUserToResizeColumns = false;
             this.dgvSubjects.AllowUserToResizeRows = false;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvSubjects.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvSubjects.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvSubjects.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvSubjects.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.dgvSubjects.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvSubjects.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSubjects.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSubjects.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvSubjects.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSubjects.DoubleBuffered = true;
             this.dgvSubjects.EnableHeadersVisualStyles = false;
@@ -145,6 +148,7 @@
             this.dgvSubjects.Name = "dgvSubjects";
             this.dgvSubjects.ReadOnly = true;
             this.dgvSubjects.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvSubjects.RowHeadersWidth = 51;
             this.dgvSubjects.Size = new System.Drawing.Size(197, 242);
             this.dgvSubjects.TabIndex = 92;
             this.dgvSubjects.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvSubjects_CellClick);
@@ -159,6 +163,7 @@
         "2019 - 2020",
         "2020 - 2021"};
             this.cmbSearchYear.Location = new System.Drawing.Point(290, 54);
+            this.cmbSearchYear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbSearchYear.Name = "cmbSearchYear";
             this.cmbSearchYear.NomalColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.cmbSearchYear.onHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
@@ -179,6 +184,7 @@
         "2",
         "3"};
             this.cmbSearchTerm.Location = new System.Drawing.Point(224, 54);
+            this.cmbSearchTerm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbSearchTerm.Name = "cmbSearchTerm";
             this.cmbSearchTerm.NomalColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.cmbSearchTerm.onHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
@@ -202,6 +208,43 @@
             this.panel2.TabIndex = 89;
             this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Exams_MouseDown);
             // 
+            // btnExams
+            // 
+            this.btnExams.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
+            this.btnExams.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
+            this.btnExams.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnExams.BorderRadius = 0;
+            this.btnExams.ButtonText = "View Exams";
+            this.btnExams.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExams.DisabledColor = System.Drawing.Color.Gray;
+            this.btnExams.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExams.Iconcolor = System.Drawing.Color.Transparent;
+            this.btnExams.Iconimage = ((System.Drawing.Image)(resources.GetObject("btnExams.Iconimage")));
+            this.btnExams.Iconimage_right = null;
+            this.btnExams.Iconimage_right_Selected = null;
+            this.btnExams.Iconimage_Selected = null;
+            this.btnExams.IconMarginLeft = 10;
+            this.btnExams.IconMarginRight = 0;
+            this.btnExams.IconRightVisible = true;
+            this.btnExams.IconRightZoom = 0D;
+            this.btnExams.IconVisible = true;
+            this.btnExams.IconZoom = 40D;
+            this.btnExams.IsTab = false;
+            this.btnExams.Location = new System.Drawing.Point(122, 314);
+            this.btnExams.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnExams.Name = "btnExams";
+            this.btnExams.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
+            this.btnExams.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
+            this.btnExams.OnHoverTextColor = System.Drawing.Color.White;
+            this.btnExams.selected = false;
+            this.btnExams.Size = new System.Drawing.Size(189, 47);
+            this.btnExams.TabIndex = 74;
+            this.btnExams.Text = "View Exams";
+            this.btnExams.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnExams.Textcolor = System.Drawing.Color.White;
+            this.btnExams.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExams.Click += new System.EventHandler(this.BtnExams_Click);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -216,22 +259,22 @@
             // txtSection
             // 
             this.txtSection.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtSection.Enabled = false;
             this.txtSection.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSection.Location = new System.Drawing.Point(122, 144);
             this.txtSection.Multiline = true;
             this.txtSection.Name = "txtSection";
+            this.txtSection.ReadOnly = true;
             this.txtSection.Size = new System.Drawing.Size(179, 23);
             this.txtSection.TabIndex = 38;
             // 
             // txtCode
             // 
             this.txtCode.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtCode.Enabled = false;
             this.txtCode.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCode.Location = new System.Drawing.Point(122, 85);
             this.txtCode.Multiline = true;
             this.txtCode.Name = "txtCode";
+            this.txtCode.ReadOnly = true;
             this.txtCode.Size = new System.Drawing.Size(179, 23);
             this.txtCode.TabIndex = 37;
             // 
@@ -288,47 +331,10 @@
             this.bunifuFlatButton1.Size = new System.Drawing.Size(196, 47);
             this.bunifuFlatButton1.TabIndex = 29;
             this.bunifuFlatButton1.Text = "Back to Menu";
-            this.bunifuFlatButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bunifuFlatButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.bunifuFlatButton1.Textcolor = System.Drawing.Color.White;
             this.bunifuFlatButton1.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuFlatButton1.Click += new System.EventHandler(this.BtnBack_Click);
-            // 
-            // btnExams
-            // 
-            this.btnExams.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
-            this.btnExams.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.btnExams.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnExams.BorderRadius = 0;
-            this.btnExams.ButtonText = "View Exams";
-            this.btnExams.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExams.DisabledColor = System.Drawing.Color.Gray;
-            this.btnExams.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExams.Iconcolor = System.Drawing.Color.Transparent;
-            this.btnExams.Iconimage = ((System.Drawing.Image)(resources.GetObject("btnExams.Iconimage")));
-            this.btnExams.Iconimage_right = null;
-            this.btnExams.Iconimage_right_Selected = null;
-            this.btnExams.Iconimage_Selected = null;
-            this.btnExams.IconMarginLeft = 10;
-            this.btnExams.IconMarginRight = 0;
-            this.btnExams.IconRightVisible = true;
-            this.btnExams.IconRightZoom = 0D;
-            this.btnExams.IconVisible = true;
-            this.btnExams.IconZoom = 40D;
-            this.btnExams.IsTab = false;
-            this.btnExams.Location = new System.Drawing.Point(122, 314);
-            this.btnExams.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnExams.Name = "btnExams";
-            this.btnExams.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.btnExams.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
-            this.btnExams.OnHoverTextColor = System.Drawing.Color.White;
-            this.btnExams.selected = false;
-            this.btnExams.Size = new System.Drawing.Size(189, 47);
-            this.btnExams.TabIndex = 74;
-            this.btnExams.Text = "View Exams";
-            this.btnExams.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExams.Textcolor = System.Drawing.Color.White;
-            this.btnExams.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExams.Click += new System.EventHandler(this.BtnExams_Click);
             // 
             // Exams
             // 

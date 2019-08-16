@@ -112,8 +112,8 @@ namespace Chekku
 
             if (toggleEdit == 1)
             {
-                txtCode.Enabled = true;
-                txtName.Enabled = true;
+                txtCode.ReadOnly=false;
+                txtName.ReadOnly=false;
                 cmbTerm.Enabled = true;
                 cmbYear.Enabled = true;
                 btnAdd.Enabled = false;
@@ -128,8 +128,8 @@ namespace Chekku
             }
             else
             {
-                txtCode.Enabled = false;
-                txtName.Enabled = false;
+                txtCode.ReadOnly= true;
+                txtName.ReadOnly= true;
                 cmbTerm.Enabled = false;
                 cmbYear.Enabled = false;
                 btnAdd.Enabled = true;
@@ -211,8 +211,8 @@ namespace Chekku
                     }
                 }
 
-                txtCode.Enabled = false;
-                txtName.Enabled = false;
+                txtCode.ReadOnly= true;
+                txtName.ReadOnly= true;
                 cmbTerm.Enabled = false;
                 cmbYear.Enabled = false;
                 btnAdd.Enabled = true;

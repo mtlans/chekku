@@ -46,7 +46,10 @@ namespace Chekku
                         var returnParameter = sqlCommand.Parameters.Add("@ReturnVal", SqlDbType.Int);
                         returnParameter.Direction = ParameterDirection.ReturnValue;
 
-                        connection.Open();
+                        
+                        try
+                        {
+                           connection.Open();
                         sqlCommand.ExecuteNonQuery();
                         checkState = (Int32)returnParameter.Value;
                         if (checkState == 0)
@@ -60,10 +63,7 @@ namespace Chekku
                             Form sect = new Section();
                             sect.Show();
                             this.Close();
-                        }
-                        try
-                        {
-                            
+                        } 
                             
                         }
                         catch

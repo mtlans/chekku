@@ -11,6 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+using Image = iTextSharp.text.Image;
 
 namespace Chekku
 {
@@ -19,7 +21,12 @@ namespace Chekku
         string examcode = "";
         int maxItems = 0;
         DataTable scores = new DataTable();
-        List<int> mmm = new List<int>();
+        List<int> mmm = new List<int>();//Mean
+        List<string> ques = new List<string>();//questions
+        List<Question> FOE = new List<Question>();
+        List<int> final = new List<int>();
+        string id = "";
+        string code = "";
         string sub = "";
         string term = "";
         string year = "";
@@ -29,13 +36,16 @@ namespace Chekku
         {
             InitializeComponent();
             examcode = ex;
+            this.id = id;
+            this.code = code;
             this.maxItems = maxItems;
+            Console.WriteLine("MaxItems: " + maxItems);
             loadScores();
             loadDetails(id, code);
             txtPass.Text = "70";
             changePercent();
             MakeItGlow();
-            
+            loadFOE();
         }
 
         private void loadDetails(string subCode, string subsectCode)
@@ -65,6 +75,19 @@ namespace Chekku
                     while (oReader.Read())
                     {
                         sect = oReader["SectionName"].ToString();
+                    }
+                    myConnection.Close();
+                }
+
+                oString = "Select DISTINCT QuestionCode from Chekku.SetMapper where ExamCode=@examcode";
+                oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@examcode", examcode);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        ques.Add(oReader["QuestionCode"].ToString());
                     }
                     myConnection.Close();
                 }
@@ -122,7 +145,7 @@ namespace Chekku
                 foreach (DataRow row in scores.Rows)
                 {
                     mmm.Add(Convert.ToInt32(row["Score"].ToString()));
-                    if (Convert.ToDouble(row["Score"].ToString()) > passing)
+                    if (Convert.ToDouble(row["Score"].ToString()) >= passing)
                     {
                         Console.WriteLine(row["Score"].ToString());
                         pasado = pasado + 1;
@@ -166,17 +189,31 @@ namespace Chekku
                 Console.WriteLine((Convert.ToDouble(txtPass.Text) / 100));
                 double passing = maxItems * (Convert.ToDouble(txtPass.Text) / 100);
                 var i = 0;
+                Console.WriteLine(scores.Rows.Count);
                 foreach (DataRow row in scores.Rows)
                 {
-                    if (Convert.ToDouble(row["Score"].ToString()) > passing)
+                    if (scores.Rows.Count > 0)
                     {
-                        dgvScores.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(1, 169, 156);
+                        if (scores.Rows.Count > i)
+                        {
+                            try
+                            {
+                                if (Convert.ToDouble(row["Score"].ToString()) >= passing)
+                                {
+                                    dgvScores.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(1, 169, 156);
+                                }
+                                else
+                                {
+                                    dgvScores.Rows[i].DefaultCellStyle.BackColor = DefaultBackColor;
+                                }
+                            }
+                            catch
+                            {
+                                Console.WriteLine("amp" + i);
+                            }
+                            i++;
+                        }
                     }
-                    else
-                    {
-                        dgvScores.Rows[i].DefaultCellStyle.BackColor = DefaultBackColor;
-                    }
-                    i++;
                 }
             }
             
@@ -199,11 +236,11 @@ namespace Chekku
             toSearch = toSearch.Replace(" ", String.Empty);
             if (toSearch.Equals("StudentName"))
             {
-                (dgvScores.DataSource as DataTable).DefaultView.RowFilter = string.Format("StudentName LIKE '{0}%'", txtSearch.text);
+                (scores).DefaultView.RowFilter = string.Format("StudentName LIKE '{0}%'", txtSearch.text);
             }
             else
             {
-                (dgvScores.DataSource as DataTable).DefaultView.RowFilter = string.Format("StudentNo LIKE '{0}%'", txtSearch.text);
+                (scores as DataTable).DefaultView.RowFilter = string.Format("StudentNo LIKE '{0}%'", txtSearch.text);
             }
             MakeItGlow();
         }
@@ -319,7 +356,7 @@ namespace Chekku
             string filename = examcode + " Report.pdf";
             string Open = path + "/" + filename;
             FileStream fs = new FileStream(Open, FileMode.Create, FileAccess.Write, FileShare.None);
-            Document doc = new Document(PageSize.LETTER);
+            Document doc = new Document(PageSize.LETTER, 10f, 10f, 10f, 0f);
             PdfWriter writer = PdfWriter.GetInstance(doc, fs);
             doc.Open();
             doc.Add(new Paragraph("Subject Code: " + sub + "\n" + "Term: " + term + "\n" + "Year: " + year));
@@ -362,15 +399,28 @@ namespace Chekku
                     table.AddCell(cell);
                 }
             }
-
+            Paragraph x2 = new Paragraph("\n\nExam Summary");
+            x2.Alignment = Element.ALIGN_CENTER;
+            doc.Add(x2);
             doc.Add(table);
-            doc.Add(new Paragraph("No. of Students: " + scores.Rows.Count));
+            doc.Add(new Paragraph("\nNo. of Students: " + scores.Rows.Count));
             doc.Add(new Paragraph("Average Score: " + txtMean.Text));
             doc.Add(new Paragraph("No. of Passing (70% above): " + passed70.ToString()));
             doc.Add(new Paragraph("Highest Score: " + txtHigh.Text + "\nLowest Score: " + txtLow.Text ));
+            Paragraph x1 = new Paragraph("\n\nFrequency of Errors\n\n");
+            x1.Alignment = Element.ALIGN_CENTER;
+            doc.Add(x1);
+            var chartimage = new MemoryStream();
+                chartFOE.SaveImage(chartimage, ChartImageFormat.Png);
+            var foe = Image.GetInstance(chartimage.GetBuffer());
+            var scalePercent = (((doc.PageSize.Width / foe.Width) * 100) - 4);
+            foe.ScalePercent(scalePercent);
+            foe.Alignment = Element.ALIGN_CENTER;
+            doc.Add(foe);
             doc.Close();
             MessageBox.Show("Succesfully created PDF.", "PDF Creation", MessageBoxButtons.OK);
             System.Diagnostics.Process.Start(Open);
+            MakeItGlow();
         }
 
         private void BunifuFlatButton2_Click(object sender, EventArgs e)
@@ -387,42 +437,72 @@ namespace Chekku
 
         private void loadFOE()
         {
-            //using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
-            //{
-            //    string oString = "Select QuestionCode,Chekku.SetMapper.ItemNumber  from Chekku.ExamItems where QuestionCode=@Code";
-            //    SqlCommand oCmd = new SqlCommand(oString, myConnection);
-            //    oCmd.Parameters.AddWithValue("@Code", question.Qcode);
-            //    myConnection.Open();
-            //    using (SqlDataReader oReader = oCmd.ExecuteReader())
-            //    {
-            //        while (oReader.Read())
-            //        {
-            //            que = oReader["Question"].ToString();
-            //            answer = oReader["Answer"].ToString();
-            //            Answers.Add(answer);
-            //            toCheck.Add(answer);
-            //            ch1 = oReader["Choice1"].ToString();
-            //            Answers.Add(ch1);
-            //            ch2 = oReader["Choice2"].ToString();
-            //            Answers.Add(ch2);
-            //            ch3 = oReader["Choice3"].ToString();
-            //            Answers.Add(ch3);
-            //            hasImg = Convert.ToInt32(oReader["hasImage"]);
-            //            if (hasImg == 1)
-            //            {
-            //                byte[] picArr = (byte[])oReader["Image"];
-            //                MemoryStream ms = new MemoryStream(picArr);
-            //                ms.Seek(0, SeekOrigin.Begin);
-            //                i = System.Drawing.Image.FromStream(ms);
-            //            }
-            //            else
-            //            {
-            //                i = null;
-            //            }
-            //        }
-            ////        myConnection.Close();
-            //    }
-            //}
+            foreach(var x in ques)
+            {
+                Console.WriteLine(x);
+            }
+            Console.WriteLine("Count: " + ques.Count);
+            int i = 1;
+            foreach (var x in ques)
+                {
+                int n = 0;
+                    using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
+                    {
+                        string oString = "Select Mistakes from Chekku.SetMapper where QuestionCode=@quescode AND ExamCode=@examcode";
+                        SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                        oCmd.Parameters.AddWithValue("@quescode", x);
+                        oCmd.Parameters.AddWithValue("@examcode", examcode);
+                        myConnection.Open();
+                        using (SqlDataReader oReader = oCmd.ExecuteReader())
+                        {
+                            while (oReader.Read())
+                            {
+                                FOE.Add(new Question(i, Convert.ToInt32(oReader["Mistakes"].ToString())));
+                            n += Convert.ToInt32(oReader["Mistakes"].ToString());
+                                Console.WriteLine("Number: " + i + " Mistakes: " + oReader["Mistakes"].ToString());
+                            }
+                            myConnection.Close();
+                            
+                        }
+                    }
+                final.Add(n);
+                i++;
+            }
+            chartFOE.Series["Mistakes"].ChartType = SeriesChartType.Bar;
+            chartFOE.ChartAreas[0].AxisX.Title = "Item Number";
+            chartFOE.ChartAreas[0].AxisX.Maximum = maxItems + 1;
+            chartFOE.ChartAreas[0].AxisY.Maximum = final.Max();
+            int num = 1;
+            foreach (var x in final)
+            {
+                Console.WriteLine("Mistakes: " + x);
+                chartFOE.Series["Mistakes"].Points.AddXY( num, x);
+                num++;
+            }
+           
+            
+        }
+
+        private void BunifuFlatButton1_Click(object sender, EventArgs e)
+        {
+            Form frm = new Reports_Section(id, code, sect);
+            this.Hide();
+            frm.Show();
+        }
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        private void Panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
         }
     }
 }

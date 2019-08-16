@@ -132,8 +132,8 @@ namespace Chekku
             }
             if (toggleEdit == 1)
             {
-                txtID.Enabled = true;
-                txtName.Enabled = true;
+                txtID.ReadOnly= false;
+                txtName.ReadOnly= false;
                 btnAdd.Enabled = false;
                 btnDelete.Enabled = false;
                 btnSave.Visible = true;
@@ -141,8 +141,8 @@ namespace Chekku
             }
             else
             {
-                txtID.Enabled = false;
-                txtName.Enabled = false;
+                txtID.ReadOnly= true;
+                txtName.ReadOnly= true;
                 btnAdd.Enabled = true;
                 btnDelete.Enabled = true;
                 btnSave.Visible = false;
@@ -206,8 +206,8 @@ namespace Chekku
                         }
                     }
                 }
-                txtID.Enabled = false;
-                txtName.Enabled = false;
+                txtID.ReadOnly= true;
+                txtName.ReadOnly= true;
                 btnAdd.Enabled = true;
                 btnDelete.Enabled = true;
                 btnSave.Visible = false;

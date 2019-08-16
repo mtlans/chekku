@@ -19,7 +19,7 @@ namespace Chekku
             this.id = id;
             this.code = code;
             loadDetails(id, code);
-            btnOpen.Enabled = false;
+            btnOpen.Enabled= false;
             loadExams();
         }
         private void loadDetails(string subCode, string subsectCode)
@@ -111,7 +111,7 @@ namespace Chekku
                 Console.WriteLine(examCode + " setNUM: " + setNum);
                 if (!String.IsNullOrWhiteSpace(examCode))
                 {
-                    btnOpen.Enabled = true;
+                    btnOpen.Enabled= true;
                 }
                 else
                 {

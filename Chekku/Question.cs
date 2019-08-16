@@ -19,12 +19,19 @@
             question = q;
         }
 
+        public Question(int n, int m)
+        {
+            itemNumber = n;
+            mistakes = m;
+        }
+
         public Question(int s, int n, int m)
         {
             setNum = s;
             itemNumber = n;
             mistakes = m;
         }
+
 
         public Question(int n, string q, string a, string c1, string c2, string c3, int hI)
         {

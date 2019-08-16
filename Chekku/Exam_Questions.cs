@@ -146,6 +146,14 @@ namespace Chekku
                 }
             }
             this.dgvItems.Columns[1].Visible = false;
+            if (!String.IsNullOrWhiteSpace(txtSearch.text))
+            {
+                Search();
+            }
+            if (!String.IsNullOrWhiteSpace(txtSearch2.text))
+            {
+                Search2();
+            }
         }
 
         private void DgvView_CellClick(object sender, DataGridViewCellEventArgs e)

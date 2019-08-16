@@ -86,7 +86,7 @@
             this.btnImport.Size = new System.Drawing.Size(196, 47);
             this.btnImport.TabIndex = 31;
             this.btnImport.Text = "Upload File";
-            this.btnImport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnImport.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnImport.Textcolor = System.Drawing.Color.White;
             this.btnImport.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImport.Click += new System.EventHandler(this.BtnImport_Click);
@@ -121,6 +121,7 @@
             this.dgvSections.Name = "dgvSections";
             this.dgvSections.ReadOnly = true;
             this.dgvSections.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvSections.RowHeadersWidth = 51;
             this.dgvSections.Size = new System.Drawing.Size(154, 242);
             this.dgvSections.TabIndex = 103;
             this.dgvSections.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvSections_CellClick);
@@ -133,6 +134,7 @@
             this.txtSearchSection.ForeColor = System.Drawing.Color.Black;
             this.txtSearchSection.Icon = ((System.Drawing.Image)(resources.GetObject("txtSearchSection.Icon")));
             this.txtSearchSection.Location = new System.Drawing.Point(427, 84);
+            this.txtSearchSection.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSearchSection.Name = "txtSearchSection";
             this.txtSearchSection.Size = new System.Drawing.Size(154, 24);
             this.txtSearchSection.TabIndex = 102;
@@ -147,6 +149,7 @@
             this.txtSearch.ForeColor = System.Drawing.Color.Black;
             this.txtSearch.Icon = ((System.Drawing.Image)(resources.GetObject("txtSearch.Icon")));
             this.txtSearch.Location = new System.Drawing.Point(224, 84);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(197, 24);
             this.txtSearch.TabIndex = 101;
@@ -183,6 +186,7 @@
             this.dgvSubjects.Name = "dgvSubjects";
             this.dgvSubjects.ReadOnly = true;
             this.dgvSubjects.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvSubjects.RowHeadersWidth = 51;
             this.dgvSubjects.Size = new System.Drawing.Size(197, 242);
             this.dgvSubjects.TabIndex = 100;
             this.dgvSubjects.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvSubjects_CellClick);
@@ -197,6 +201,7 @@
         "2019 - 2020",
         "2020 - 2021"};
             this.cmbSearchYear.Location = new System.Drawing.Point(290, 54);
+            this.cmbSearchYear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbSearchYear.Name = "cmbSearchYear";
             this.cmbSearchYear.NomalColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.cmbSearchYear.onHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
@@ -216,6 +221,7 @@
         "2",
         "3"};
             this.cmbSearchTerm.Location = new System.Drawing.Point(224, 54);
+            this.cmbSearchTerm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbSearchTerm.Name = "cmbSearchTerm";
             this.cmbSearchTerm.NomalColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.cmbSearchTerm.onHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
@@ -270,7 +276,7 @@
             this.btnView.Size = new System.Drawing.Size(189, 47);
             this.btnView.TabIndex = 74;
             this.btnView.Text = "View Reports";
-            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnView.Textcolor = System.Drawing.Color.White;
             this.btnView.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnView.Click += new System.EventHandler(this.BtnView_Click);
@@ -289,22 +295,22 @@
             // txtSection
             // 
             this.txtSection.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtSection.Enabled = false;
             this.txtSection.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSection.Location = new System.Drawing.Point(122, 144);
             this.txtSection.Multiline = true;
             this.txtSection.Name = "txtSection";
+            this.txtSection.ReadOnly = true;
             this.txtSection.Size = new System.Drawing.Size(179, 23);
             this.txtSection.TabIndex = 38;
             // 
             // txtCode
             // 
             this.txtCode.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtCode.Enabled = false;
             this.txtCode.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCode.Location = new System.Drawing.Point(122, 85);
             this.txtCode.Multiline = true;
             this.txtCode.Name = "txtCode";
+            this.txtCode.ReadOnly = true;
             this.txtCode.Size = new System.Drawing.Size(179, 23);
             this.txtCode.TabIndex = 37;
             // 
@@ -362,7 +368,7 @@
             this.bunifuFlatButton1.Size = new System.Drawing.Size(196, 47);
             this.bunifuFlatButton1.TabIndex = 29;
             this.bunifuFlatButton1.Text = "Back to Menu";
-            this.bunifuFlatButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bunifuFlatButton1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.bunifuFlatButton1.Textcolor = System.Drawing.Color.White;
             this.bunifuFlatButton1.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuFlatButton1.Click += new System.EventHandler(this.BunifuFlatButton1_Click);

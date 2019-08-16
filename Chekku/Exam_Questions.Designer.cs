@@ -397,7 +397,7 @@
             // txtT
             // 
             this.txtT.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtT.Enabled = false;
+            this.txtT.ReadOnly= false;
             this.txtT.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtT.Location = new System.Drawing.Point(54, 209);
             this.txtT.Name = "txtT";
@@ -418,7 +418,7 @@
             // txtD
             // 
             this.txtD.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtD.Enabled = false;
+            this.txtD.ReadOnly= false;
             this.txtD.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtD.Location = new System.Drawing.Point(232, 162);
             this.txtD.Multiline = true;
@@ -429,7 +429,7 @@
             // txtQ
             // 
             this.txtQ.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtQ.Enabled = false;
+            this.txtQ.ReadOnly= false;
             this.txtQ.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtQ.Location = new System.Drawing.Point(14, 33);
             this.txtQ.Multiline = true;
@@ -451,7 +451,7 @@
             // txtC
             // 
             this.txtC.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtC.Enabled = false;
+            this.txtC.ReadOnly= false;
             this.txtC.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtC.Location = new System.Drawing.Point(14, 161);
             this.txtC.Multiline = true;
@@ -483,7 +483,7 @@
             // txtB
             // 
             this.txtB.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtB.Enabled = false;
+            this.txtB.ReadOnly= false;
             this.txtB.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtB.Location = new System.Drawing.Point(232, 117);
             this.txtB.Multiline = true;
@@ -505,7 +505,7 @@
             // txtA
             // 
             this.txtA.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtA.Enabled = false;
+            this.txtA.ReadOnly= false;
             this.txtA.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtA.Location = new System.Drawing.Point(14, 116);
             this.txtA.Multiline = true;
@@ -573,7 +573,7 @@
             // txtTags
             // 
             this.txtTags.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtTags.Enabled = false;
+            this.txtTags.ReadOnly= false;
             this.txtTags.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTags.Location = new System.Drawing.Point(54, 206);
             this.txtTags.Name = "txtTags";
@@ -594,7 +594,7 @@
             // txtCh3
             // 
             this.txtCh3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtCh3.Enabled = false;
+            this.txtCh3.ReadOnly= false;
             this.txtCh3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCh3.Location = new System.Drawing.Point(232, 161);
             this.txtCh3.Multiline = true;
@@ -605,7 +605,7 @@
             // txtCh2
             // 
             this.txtCh2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtCh2.Enabled = false;
+            this.txtCh2.ReadOnly= false;
             this.txtCh2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCh2.Location = new System.Drawing.Point(14, 161);
             this.txtCh2.Multiline = true;
@@ -616,7 +616,7 @@
             // txtCh1
             // 
             this.txtCh1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtCh1.Enabled = false;
+            this.txtCh1.ReadOnly= false;
             this.txtCh1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCh1.Location = new System.Drawing.Point(232, 116);
             this.txtCh1.Multiline = true;
@@ -627,7 +627,7 @@
             // txtAnswer
             // 
             this.txtAnswer.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtAnswer.Enabled = false;
+            this.txtAnswer.ReadOnly= false;
             this.txtAnswer.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAnswer.Location = new System.Drawing.Point(14, 116);
             this.txtAnswer.Multiline = true;
@@ -638,7 +638,7 @@
             // txtQuestion
             // 
             this.txtQuestion.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtQuestion.Enabled = false;
+            this.txtQuestion.ReadOnly= false;
             this.txtQuestion.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtQuestion.Location = new System.Drawing.Point(14, 33);
             this.txtQuestion.Multiline = true;

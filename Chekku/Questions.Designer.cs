@@ -67,7 +67,7 @@
             // pbImage
             // 
             this.pbImage.Location = new System.Drawing.Point(384, 193);
-            this.pbImage.Margin = new System.Windows.Forms.Padding(2);
+            this.pbImage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pbImage.Name = "pbImage";
             this.pbImage.Size = new System.Drawing.Size(179, 134);
             this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -121,7 +121,7 @@
             this.btnExport.Size = new System.Drawing.Size(196, 47);
             this.btnExport.TabIndex = 31;
             this.btnExport.Text = "Export Questions";
-            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExport.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnExport.Textcolor = System.Drawing.Color.White;
             this.btnExport.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExport.Click += new System.EventHandler(this.BtnExport_Click);
@@ -158,7 +158,7 @@
             this.btnImport.Size = new System.Drawing.Size(196, 47);
             this.btnImport.TabIndex = 30;
             this.btnImport.Text = "Import Questions";
-            this.btnImport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnImport.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnImport.Textcolor = System.Drawing.Color.White;
             this.btnImport.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImport.Click += new System.EventHandler(this.BtnImport_Click);
@@ -195,7 +195,7 @@
             this.btnEdit.Size = new System.Drawing.Size(196, 47);
             this.btnEdit.TabIndex = 27;
             this.btnEdit.Text = "Edit Question";
-            this.btnEdit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEdit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnEdit.Textcolor = System.Drawing.Color.White;
             this.btnEdit.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
@@ -232,7 +232,7 @@
             this.btnAdd.Size = new System.Drawing.Size(196, 47);
             this.btnAdd.TabIndex = 26;
             this.btnAdd.Text = "Add Question";
-            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnAdd.Textcolor = System.Drawing.Color.White;
             this.btnAdd.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
@@ -269,7 +269,7 @@
             this.bunifuFlatButton3.Size = new System.Drawing.Size(196, 47);
             this.bunifuFlatButton3.TabIndex = 29;
             this.bunifuFlatButton3.Text = "Back to Menu";
-            this.bunifuFlatButton3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bunifuFlatButton3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.bunifuFlatButton3.Textcolor = System.Drawing.Color.White;
             this.bunifuFlatButton3.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bunifuFlatButton3.Click += new System.EventHandler(this.BtnBack_Click);
@@ -306,7 +306,7 @@
             this.btnDelete.Size = new System.Drawing.Size(196, 47);
             this.btnDelete.TabIndex = 28;
             this.btnDelete.Text = "Delete Question";
-            this.btnDelete.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDelete.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnDelete.Textcolor = System.Drawing.Color.White;
             this.btnDelete.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
@@ -403,7 +403,7 @@
             this.btnRemoveImg.Size = new System.Drawing.Size(179, 44);
             this.btnRemoveImg.TabIndex = 48;
             this.btnRemoveImg.Text = "Remove Image";
-            this.btnRemoveImg.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemoveImg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnRemoveImg.Textcolor = System.Drawing.Color.White;
             this.btnRemoveImg.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemoveImg.Visible = false;
@@ -423,10 +423,10 @@
             // txtTags
             // 
             this.txtTags.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtTags.Enabled = false;
             this.txtTags.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTags.Location = new System.Drawing.Point(89, 442);
             this.txtTags.Name = "txtTags";
+            this.txtTags.ReadOnly = true;
             this.txtTags.Size = new System.Drawing.Size(474, 25);
             this.txtTags.TabIndex = 46;
             // 
@@ -463,7 +463,7 @@
             this.btnEditPic.Size = new System.Drawing.Size(179, 44);
             this.btnEditPic.TabIndex = 45;
             this.btnEditPic.Text = "Add/Edit Image";
-            this.btnEditPic.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEditPic.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnEditPic.Textcolor = System.Drawing.Color.White;
             this.btnEditPic.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditPic.Visible = false;
@@ -483,33 +483,33 @@
             // txtCh3
             // 
             this.txtCh3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtCh3.Enabled = false;
             this.txtCh3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCh3.Location = new System.Drawing.Point(89, 373);
             this.txtCh3.Multiline = true;
             this.txtCh3.Name = "txtCh3";
+            this.txtCh3.ReadOnly = true;
             this.txtCh3.Size = new System.Drawing.Size(287, 53);
             this.txtCh3.TabIndex = 41;
             // 
             // txtCh2
             // 
             this.txtCh2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtCh2.Enabled = false;
             this.txtCh2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCh2.Location = new System.Drawing.Point(89, 314);
             this.txtCh2.Multiline = true;
             this.txtCh2.Name = "txtCh2";
+            this.txtCh2.ReadOnly = true;
             this.txtCh2.Size = new System.Drawing.Size(287, 53);
             this.txtCh2.TabIndex = 40;
             // 
             // txtCh1
             // 
             this.txtCh1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtCh1.Enabled = false;
             this.txtCh1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCh1.Location = new System.Drawing.Point(89, 255);
             this.txtCh1.Multiline = true;
             this.txtCh1.Name = "txtCh1";
+            this.txtCh1.ReadOnly = true;
             this.txtCh1.Size = new System.Drawing.Size(287, 53);
             this.txtCh1.TabIndex = 39;
             // 
@@ -545,7 +545,7 @@
             this.btnSave.Size = new System.Drawing.Size(179, 47);
             this.btnSave.TabIndex = 30;
             this.btnSave.Text = "Save Changes";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnSave.Textcolor = System.Drawing.Color.White;
             this.btnSave.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Visible = false;
@@ -554,22 +554,22 @@
             // txtAnswer
             // 
             this.txtAnswer.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtAnswer.Enabled = false;
             this.txtAnswer.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAnswer.Location = new System.Drawing.Point(89, 166);
             this.txtAnswer.Multiline = true;
             this.txtAnswer.Name = "txtAnswer";
+            this.txtAnswer.ReadOnly = true;
             this.txtAnswer.Size = new System.Drawing.Size(287, 53);
             this.txtAnswer.TabIndex = 38;
             // 
             // txtQuestion
             // 
             this.txtQuestion.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtQuestion.Enabled = false;
             this.txtQuestion.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtQuestion.Location = new System.Drawing.Point(89, 90);
             this.txtQuestion.Multiline = true;
             this.txtQuestion.Name = "txtQuestion";
+            this.txtQuestion.ReadOnly = true;
             this.txtQuestion.Size = new System.Drawing.Size(474, 62);
             this.txtQuestion.TabIndex = 37;
             // 
@@ -614,6 +614,7 @@
             this.txtSearch.ForeColor = System.Drawing.Color.Black;
             this.txtSearch.Icon = ((System.Drawing.Image)(resources.GetObject("txtSearch.Icon")));
             this.txtSearch.Location = new System.Drawing.Point(202, 86);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(319, 24);
             this.txtSearch.TabIndex = 79;
@@ -654,7 +655,7 @@
             this.Controls.Add(this.dgvView);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Questions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Questions";

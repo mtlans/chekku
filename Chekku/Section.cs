@@ -327,7 +327,7 @@ namespace Chekku
             }
             if (toggleEdit == 1)
             {
-                txtSection.Enabled = true;
+                txtSection.ReadOnly= false;
                 btnAdd.Enabled = false;
                 btnDelete.Enabled = false;
                 btnSaveChanges.Visible = true;
@@ -336,7 +336,7 @@ namespace Chekku
             }
             else
             {
-                txtSection.Enabled = false;
+                txtSection.ReadOnly= true;
                 btnAdd.Enabled = true;
                 btnDelete.Enabled = true;
                 btnSaveChanges.Visible = false;
@@ -372,7 +372,7 @@ namespace Chekku
 
                         string NewPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Subjects/" + txtCode.Text + " " +
                                 cmbSearchYear.selectedValue.ToString() + " T" + cmbSearchTerm.selectedValue.ToString() + "/" + txtSection.Text;
-                        Directory.Move(oldpath, NewPath);
+                        
                         try
                         {
                             connection.Open();
@@ -385,7 +385,10 @@ namespace Chekku
                             else
                             {
                                 MessageBox.Show("Section is now updated!");
-                                
+                                if (!oldpath.Equals(NewPath))
+                                {
+                                    Directory.Move(oldpath, NewPath);
+                                }
                             }
                         }
                         catch
@@ -398,7 +401,7 @@ namespace Chekku
                         }
                     }
                 }
-                txtSection.Enabled = false;
+                txtSection.ReadOnly= true;
                 btnAdd.Enabled = true;
                 btnDelete.Enabled = true;
                 btnSaveChanges.Visible = false;

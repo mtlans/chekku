@@ -116,7 +116,7 @@
             // txtName
             // 
             this.txtName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtName.Enabled = false;
+            this.txtName.ReadOnly= false;
             this.txtName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName.Location = new System.Drawing.Point(125, 46);
             this.txtName.Multiline = true;
@@ -127,7 +127,7 @@
             // txtID
             // 
             this.txtID.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtID.Enabled = false;
+            this.txtID.ReadOnly= false;
             this.txtID.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtID.Location = new System.Drawing.Point(125, 19);
             this.txtID.Multiline = true;
@@ -291,7 +291,7 @@
             // txtName2
             // 
             this.txtName2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtName2.Enabled = false;
+            this.txtName2.ReadOnly= false;
             this.txtName2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName2.Location = new System.Drawing.Point(125, 46);
             this.txtName2.Multiline = true;
@@ -302,7 +302,7 @@
             // txtID2
             // 
             this.txtID2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtID2.Enabled = false;
+            this.txtID2.ReadOnly= false;
             this.txtID2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtID2.Location = new System.Drawing.Point(125, 19);
             this.txtID2.Multiline = true;

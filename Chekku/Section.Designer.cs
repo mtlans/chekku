@@ -103,7 +103,7 @@
             this.btnEdit.Size = new System.Drawing.Size(196, 47);
             this.btnEdit.TabIndex = 27;
             this.btnEdit.Text = "Edit Section";
-            this.btnEdit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEdit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnEdit.Textcolor = System.Drawing.Color.White;
             this.btnEdit.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
@@ -140,7 +140,7 @@
             this.btnAdd.Size = new System.Drawing.Size(196, 47);
             this.btnAdd.TabIndex = 26;
             this.btnAdd.Text = "Add Section";
-            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnAdd.Textcolor = System.Drawing.Color.White;
             this.btnAdd.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
@@ -177,7 +177,7 @@
             this.btnBack.Size = new System.Drawing.Size(196, 47);
             this.btnBack.TabIndex = 29;
             this.btnBack.Text = "Back to Menu";
-            this.btnBack.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBack.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnBack.Textcolor = System.Drawing.Color.White;
             this.btnBack.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.Click += new System.EventHandler(this.BtnBack_Click);
@@ -214,7 +214,7 @@
             this.btnDelete.Size = new System.Drawing.Size(196, 47);
             this.btnDelete.TabIndex = 28;
             this.btnDelete.Text = "Delete Section";
-            this.btnDelete.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDelete.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnDelete.Textcolor = System.Drawing.Color.White;
             this.btnDelete.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
@@ -266,7 +266,7 @@
             this.btnEnroll.Size = new System.Drawing.Size(212, 47);
             this.btnEnroll.TabIndex = 73;
             this.btnEnroll.Text = "Check Enrolled Students";
-            this.btnEnroll.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEnroll.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnEnroll.Textcolor = System.Drawing.Color.White;
             this.btnEnroll.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEnroll.Click += new System.EventHandler(this.BtnEnroll_Click);
@@ -285,11 +285,11 @@
             // txtSection
             // 
             this.txtSection.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtSection.Enabled = false;
             this.txtSection.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSection.Location = new System.Drawing.Point(122, 144);
             this.txtSection.Multiline = true;
             this.txtSection.Name = "txtSection";
+            this.txtSection.ReadOnly = true;
             this.txtSection.Size = new System.Drawing.Size(179, 23);
             this.txtSection.TabIndex = 38;
             // 
@@ -334,11 +334,11 @@
             // txtCode
             // 
             this.txtCode.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtCode.Enabled = false;
             this.txtCode.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCode.Location = new System.Drawing.Point(122, 85);
             this.txtCode.Multiline = true;
             this.txtCode.Name = "txtCode";
+            this.txtCode.ReadOnly = true;
             this.txtCode.Size = new System.Drawing.Size(179, 23);
             this.txtCode.TabIndex = 37;
             // 
@@ -363,6 +363,7 @@
         "2019 - 2020",
         "2020 - 2021"};
             this.cmbSearchYear.Location = new System.Drawing.Point(289, 54);
+            this.cmbSearchYear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbSearchYear.Name = "cmbSearchYear";
             this.cmbSearchYear.NomalColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.cmbSearchYear.onHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
@@ -383,6 +384,7 @@
         "2",
         "3"};
             this.cmbSearchTerm.Location = new System.Drawing.Point(223, 54);
+            this.cmbSearchTerm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbSearchTerm.Name = "cmbSearchTerm";
             this.cmbSearchTerm.NomalColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.cmbSearchTerm.onHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
@@ -422,6 +424,7 @@
             this.dgvSubjects.Name = "dgvSubjects";
             this.dgvSubjects.ReadOnly = true;
             this.dgvSubjects.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvSubjects.RowHeadersWidth = 51;
             this.dgvSubjects.Size = new System.Drawing.Size(197, 242);
             this.dgvSubjects.TabIndex = 77;
             this.dgvSubjects.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvSubjects_CellClick);
@@ -434,6 +437,7 @@
             this.txtSearchSection.ForeColor = System.Drawing.Color.Black;
             this.txtSearchSection.Icon = ((System.Drawing.Image)(resources.GetObject("txtSearchSection.Icon")));
             this.txtSearchSection.Location = new System.Drawing.Point(426, 84);
+            this.txtSearchSection.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSearchSection.Name = "txtSearchSection";
             this.txtSearchSection.Size = new System.Drawing.Size(154, 24);
             this.txtSearchSection.TabIndex = 79;
@@ -470,6 +474,7 @@
             this.dgvSections.Name = "dgvSections";
             this.dgvSections.ReadOnly = true;
             this.dgvSections.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvSections.RowHeadersWidth = 51;
             this.dgvSections.Size = new System.Drawing.Size(154, 242);
             this.dgvSections.TabIndex = 80;
             this.dgvSections.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvSections_CellClick);
@@ -482,6 +487,7 @@
             this.txtSearch.ForeColor = System.Drawing.Color.Black;
             this.txtSearch.Icon = ((System.Drawing.Image)(resources.GetObject("txtSearch.Icon")));
             this.txtSearch.Location = new System.Drawing.Point(223, 84);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(197, 24);
             this.txtSearch.TabIndex = 78;
@@ -514,7 +520,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Section";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Section";
@@ -533,7 +539,6 @@
         #endregion
         private System.Windows.Forms.Panel panel1;
         private Bunifu.Framework.UI.BunifuFlatButton btnEdit;
-        private Bunifu.Framework.UI.BunifuFlatButton btnAdd;
         private Bunifu.Framework.UI.BunifuFlatButton btnBack;
         private Bunifu.Framework.UI.BunifuFlatButton btnDelete;
         private System.Windows.Forms.Panel panel2;
@@ -550,5 +555,6 @@
         private Bunifu.Framework.UI.BunifuCustomDataGrid dgvSections;
         private Bunifu.Framework.UI.BunifuTextbox txtSearch;
         private System.Windows.Forms.Label label5;
+        private Bunifu.Framework.UI.BunifuFlatButton btnAdd;
     }
 }

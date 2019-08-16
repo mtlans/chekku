@@ -96,6 +96,14 @@ namespace Chekku
                 }
             }
             this.dgvItems.Columns[1].Visible = false;
+            if (!String.IsNullOrWhiteSpace(txtSearch.text))
+            {
+                Search();
+            }
+            if (!String.IsNullOrWhiteSpace(txtSearch2.text))
+            {
+                Search2();
+            }
         }
 
         private void DgvView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -294,16 +302,26 @@ namespace Chekku
                     sqlCommand.Parameters.Add(new SqlParameter("@QuestionCode", SqlDbType.VarChar, 8000));
                     sqlCommand.Parameters["@QuestionCode"].Value = qcode;
 
+                    var returnParameter = sqlCommand.Parameters.Add("@ReturnVal", SqlDbType.Int);
+                    returnParameter.Direction = ParameterDirection.ReturnValue;
 
                     try
                     {
                         connection.Open();
                         sqlCommand.ExecuteNonQuery();
-                        loadQuestions();
+                        int checkState = (Int32)returnParameter.Value;
+                        if (checkState == 0)
+                        {
+                            Console.WriteLine("ERROR.");
+                        }
+                        else
+                        {
+                            loadQuestions();
+                        }
                     }
                     catch
                     {
-                        MessageBox.Show("Error deleting student.");
+                        MessageBox.Show("Error exporting item.");
                     }
                     finally
                     {
@@ -388,6 +406,7 @@ namespace Chekku
         private void TxtSearch_TextChanged(object sender, EventArgs e)
         {
             Search();
+            Search2();
         }
 
         private void Search()
