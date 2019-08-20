@@ -190,15 +190,12 @@ namespace Chekku
                 double passing = maxItems * (Convert.ToDouble(txtPass.Text) / 100);
                 var i = 0;
                 Console.WriteLine(scores.Rows.Count);
-                foreach (DataRow row in scores.Rows)
+                foreach (DataGridViewRow row in dgvScores.Rows)
                 {
-                    if (scores.Rows.Count > 0)
-                    {
-                        if (scores.Rows.Count > i)
-                        {
+                    Console.WriteLine("1234 Score: " + row.Cells["Score"].Value);
                             try
                             {
-                                if (Convert.ToDouble(row["Score"].ToString()) >= passing)
+                                if (Convert.ToDouble(row.Cells["Score"].Value) >= passing)
                                 {
                                     dgvScores.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(1, 169, 156);
                                 }
@@ -212,8 +209,6 @@ namespace Chekku
                                 Console.WriteLine("amp" + i);
                             }
                             i++;
-                        }
-                    }
                 }
             }
             
@@ -236,11 +231,11 @@ namespace Chekku
             toSearch = toSearch.Replace(" ", String.Empty);
             if (toSearch.Equals("StudentName"))
             {
-                (scores).DefaultView.RowFilter = string.Format("StudentName LIKE '{0}%'", txtSearch.text);
+                (dgvScores.DataSource as DataTable).DefaultView.RowFilter = string.Format("StudentName LIKE '{0}%'", txtSearch.text);
             }
             else
             {
-                (scores as DataTable).DefaultView.RowFilter = string.Format("StudentNo LIKE '{0}%'", txtSearch.text);
+                (dgvScores.DataSource as DataTable).DefaultView.RowFilter = string.Format("StudentNo LIKE '{0}%'", txtSearch.text);
             }
             MakeItGlow();
         }
@@ -434,18 +429,22 @@ namespace Chekku
             pIA.Visible = true;
             pScores.Visible = false;
         }
-
+        int chartState = 1;
         private void loadFOE()
         {
-            foreach(var x in ques)
+            final.Clear();
+            FOE.Clear();
+            if (chartState ==1)
             {
-                Console.WriteLine(x);
-            }
-            Console.WriteLine("Count: " + ques.Count);
-            int i = 1;
-            foreach (var x in ques)
+                foreach (var x in ques)
                 {
-                int n = 0;
+                    Console.WriteLine(x);
+                }
+                Console.WriteLine("Count: " + ques.Count);
+                int i = 1;
+                foreach (var x in ques)
+                {
+                    int n = 0;
                     using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
                     {
                         string oString = "Select Mistakes from Chekku.SetMapper where QuestionCode=@quescode AND ExamCode=@examcode";
@@ -458,26 +457,83 @@ namespace Chekku
                             while (oReader.Read())
                             {
                                 FOE.Add(new Question(i, Convert.ToInt32(oReader["Mistakes"].ToString())));
-                            n += Convert.ToInt32(oReader["Mistakes"].ToString());
+                                n += Convert.ToInt32(oReader["Mistakes"].ToString());
                                 Console.WriteLine("Number: " + i + " Mistakes: " + oReader["Mistakes"].ToString());
                             }
                             myConnection.Close();
-                            
+
                         }
                     }
-                final.Add(n);
-                i++;
+                    final.Add(n);
+                    i++;
+                }
+                foreach (var series in chartFOE.Series)
+                {
+                    series.Points.Clear();
+                }
+                chartFOE.Series["Mistakes"].ChartType = SeriesChartType.Bar;
+                chartFOE.ChartAreas[0].AxisX.Title = "Item Number";
+                chartFOE.ChartAreas[0].AxisX.Maximum = maxItems + 1;
+                chartFOE.ChartAreas[0].AxisY.Maximum = final.Max();
+                int num = 1;
+                foreach (var x in final)
+                {
+                    Console.WriteLine("Mistakes: " + x);
+                    chartFOE.Series["Mistakes"].Points.AddXY(num.ToString(), x);
+                    num++;
+                }
+                chartState = 0;
             }
-            chartFOE.Series["Mistakes"].ChartType = SeriesChartType.Bar;
-            chartFOE.ChartAreas[0].AxisX.Title = "Item Number";
-            chartFOE.ChartAreas[0].AxisX.Maximum = maxItems + 1;
-            chartFOE.ChartAreas[0].AxisY.Maximum = final.Max();
-            int num = 1;
-            foreach (var x in final)
+            else
             {
-                Console.WriteLine("Mistakes: " + x);
-                chartFOE.Series["Mistakes"].Points.AddXY( num, x);
-                num++;
+                foreach (var x in ques)
+                {
+                    Console.WriteLine(x);
+                }
+                Console.WriteLine("Count: " + ques.Count);
+                int i = 1;
+                foreach (var x in ques)
+                {
+                    int n = 0;
+                    using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
+                    {
+                        string oString = "Select Mistakes from Chekku.SetMapper where QuestionCode=@quescode AND ExamCode=@examcode";
+                        SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                        oCmd.Parameters.AddWithValue("@quescode", x);
+                        oCmd.Parameters.AddWithValue("@examcode", examcode);
+                        myConnection.Open();
+                        using (SqlDataReader oReader = oCmd.ExecuteReader())
+                        {
+                            while (oReader.Read())
+                            {
+                                FOE.Add(new Question(i, Convert.ToInt32(oReader["Mistakes"].ToString())));
+                                n += Convert.ToInt32(oReader["Mistakes"].ToString());
+                                Console.WriteLine("Number: " + i + " Mistakes: " + oReader["Mistakes"].ToString());
+                            }
+                            myConnection.Close();
+
+                        }
+                    }
+                    final.Add(n);
+                    i++;
+                }
+                foreach (var series in chartFOE.Series)
+                {
+                    series.Points.Clear();
+                }
+                chartFOE.Series["Mistakes"].ChartType = SeriesChartType.Bar;
+                chartFOE.ChartAreas[0].AxisX.Title = "Item Number";
+                chartFOE.ChartAreas[0].AxisX.Maximum = maxItems + 1;
+                chartFOE.ChartAreas[0].AxisY.Maximum = final.Max();
+                int num = maxItems;
+                final.Reverse();
+                foreach (var x in final)
+                {
+                    Console.WriteLine("Mistakes: " + x);
+                    chartFOE.Series["Mistakes"].Points.AddXY(num.ToString(), x);
+                    num--;
+                }
+                chartState = 1;
             }
            
             
@@ -503,6 +559,128 @@ namespace Chekku
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
+        }
+        int stateChart = 1;
+        private void BtnSortMis_Click(object sender, EventArgs e)
+        {
+            final.Clear();
+            FOE.Clear();
+            if (stateChart == 1)
+            {
+                int i = 1;
+                foreach (var x in ques)
+                {
+                    int n = 0;
+                    using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
+                    {
+                        string oString = "Select Mistakes from Chekku.SetMapper where QuestionCode=@quescode AND ExamCode=@examcode";
+                        SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                        oCmd.Parameters.AddWithValue("@quescode", x);
+                        oCmd.Parameters.AddWithValue("@examcode", examcode);
+                        myConnection.Open();
+                        using (SqlDataReader oReader = oCmd.ExecuteReader())
+                        {
+                            while (oReader.Read())
+                            {
+                                n += Convert.ToInt32(oReader["Mistakes"].ToString());
+                                Console.WriteLine("1 Number: " + i + " Mistakes: " + oReader["Mistakes"].ToString());
+                            }
+                            myConnection.Close();
+                        }
+                    }
+                    final.Add(n);
+                    i++;
+                }
+
+                int p = 1;
+                foreach (var z in final)
+                {
+                    FOE.Add(new Question(p, z));
+                    Console.WriteLine("2 Number: " + p + " Mistakes: " + z);
+                    p++;
+                }
+                List<Question> SortedList = FOE.OrderBy(o => o.Mistakes).ToList();
+                foreach (var n in SortedList)
+                {
+                    Console.WriteLine("3 Number: " + n.Number + " Mistakes: " + n.Mistakes);
+                }
+                foreach (var series in chartFOE.Series)
+                {
+                    series.Points.Clear();
+                }
+                chartFOE.Series["Mistakes"].ChartType = SeriesChartType.Bar;
+                chartFOE.ChartAreas[0].AxisX.Title = "Item Number";
+                chartFOE.ChartAreas[0].AxisX.Maximum = maxItems + 1;
+                chartFOE.ChartAreas[0].AxisY.Maximum = final.Max();
+                int num = 1;
+                foreach (var n in SortedList)
+                {
+                    chartFOE.Series["Mistakes"].Points.AddXY(n.Number.ToString(), n.Mistakes);
+                    num++;
+                }
+                stateChart = 0;
+            }
+            else
+            {
+                int i = 1;
+                foreach (var x in ques)
+                {
+                    int n = 0;
+                    using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
+                    {
+                        string oString = "Select Mistakes from Chekku.SetMapper where QuestionCode=@quescode AND ExamCode=@examcode";
+                        SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                        oCmd.Parameters.AddWithValue("@quescode", x);
+                        oCmd.Parameters.AddWithValue("@examcode", examcode);
+                        myConnection.Open();
+                        using (SqlDataReader oReader = oCmd.ExecuteReader())
+                        {
+                            while (oReader.Read())
+                            {
+                                n += Convert.ToInt32(oReader["Mistakes"].ToString());
+                                Console.WriteLine("1 Number: " + i + " Mistakes: " + oReader["Mistakes"].ToString());
+                            }
+                            myConnection.Close();
+                        }
+                    }
+                    final.Add(n);
+                    i++;
+                }
+
+                int p = 1;
+                foreach (var z in final)
+                {
+                    FOE.Add(new Question(p, z));
+                    Console.WriteLine("2 Number: " + p + " Mistakes: " + z);
+                    p++;
+                }
+                List<Question> SortedList = FOE.OrderByDescending(o => o.Mistakes).ToList();
+                foreach (var n in SortedList)
+                {
+                    Console.WriteLine("3 Number: " + n.Number + " Mistakes: " + n.Mistakes);
+                }
+                foreach (var series in chartFOE.Series)
+                {
+                    series.Points.Clear();
+                }
+                chartFOE.Series["Mistakes"].ChartType = SeriesChartType.Bar;
+                chartFOE.ChartAreas[0].AxisX.Title = "Item Number";
+                chartFOE.ChartAreas[0].AxisX.Maximum = maxItems + 1;
+                chartFOE.ChartAreas[0].AxisY.Maximum = final.Max();
+                int num = 1;
+                foreach (var n in SortedList)
+                {
+                    chartFOE.Series["Mistakes"].Points.AddXY(n.Number.ToString(), n.Mistakes);
+                    num++;
+                }
+                stateChart = 1;
+            }
+            
+        }
+
+        private void BtnSortNum_Click(object sender, EventArgs e)
+        {
+            loadFOE();
         }
     }
 }

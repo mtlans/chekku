@@ -628,7 +628,7 @@ namespace Chekku
                 a.ShowDialog();
                 a.Hide();
                 string filename = a.filename;
-                string path = a.path;
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Export Question Banks/";
                 a.Dispose();
                 if (!filename.Equals("cancelled"))
                 {
@@ -651,9 +651,9 @@ namespace Chekku
                 int num = 1;
                 foreach (var question in Items)
                 {
-                    string que = "", answer = "", ch1 = "", ch2 = "", ch3 = "";
+                    string que = "", answer = "", ch1 = "", ch2 = "", ch3 = "", img64 ="";
                     int hasImg = 0;
-                    List<String> line = new List<String>();
+                    List<string> line = new List<string>();
                     using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
                     {
                         string oString = "Select * from Chekku.Questions where QuestionCode=@Code";
@@ -675,14 +675,15 @@ namespace Chekku
                                     string imgpath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Chekku/Question Images";
                                     string imgname = question.Qcode + ".jpg";
                                     string imgloc = System.IO.Path.Combine(imgpath, imgname);
-
-                                    string imgOut = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Export Question Banks/" + filename + "/Images";
-                                    if (!Directory.Exists(imgOut))
-                                    {
-                                        Directory.CreateDirectory(imgOut);
-                                    }
-                                    string imgFinal = imgOut + "/"+ num.ToString() + ".jpg";
-                                    File.Copy(imgloc, imgFinal);
+                                    img64 = imgtobase64(imgloc);
+                                    Console.WriteLine(num + "imagestring: " + img64);
+                                    //string imgOut = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Export Question Banks/" + filename + "/Images";
+                                    //if (!Directory.Exists(imgOut))
+                                    //{
+                                    //    Directory.CreateDirectory(imgOut);
+                                    //}
+                                    //string imgFinal = imgOut + "/"+ num.ToString() + ".jpg";
+                                    //File.Copy(imgloc, imgFinal);
                                 }
                                 else
                                 {
@@ -699,6 +700,7 @@ namespace Chekku
                     line.Add(ch2);
                     line.Add(ch3);
                     line.Add(hasImg.ToString());
+                    line.Add(img64);
                     var toWrite = string.Join(delimiter, line.ToArray());
                     writer.WriteLine(toWrite);
                     line.Clear();
@@ -728,6 +730,22 @@ namespace Chekku
                 lblNumber.Text = Items.Count.ToString();
             }
         }
+        private string imgtobase64(string path)
+        {
+            using (Image image = Image.FromFile(path))
+            {
+                using (MemoryStream m = new MemoryStream())
+                {
+                    image.Save(m, image.RawFormat);
+                    byte[] imageBytes = m.ToArray();
+
+                    // Convert byte[] to Base64 String
+                    string base64String = Convert.ToBase64String(imageBytes);
+                    return base64String;
+                }
+            }
+        }
+        
         //end
     }
 }

@@ -30,20 +30,20 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportTables));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title10 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend11 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title11 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend12 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title12 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.panel1 = new System.Windows.Forms.Panel();
             this.bunifuFlatButton3 = new Bunifu.Framework.UI.BunifuFlatButton();
             this.bunifuFlatButton2 = new Bunifu.Framework.UI.BunifuFlatButton();
@@ -83,6 +83,8 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.pIA = new System.Windows.Forms.Panel();
             this.chartFOE = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.btnSortNum = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.btnSortMis = new Bunifu.Framework.UI.BunifuThinButton2();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvScores)).BeginInit();
             this.pScores.SuspendLayout();
@@ -268,7 +270,7 @@
         "Student No.",
         "Student Name"};
             this.cmbSelect.Location = new System.Drawing.Point(5, 24);
-            this.cmbSelect.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbSelect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbSelect.Name = "cmbSelect";
             this.cmbSelect.NomalColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.cmbSelect.onHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
@@ -283,20 +285,20 @@
             this.dgvScores.AllowUserToDeleteRows = false;
             this.dgvScores.AllowUserToResizeColumns = false;
             this.dgvScores.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvScores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvScores.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvScores.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvScores.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.dgvScores.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvScores.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvScores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvScores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvScores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvScores.DoubleBuffered = true;
             this.dgvScores.EnableHeadersVisualStyles = false;
@@ -307,6 +309,7 @@
             this.dgvScores.Name = "dgvScores";
             this.dgvScores.ReadOnly = true;
             this.dgvScores.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvScores.RowHeadersWidth = 51;
             this.dgvScores.Size = new System.Drawing.Size(312, 399);
             this.dgvScores.TabIndex = 98;
             // 
@@ -361,7 +364,7 @@
             this.tabPage1.Controls.Add(this.scoreChart);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabPage1.Size = new System.Drawing.Size(591, 303);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Score Distribution";
@@ -370,28 +373,28 @@
             // 
             this.scoreChart.BackColor = System.Drawing.Color.LightGray;
             this.scoreChart.BorderlineColor = System.Drawing.Color.LightGray;
-            chartArea10.Name = "ChartArea1";
-            this.scoreChart.ChartAreas.Add(chartArea10);
-            legend10.Name = "Legend1";
-            this.scoreChart.Legends.Add(legend10);
+            chartArea1.Name = "ChartArea1";
+            this.scoreChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.scoreChart.Legends.Add(legend1);
             this.scoreChart.Location = new System.Drawing.Point(0, 0);
             this.scoreChart.Name = "scoreChart";
             this.scoreChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             this.scoreChart.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))))};
-            series10.ChartArea = "ChartArea1";
-            series10.LabelBackColor = System.Drawing.Color.LightGray;
-            series10.LabelBorderColor = System.Drawing.Color.LightGray;
-            series10.Legend = "Legend1";
-            series10.Name = "Students";
-            this.scoreChart.Series.Add(series10);
+            series1.ChartArea = "ChartArea1";
+            series1.LabelBackColor = System.Drawing.Color.LightGray;
+            series1.LabelBorderColor = System.Drawing.Color.LightGray;
+            series1.Legend = "Legend1";
+            series1.Name = "Students";
+            this.scoreChart.Series.Add(series1);
             this.scoreChart.Size = new System.Drawing.Size(591, 250);
             this.scoreChart.TabIndex = 101;
             this.scoreChart.Text = "chart1";
-            title10.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title10.Name = "Title1";
-            title10.Text = "Score Distribution";
-            this.scoreChart.Titles.Add(title10);
+            title1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title1.Name = "Title1";
+            title1.Text = "Score Distribution";
+            this.scoreChart.Titles.Add(title1);
             // 
             // tabPage2
             // 
@@ -402,7 +405,7 @@
             this.tabPage2.Controls.Add(this.label9);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabPage2.Size = new System.Drawing.Size(591, 303);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Normally Distributed Graph";
@@ -440,26 +443,26 @@
             // 
             this.chartNorm.BackColor = System.Drawing.Color.LightGray;
             this.chartNorm.BorderlineColor = System.Drawing.Color.DarkGray;
-            chartArea11.Name = "ChartArea1";
-            this.chartNorm.ChartAreas.Add(chartArea11);
-            legend11.Name = "Legend1";
-            this.chartNorm.Legends.Add(legend11);
+            chartArea2.Name = "ChartArea1";
+            this.chartNorm.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartNorm.Legends.Add(legend2);
             this.chartNorm.Location = new System.Drawing.Point(0, 0);
             this.chartNorm.Name = "chartNorm";
             this.chartNorm.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             this.chartNorm.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))))};
-            series11.ChartArea = "ChartArea1";
-            series11.Legend = "Legend1";
-            series11.Name = "Students";
-            this.chartNorm.Series.Add(series11);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Students";
+            this.chartNorm.Series.Add(series2);
             this.chartNorm.Size = new System.Drawing.Size(591, 250);
             this.chartNorm.TabIndex = 103;
             this.chartNorm.Text = "chart1";
-            title11.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title11.Name = "Title1";
-            title11.Text = "Normally Distributed Score Chart";
-            this.chartNorm.Titles.Add(title11);
+            title2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title2.Name = "Title1";
+            title2.Text = "Normally Distributed Score Chart";
+            this.chartNorm.Titles.Add(title2);
             // 
             // label9
             // 
@@ -504,6 +507,7 @@
             this.txtLow.MaxLength = 3;
             this.txtLow.Multiline = true;
             this.txtLow.Name = "txtLow";
+            this.txtLow.ReadOnly = true;
             this.txtLow.Size = new System.Drawing.Size(51, 27);
             this.txtLow.TabIndex = 114;
             this.txtLow.Text = "70";
@@ -517,6 +521,7 @@
             this.txtMean.MaxLength = 3;
             this.txtMean.Multiline = true;
             this.txtMean.Name = "txtMean";
+            this.txtMean.ReadOnly = true;
             this.txtMean.Size = new System.Drawing.Size(51, 27);
             this.txtMean.TabIndex = 113;
             this.txtMean.Text = "70";
@@ -530,6 +535,7 @@
             this.txtHigh.MaxLength = 3;
             this.txtHigh.Multiline = true;
             this.txtHigh.Name = "txtHigh";
+            this.txtHigh.ReadOnly = true;
             this.txtHigh.Size = new System.Drawing.Size(51, 27);
             this.txtHigh.TabIndex = 113;
             this.txtHigh.Text = "70";
@@ -576,6 +582,7 @@
             this.txtPStud.MaxLength = 3;
             this.txtPStud.Multiline = true;
             this.txtPStud.Name = "txtPStud";
+            this.txtPStud.ReadOnly = true;
             this.txtPStud.Size = new System.Drawing.Size(51, 27);
             this.txtPStud.TabIndex = 109;
             this.txtPStud.Text = "70";
@@ -611,6 +618,7 @@
             this.txtScore.MaxLength = 3;
             this.txtScore.Multiline = true;
             this.txtScore.Name = "txtScore";
+            this.txtScore.ReadOnly = true;
             this.txtScore.Size = new System.Drawing.Size(51, 27);
             this.txtScore.TabIndex = 106;
             this.txtScore.Text = "70";
@@ -646,7 +654,7 @@
             this.btnRecalc.IdleForecolor = System.Drawing.Color.White;
             this.btnRecalc.IdleLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.btnRecalc.Location = new System.Drawing.Point(458, 110);
-            this.btnRecalc.Margin = new System.Windows.Forms.Padding(5);
+            this.btnRecalc.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnRecalc.Name = "btnRecalc";
             this.btnRecalc.Size = new System.Drawing.Size(135, 44);
             this.btnRecalc.TabIndex = 101;
@@ -713,6 +721,7 @@
             this.txtSearch.ForeColor = System.Drawing.Color.Black;
             this.txtSearch.Icon = ((System.Drawing.Image)(resources.GetObject("txtSearch.Icon")));
             this.txtSearch.Location = new System.Drawing.Point(6, 52);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(312, 24);
             this.txtSearch.TabIndex = 99;
@@ -721,6 +730,8 @@
             // 
             // pIA
             // 
+            this.pIA.Controls.Add(this.btnSortMis);
+            this.pIA.Controls.Add(this.btnSortNum);
             this.pIA.Controls.Add(this.chartFOE);
             this.pIA.Location = new System.Drawing.Point(202, 25);
             this.pIA.Name = "pIA";
@@ -732,41 +743,95 @@
             // chartFOE
             // 
             this.chartFOE.BackColor = System.Drawing.Color.LightGray;
-            chartArea12.CursorX.IsUserEnabled = true;
-            chartArea12.CursorX.IsUserSelectionEnabled = true;
-            chartArea12.CursorY.IsUserEnabled = true;
-            chartArea12.CursorY.IsUserSelectionEnabled = true;
-            chartArea12.Name = "ChartArea1";
-            this.chartFOE.ChartAreas.Add(chartArea12);
-            legend12.Name = "Legend1";
-            this.chartFOE.Legends.Add(legend12);
+            chartArea3.AxisX.Title = "Item Number";
+            chartArea3.AxisX.TitleFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea3.CursorX.IsUserEnabled = true;
+            chartArea3.CursorX.IsUserSelectionEnabled = true;
+            chartArea3.CursorY.IsUserEnabled = true;
+            chartArea3.CursorY.IsUserSelectionEnabled = true;
+            chartArea3.Name = "ChartArea1";
+            this.chartFOE.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chartFOE.Legends.Add(legend3);
             this.chartFOE.Location = new System.Drawing.Point(22, 17);
             this.chartFOE.Name = "chartFOE";
             this.chartFOE.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             this.chartFOE.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))))};
-            series12.ChartArea = "ChartArea1";
-            series12.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series12.LabelBackColor = System.Drawing.Color.LightGray;
-            series12.Legend = "Legend1";
-            series12.Name = "Mistakes";
-            this.chartFOE.Series.Add(series12);
-            this.chartFOE.Size = new System.Drawing.Size(885, 515);
+            series3.ChartArea = "ChartArea1";
+            series3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series3.LabelBackColor = System.Drawing.Color.LightGray;
+            series3.Legend = "Legend1";
+            series3.Name = "Mistakes";
+            this.chartFOE.Series.Add(series3);
+            this.chartFOE.Size = new System.Drawing.Size(752, 525);
             this.chartFOE.TabIndex = 0;
             this.chartFOE.Text = "Frequency of Errors";
-            title12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title12.Name = "Title1";
-            title12.Text = "Frequency of Errors";
-            this.chartFOE.Titles.Add(title12);
+            title3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title3.Name = "Title1";
+            title3.Text = "Frequency of Errors";
+            this.chartFOE.Titles.Add(title3);
+            // 
+            // btnSortNum
+            // 
+            this.btnSortNum.ActiveBorderThickness = 1;
+            this.btnSortNum.ActiveCornerRadius = 20;
+            this.btnSortNum.ActiveFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
+            this.btnSortNum.ActiveForecolor = System.Drawing.Color.White;
+            this.btnSortNum.ActiveLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
+            this.btnSortNum.BackColor = System.Drawing.SystemColors.Control;
+            this.btnSortNum.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSortNum.BackgroundImage")));
+            this.btnSortNum.ButtonText = "Sort by Num";
+            this.btnSortNum.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSortNum.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSortNum.ForeColor = System.Drawing.Color.White;
+            this.btnSortNum.IdleBorderThickness = 1;
+            this.btnSortNum.IdleCornerRadius = 20;
+            this.btnSortNum.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
+            this.btnSortNum.IdleForecolor = System.Drawing.Color.White;
+            this.btnSortNum.IdleLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
+            this.btnSortNum.Location = new System.Drawing.Point(787, 129);
+            this.btnSortNum.Margin = new System.Windows.Forms.Padding(5);
+            this.btnSortNum.Name = "btnSortNum";
+            this.btnSortNum.Size = new System.Drawing.Size(130, 59);
+            this.btnSortNum.TabIndex = 63;
+            this.btnSortNum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnSortNum.Click += new System.EventHandler(this.BtnSortNum_Click);
+            // 
+            // btnSortMis
+            // 
+            this.btnSortMis.ActiveBorderThickness = 1;
+            this.btnSortMis.ActiveCornerRadius = 20;
+            this.btnSortMis.ActiveFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
+            this.btnSortMis.ActiveForecolor = System.Drawing.Color.White;
+            this.btnSortMis.ActiveLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
+            this.btnSortMis.BackColor = System.Drawing.SystemColors.Control;
+            this.btnSortMis.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSortMis.BackgroundImage")));
+            this.btnSortMis.ButtonText = "Sort by Mistakes";
+            this.btnSortMis.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSortMis.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSortMis.ForeColor = System.Drawing.Color.White;
+            this.btnSortMis.IdleBorderThickness = 1;
+            this.btnSortMis.IdleCornerRadius = 20;
+            this.btnSortMis.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
+            this.btnSortMis.IdleForecolor = System.Drawing.Color.White;
+            this.btnSortMis.IdleLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
+            this.btnSortMis.Location = new System.Drawing.Point(787, 198);
+            this.btnSortMis.Margin = new System.Windows.Forms.Padding(5);
+            this.btnSortMis.Name = "btnSortMis";
+            this.btnSortMis.Size = new System.Drawing.Size(130, 59);
+            this.btnSortMis.TabIndex = 64;
+            this.btnSortMis.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnSortMis.Click += new System.EventHandler(this.BtnSortMis_Click);
             // 
             // ReportTables
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1140, 607);
+            this.Controls.Add(this.pIA);
             this.Controls.Add(this.pScores);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pIA);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ReportTables";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -833,5 +898,7 @@
         private Bunifu.Framework.UI.BunifuFlatButton bunifuFlatButton2;
         private System.Windows.Forms.Panel pIA;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartFOE;
+        private Bunifu.Framework.UI.BunifuThinButton2 btnSortMis;
+        private Bunifu.Framework.UI.BunifuThinButton2 btnSortNum;
     }
 }

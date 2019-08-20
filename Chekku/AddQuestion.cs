@@ -25,7 +25,7 @@ namespace Chekku
             btnAddImp.Visible = false;
         }
 
-        public AddQuestion(string q, string a, string c1, string c2, string c3, int hI, string path)
+        public AddQuestion(string q, string a, string c1, string c2, string c3, int hI, string base64)
         {
             InitializeComponent();
             code = generateQuestionCode();
@@ -38,8 +38,11 @@ namespace Chekku
             isImported = true;
             if(hI == 1)
             {
-                pbImage.Image = Image.FromFile(path);
-                origfile = path;
+                LoadImage(base64);
+                origfile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Chekku/Question Images/TEMP.jpg";
+                File.WriteAllBytes(origfile, Convert.FromBase64String(base64));
+                //pbImage.Image = Image.FromFile(path);
+                //origfile = path;
             }
             btnEditPic.Visible = false;
             btnRemoveImg.Visible = false;
@@ -49,7 +52,19 @@ namespace Chekku
             btnCancel.Visible = false;
         }
 
+        public void LoadImage(string base64)
+        {
+            //data:image/gif;base64,
+            //this image is a single pixel (black)
+            byte[] bytes = Convert.FromBase64String(base64);
 
+            Image image;
+            using (MemoryStream ms = new MemoryStream(bytes))
+            {
+                image = Image.FromStream(ms);
+            }
+            pbImage.Image = image;
+        }
         private void setPicture(string ext) //EQUATION TO
         {
             string rtfTxt = ext;
@@ -96,7 +111,7 @@ namespace Chekku
                     {
                         sqlCommand.CommandType = CommandType.StoredProcedure;
 
-                        sqlCommand.Parameters.Add(new SqlParameter("@Question", SqlDbType.NVarChar, 50));
+                        sqlCommand.Parameters.Add(new SqlParameter("@Question", SqlDbType.NVarChar, 8000));
                         sqlCommand.Parameters["@Question"].Value = txtQuestion.Text.Trim();
 
                         sqlCommand.Parameters.Add(new SqlParameter("@QuestionCode", SqlDbType.VarChar, 50));
@@ -302,9 +317,18 @@ namespace Chekku
 
             string imgname = code + ".jpg";
             string pathstring = System.IO.Path.Combine(path, imgname);
+
             //lblimg.Text = pathstring;
             System.IO.File.Copy(origfile, pathstring);
+            string filedel = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Chekku/Question Images/TEMP.jpg";
+
+            if (File.Exists(filedel))
+            {
+                File.Delete(filedel);
+            }
             return pathstring;
+     
+           
         }
 
         private void BtnTest_Click(object sender, EventArgs e)

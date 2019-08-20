@@ -10,12 +10,24 @@ namespace Chekku
     {
         string subsectcode = "";
         string id = ""; //subjectID
-        string code = ""; //sectioncode
+        string code = ""; //sectioncode\
+        string oldexamid = "";
         public CreateExam_Details(string subCode, string subsectCode)
         {
             InitializeComponent();
             this.id = subCode;
             this.code = subsectCode;
+            loadDetails(subCode, subsectCode);
+            subsectcode = subsectCode;
+            cmbSet.SelectedIndex = 0;
+        }
+
+        public CreateExam_Details(string subCode, string subsectCode, string old)
+        {
+            InitializeComponent();
+            this.id = subCode;
+            this.code = subsectCode;
+            this.oldexamid = old;
             loadDetails(subCode, subsectCode);
             subsectcode = subsectCode;
             cmbSet.SelectedIndex = 0;
@@ -28,6 +40,7 @@ namespace Chekku
 
         private void loadDetails(string subCode, string subsectCode)
         {
+            Console.WriteLine("YO WTF Oldid: " + oldexamid + " Ayan.");
             using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
             {
                 string oString = "Select * from Chekku.Subjects where SubjectID=@SubjectID";
@@ -83,7 +96,7 @@ namespace Chekku
         {
             StringBuilder builder = new StringBuilder();
             builder.Append(RandomString(2, true));
-            builder.Append(RandomNumber(1, 99));
+            builder.Append(RandomNumber(10, 99));
             return builder.ToString();
         }
 
@@ -155,26 +168,35 @@ namespace Chekku
                         var returnParameter = sqlCommand.Parameters.Add("@ReturnVal", SqlDbType.Int);
                         returnParameter.Direction = ParameterDirection.ReturnValue;
 
-                        connection.Open();
-                        sqlCommand.ExecuteNonQuery();
-                        checkState = (Int32)returnParameter.Value;
-                        if (checkState == 0)
-                        {
-                            MessageBox.Show("This section already exists!");
-                        }
-                        else
-                        {
-                            Form frm = new Exam_Questions(code, Convert.ToInt32(cmbSet.SelectedItem),id , this.code);
-                            frm.Show();
-                            this.Hide();
-                        }
+                        
                         try
                         {
-
+                            connection.Open();
+                            sqlCommand.ExecuteNonQuery();
+                            checkState = (Int32)returnParameter.Value;
+                            if (checkState == 0)
+                            {
+                                MessageBox.Show("This section already exists!");
+                            }
+                            else
+                            {
+                                if (String.IsNullOrWhiteSpace(oldexamid))
+                                {
+                                    Form frm = new Exam_Questions(code, Convert.ToInt32(cmbSet.SelectedItem), id, this.code);
+                                    frm.Show();
+                                    this.Hide();
+                                }
+                                else
+                                {
+                                    Form frm = new Exam_Questions(code, Convert.ToInt32(cmbSet.SelectedItem), id, this.code, oldexamid);
+                                    frm.Show();
+                                    this.Hide();
+                                }
+                            }
                         }
                         catch
                         {
-                            MessageBox.Show("Error adding new subject.");
+                            MessageBox.Show("Error creating exam.");
                         }
                         finally
                         {

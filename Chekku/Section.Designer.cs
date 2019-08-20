@@ -66,8 +66,9 @@
             this.panel1.Controls.Add(this.btnBack);
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Location = new System.Drawing.Point(1, -2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(196, 435);
+            this.panel1.Size = new System.Drawing.Size(261, 535);
             this.panel1.TabIndex = 73;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Panel1_MouseDown);
             // 
@@ -93,14 +94,14 @@
             this.btnEdit.IconVisible = true;
             this.btnEdit.IconZoom = 40D;
             this.btnEdit.IsTab = false;
-            this.btnEdit.Location = new System.Drawing.Point(0, 172);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnEdit.Location = new System.Drawing.Point(0, 212);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.btnEdit.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
             this.btnEdit.OnHoverTextColor = System.Drawing.Color.White;
             this.btnEdit.selected = false;
-            this.btnEdit.Size = new System.Drawing.Size(196, 47);
+            this.btnEdit.Size = new System.Drawing.Size(261, 58);
             this.btnEdit.TabIndex = 27;
             this.btnEdit.Text = "Edit Section";
             this.btnEdit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -130,14 +131,14 @@
             this.btnAdd.IconVisible = true;
             this.btnAdd.IconZoom = 40D;
             this.btnAdd.IsTab = false;
-            this.btnAdd.Location = new System.Drawing.Point(0, 121);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAdd.Location = new System.Drawing.Point(0, 149);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.btnAdd.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
             this.btnAdd.OnHoverTextColor = System.Drawing.Color.White;
             this.btnAdd.selected = false;
-            this.btnAdd.Size = new System.Drawing.Size(196, 47);
+            this.btnAdd.Size = new System.Drawing.Size(261, 58);
             this.btnAdd.TabIndex = 26;
             this.btnAdd.Text = "Add Section";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -167,14 +168,14 @@
             this.btnBack.IconVisible = true;
             this.btnBack.IconZoom = 40D;
             this.btnBack.IsTab = false;
-            this.btnBack.Location = new System.Drawing.Point(0, 315);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnBack.Location = new System.Drawing.Point(0, 388);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnBack.Name = "btnBack";
             this.btnBack.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.btnBack.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
             this.btnBack.OnHoverTextColor = System.Drawing.Color.White;
             this.btnBack.selected = false;
-            this.btnBack.Size = new System.Drawing.Size(196, 47);
+            this.btnBack.Size = new System.Drawing.Size(261, 58);
             this.btnBack.TabIndex = 29;
             this.btnBack.Text = "Back to Menu";
             this.btnBack.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -204,14 +205,14 @@
             this.btnDelete.IconVisible = true;
             this.btnDelete.IconZoom = 40D;
             this.btnDelete.IsTab = false;
-            this.btnDelete.Location = new System.Drawing.Point(0, 223);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnDelete.Location = new System.Drawing.Point(0, 274);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.btnDelete.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
             this.btnDelete.OnHoverTextColor = System.Drawing.Color.White;
             this.btnDelete.selected = false;
-            this.btnDelete.Size = new System.Drawing.Size(196, 47);
+            this.btnDelete.Size = new System.Drawing.Size(261, 58);
             this.btnDelete.TabIndex = 28;
             this.btnDelete.Text = "Delete Section";
             this.btnDelete.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -228,9 +229,10 @@
             this.panel2.Controls.Add(this.btnSaveChanges);
             this.panel2.Controls.Add(this.txtCode);
             this.panel2.Controls.Add(this.label8);
-            this.panel2.Location = new System.Drawing.Point(607, -1);
+            this.panel2.Location = new System.Drawing.Point(809, -1);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(324, 434);
+            this.panel2.Size = new System.Drawing.Size(432, 534);
             this.panel2.TabIndex = 74;
             this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Panel1_MouseDown);
             // 
@@ -256,14 +258,14 @@
             this.btnEnroll.IconVisible = true;
             this.btnEnroll.IconZoom = 40D;
             this.btnEnroll.IsTab = false;
-            this.btnEnroll.Location = new System.Drawing.Point(89, 314);
-            this.btnEnroll.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnEnroll.Location = new System.Drawing.Point(119, 387);
+            this.btnEnroll.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnEnroll.Name = "btnEnroll";
             this.btnEnroll.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.btnEnroll.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
             this.btnEnroll.OnHoverTextColor = System.Drawing.Color.White;
             this.btnEnroll.selected = false;
-            this.btnEnroll.Size = new System.Drawing.Size(212, 47);
+            this.btnEnroll.Size = new System.Drawing.Size(283, 58);
             this.btnEnroll.TabIndex = 73;
             this.btnEnroll.Text = "Check Enrolled Students";
             this.btnEnroll.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -275,10 +277,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(21, 147);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(28, 181);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 17);
+            this.label2.Size = new System.Drawing.Size(111, 23);
             this.label2.TabIndex = 39;
             this.label2.Text = "Section Code";
             // 
@@ -286,11 +287,12 @@
             // 
             this.txtSection.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.txtSection.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSection.Location = new System.Drawing.Point(122, 144);
+            this.txtSection.Location = new System.Drawing.Point(163, 177);
+            this.txtSection.Margin = new System.Windows.Forms.Padding(4);
             this.txtSection.Multiline = true;
             this.txtSection.Name = "txtSection";
             this.txtSection.ReadOnly = true;
-            this.txtSection.Size = new System.Drawing.Size(179, 23);
+            this.txtSection.Size = new System.Drawing.Size(237, 27);
             this.txtSection.TabIndex = 38;
             // 
             // btnSaveChanges
@@ -315,17 +317,17 @@
             this.btnSaveChanges.IconVisible = true;
             this.btnSaveChanges.IconZoom = 40D;
             this.btnSaveChanges.IsTab = false;
-            this.btnSaveChanges.Location = new System.Drawing.Point(89, 315);
-            this.btnSaveChanges.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnSaveChanges.Location = new System.Drawing.Point(119, 388);
+            this.btnSaveChanges.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnSaveChanges.Name = "btnSaveChanges";
             this.btnSaveChanges.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.btnSaveChanges.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
             this.btnSaveChanges.OnHoverTextColor = System.Drawing.Color.White;
             this.btnSaveChanges.selected = false;
-            this.btnSaveChanges.Size = new System.Drawing.Size(212, 47);
+            this.btnSaveChanges.Size = new System.Drawing.Size(283, 58);
             this.btnSaveChanges.TabIndex = 30;
             this.btnSaveChanges.Text = "Save Changes";
-            this.btnSaveChanges.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSaveChanges.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnSaveChanges.Textcolor = System.Drawing.Color.White;
             this.btnSaveChanges.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveChanges.Visible = false;
@@ -335,21 +337,21 @@
             // 
             this.txtCode.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.txtCode.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCode.Location = new System.Drawing.Point(122, 85);
+            this.txtCode.Location = new System.Drawing.Point(163, 105);
+            this.txtCode.Margin = new System.Windows.Forms.Padding(4);
             this.txtCode.Multiline = true;
             this.txtCode.Name = "txtCode";
             this.txtCode.ReadOnly = true;
-            this.txtCode.Size = new System.Drawing.Size(179, 23);
+            this.txtCode.Size = new System.Drawing.Size(237, 27);
             this.txtCode.TabIndex = 37;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(21, 85);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Location = new System.Drawing.Point(28, 105);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(85, 17);
+            this.label8.Size = new System.Drawing.Size(111, 23);
             this.label8.TabIndex = 9;
             this.label8.Text = "Subject Code";
             // 
@@ -362,13 +364,13 @@
             this.cmbSearchYear.Items = new string[] {
         "2019 - 2020",
         "2020 - 2021"};
-            this.cmbSearchYear.Location = new System.Drawing.Point(289, 54);
-            this.cmbSearchYear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbSearchYear.Location = new System.Drawing.Point(385, 66);
+            this.cmbSearchYear.Margin = new System.Windows.Forms.Padding(5);
             this.cmbSearchYear.Name = "cmbSearchYear";
             this.cmbSearchYear.NomalColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.cmbSearchYear.onHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
             this.cmbSearchYear.selectedIndex = 0;
-            this.cmbSearchYear.Size = new System.Drawing.Size(131, 24);
+            this.cmbSearchYear.Size = new System.Drawing.Size(175, 30);
             this.cmbSearchYear.TabIndex = 76;
             this.cmbSearchYear.onItemSelected += new System.EventHandler(this.CmbSearchYear_selectedIndexChanged);
             this.cmbSearchYear.TabIndexChanged += new System.EventHandler(this.CmbSearchYear_selectedIndexChanged);
@@ -383,13 +385,13 @@
         "1",
         "2",
         "3"};
-            this.cmbSearchTerm.Location = new System.Drawing.Point(223, 54);
-            this.cmbSearchTerm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbSearchTerm.Location = new System.Drawing.Point(297, 66);
+            this.cmbSearchTerm.Margin = new System.Windows.Forms.Padding(5);
             this.cmbSearchTerm.Name = "cmbSearchTerm";
             this.cmbSearchTerm.NomalColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.cmbSearchTerm.onHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
             this.cmbSearchTerm.selectedIndex = 0;
-            this.cmbSearchTerm.Size = new System.Drawing.Size(60, 24);
+            this.cmbSearchTerm.Size = new System.Drawing.Size(80, 30);
             this.cmbSearchTerm.TabIndex = 75;
             this.cmbSearchTerm.onItemSelected += new System.EventHandler(this.CmbSearchYear_selectedIndexChanged);
             this.cmbSearchTerm.TabIndexChanged += new System.EventHandler(this.CmbSearchYear_selectedIndexChanged);
@@ -419,13 +421,14 @@
             this.dgvSubjects.EnableHeadersVisualStyles = false;
             this.dgvSubjects.HeaderBgColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.dgvSubjects.HeaderForeColor = System.Drawing.Color.White;
-            this.dgvSubjects.Location = new System.Drawing.Point(223, 120);
+            this.dgvSubjects.Location = new System.Drawing.Point(297, 148);
+            this.dgvSubjects.Margin = new System.Windows.Forms.Padding(4);
             this.dgvSubjects.MultiSelect = false;
             this.dgvSubjects.Name = "dgvSubjects";
             this.dgvSubjects.ReadOnly = true;
             this.dgvSubjects.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvSubjects.RowHeadersWidth = 51;
-            this.dgvSubjects.Size = new System.Drawing.Size(197, 242);
+            this.dgvSubjects.Size = new System.Drawing.Size(263, 298);
             this.dgvSubjects.TabIndex = 77;
             this.dgvSubjects.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvSubjects_CellClick);
             // 
@@ -436,10 +439,10 @@
             this.txtSearchSection.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.txtSearchSection.ForeColor = System.Drawing.Color.Black;
             this.txtSearchSection.Icon = ((System.Drawing.Image)(resources.GetObject("txtSearchSection.Icon")));
-            this.txtSearchSection.Location = new System.Drawing.Point(426, 84);
-            this.txtSearchSection.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSearchSection.Location = new System.Drawing.Point(568, 103);
+            this.txtSearchSection.Margin = new System.Windows.Forms.Padding(5);
             this.txtSearchSection.Name = "txtSearchSection";
-            this.txtSearchSection.Size = new System.Drawing.Size(154, 24);
+            this.txtSearchSection.Size = new System.Drawing.Size(205, 30);
             this.txtSearchSection.TabIndex = 79;
             this.txtSearchSection.text = "";
             this.txtSearchSection.OnTextChange += new System.EventHandler(this.TxtSearchSection_TextChanged);
@@ -469,13 +472,14 @@
             this.dgvSections.EnableHeadersVisualStyles = false;
             this.dgvSections.HeaderBgColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.dgvSections.HeaderForeColor = System.Drawing.Color.White;
-            this.dgvSections.Location = new System.Drawing.Point(426, 120);
+            this.dgvSections.Location = new System.Drawing.Point(568, 148);
+            this.dgvSections.Margin = new System.Windows.Forms.Padding(4);
             this.dgvSections.MultiSelect = false;
             this.dgvSections.Name = "dgvSections";
             this.dgvSections.ReadOnly = true;
             this.dgvSections.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvSections.RowHeadersWidth = 51;
-            this.dgvSections.Size = new System.Drawing.Size(154, 242);
+            this.dgvSections.Size = new System.Drawing.Size(205, 298);
             this.dgvSections.TabIndex = 80;
             this.dgvSections.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvSections_CellClick);
             // 
@@ -486,10 +490,10 @@
             this.txtSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.txtSearch.ForeColor = System.Drawing.Color.Black;
             this.txtSearch.Icon = ((System.Drawing.Image)(resources.GetObject("txtSearch.Icon")));
-            this.txtSearch.Location = new System.Drawing.Point(223, 84);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSearch.Location = new System.Drawing.Point(297, 103);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(5);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(197, 24);
+            this.txtSearch.Size = new System.Drawing.Size(263, 30);
             this.txtSearch.TabIndex = 78;
             this.txtSearch.text = "";
             this.txtSearch.OnTextChange += new System.EventHandler(this.TxtSearch_OnTextChange);
@@ -498,18 +502,17 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(219, 26);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(292, 32);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 21);
+            this.label5.Size = new System.Drawing.Size(101, 28);
             this.label5.TabIndex = 81;
             this.label5.Text = "SECTIONS";
             // 
             // Section
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(931, 420);
+            this.ClientSize = new System.Drawing.Size(1241, 517);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dgvSections);
             this.Controls.Add(this.txtSearchSection);
@@ -520,7 +523,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Section";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Section";

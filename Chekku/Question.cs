@@ -6,6 +6,7 @@
         private string question = "";
         private int itemNumber = 0;
         private string answer = "";
+        private string base64 = "";
         private string ch1 = "";
         private string ch2 = "";
         private string ch3 = "";
@@ -33,7 +34,7 @@
         }
 
 
-        public Question(int n, string q, string a, string c1, string c2, string c3, int hI)
+        public Question(int n, string q, string a, string c1, string c2, string c3, int hI, string base6)
         {
             question = q;
             answer = a;
@@ -42,6 +43,7 @@
             ch3 = c3;
             hasImg = hI;
             itemNumber = n;
+            base64 = base6;
         }
 
         
@@ -57,7 +59,11 @@
             get { return question; }
             set { question = value; }
         }
-
+        public string base6
+        {
+            get { return base64; }
+            set { question = value; }
+        }
         public int SetNum
         {
             get { return setNum; }

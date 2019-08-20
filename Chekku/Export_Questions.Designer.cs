@@ -121,7 +121,7 @@
             this.panel2.Controls.Add(this.pbImage);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Location = new System.Drawing.Point(16, 87);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(613, 309);
             this.panel2.TabIndex = 116;
@@ -139,11 +139,11 @@
             // txtTags
             // 
             this.txtTags.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtTags.ReadOnly= false;
             this.txtTags.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTags.Location = new System.Drawing.Point(72, 254);
-            this.txtTags.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTags.Margin = new System.Windows.Forms.Padding(4);
             this.txtTags.Name = "txtTags";
+            this.txtTags.ReadOnly = true;
             this.txtTags.Size = new System.Drawing.Size(519, 29);
             this.txtTags.TabIndex = 46;
             // 
@@ -160,60 +160,60 @@
             // txtCh3
             // 
             this.txtCh3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtCh3.ReadOnly= false;
             this.txtCh3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCh3.Location = new System.Drawing.Point(309, 198);
-            this.txtCh3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCh3.Margin = new System.Windows.Forms.Padding(4);
             this.txtCh3.Multiline = true;
             this.txtCh3.Name = "txtCh3";
+            this.txtCh3.ReadOnly = true;
             this.txtCh3.Size = new System.Drawing.Size(281, 47);
             this.txtCh3.TabIndex = 41;
             // 
             // txtCh2
             // 
             this.txtCh2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtCh2.ReadOnly= false;
             this.txtCh2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCh2.Location = new System.Drawing.Point(19, 198);
-            this.txtCh2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCh2.Margin = new System.Windows.Forms.Padding(4);
             this.txtCh2.Multiline = true;
             this.txtCh2.Name = "txtCh2";
+            this.txtCh2.ReadOnly = true;
             this.txtCh2.Size = new System.Drawing.Size(281, 47);
             this.txtCh2.TabIndex = 40;
             // 
             // txtCh1
             // 
             this.txtCh1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtCh1.ReadOnly= false;
             this.txtCh1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCh1.Location = new System.Drawing.Point(309, 143);
-            this.txtCh1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCh1.Margin = new System.Windows.Forms.Padding(4);
             this.txtCh1.Multiline = true;
             this.txtCh1.Name = "txtCh1";
+            this.txtCh1.ReadOnly = true;
             this.txtCh1.Size = new System.Drawing.Size(281, 47);
             this.txtCh1.TabIndex = 39;
             // 
             // txtAnswer
             // 
             this.txtAnswer.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtAnswer.ReadOnly= false;
             this.txtAnswer.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAnswer.Location = new System.Drawing.Point(19, 143);
-            this.txtAnswer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtAnswer.Margin = new System.Windows.Forms.Padding(4);
             this.txtAnswer.Multiline = true;
             this.txtAnswer.Name = "txtAnswer";
+            this.txtAnswer.ReadOnly = true;
             this.txtAnswer.Size = new System.Drawing.Size(281, 47);
             this.txtAnswer.TabIndex = 38;
             // 
             // txtQuestion
             // 
             this.txtQuestion.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtQuestion.ReadOnly= false;
             this.txtQuestion.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtQuestion.Location = new System.Drawing.Point(19, 41);
-            this.txtQuestion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtQuestion.Margin = new System.Windows.Forms.Padding(4);
             this.txtQuestion.Multiline = true;
             this.txtQuestion.Name = "txtQuestion";
+            this.txtQuestion.ReadOnly = true;
             this.txtQuestion.Size = new System.Drawing.Size(384, 69);
             this.txtQuestion.TabIndex = 37;
             // 
@@ -275,7 +275,7 @@
             this.txtSearch.ForeColor = System.Drawing.Color.Black;
             this.txtSearch.Icon = ((System.Drawing.Image)(resources.GetObject("txtSearch.Icon")));
             this.txtSearch.Location = new System.Drawing.Point(15, 430);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(5);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(615, 30);
             this.txtSearch.TabIndex = 118;
@@ -298,7 +298,7 @@
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.txtA);
             this.panel1.Location = new System.Drawing.Point(796, 87);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(613, 309);
             this.panel1.TabIndex = 117;
@@ -316,11 +316,11 @@
             // txtT
             // 
             this.txtT.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtT.ReadOnly= false;
             this.txtT.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtT.Location = new System.Drawing.Point(72, 257);
-            this.txtT.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtT.Margin = new System.Windows.Forms.Padding(4);
             this.txtT.Name = "txtT";
+            this.txtT.ReadOnly = true;
             this.txtT.Size = new System.Drawing.Size(519, 29);
             this.txtT.TabIndex = 46;
             // 
@@ -337,24 +337,24 @@
             // txtD
             // 
             this.txtD.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtD.ReadOnly= false;
             this.txtD.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtD.Location = new System.Drawing.Point(309, 199);
-            this.txtD.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtD.Margin = new System.Windows.Forms.Padding(4);
             this.txtD.Multiline = true;
             this.txtD.Name = "txtD";
+            this.txtD.ReadOnly = true;
             this.txtD.Size = new System.Drawing.Size(281, 47);
             this.txtD.TabIndex = 41;
             // 
             // txtQ
             // 
             this.txtQ.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtQ.ReadOnly= false;
             this.txtQ.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtQ.Location = new System.Drawing.Point(19, 41);
-            this.txtQ.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtQ.Margin = new System.Windows.Forms.Padding(4);
             this.txtQ.Multiline = true;
             this.txtQ.Name = "txtQ";
+            this.txtQ.ReadOnly = true;
             this.txtQ.Size = new System.Drawing.Size(384, 69);
             this.txtQ.TabIndex = 37;
             // 
@@ -371,12 +371,12 @@
             // txtC
             // 
             this.txtC.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtC.ReadOnly= false;
             this.txtC.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtC.Location = new System.Drawing.Point(19, 198);
-            this.txtC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtC.Margin = new System.Windows.Forms.Padding(4);
             this.txtC.Multiline = true;
             this.txtC.Name = "txtC";
+            this.txtC.ReadOnly = true;
             this.txtC.Size = new System.Drawing.Size(281, 47);
             this.txtC.TabIndex = 40;
             // 
@@ -403,12 +403,12 @@
             // txtB
             // 
             this.txtB.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtB.ReadOnly= false;
             this.txtB.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtB.Location = new System.Drawing.Point(309, 144);
-            this.txtB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtB.Margin = new System.Windows.Forms.Padding(4);
             this.txtB.Multiline = true;
             this.txtB.Name = "txtB";
+            this.txtB.ReadOnly = true;
             this.txtB.Size = new System.Drawing.Size(281, 47);
             this.txtB.TabIndex = 39;
             // 
@@ -425,12 +425,12 @@
             // txtA
             // 
             this.txtA.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtA.ReadOnly= false;
             this.txtA.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtA.Location = new System.Drawing.Point(19, 143);
-            this.txtA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtA.Margin = new System.Windows.Forms.Padding(4);
             this.txtA.Multiline = true;
             this.txtA.Name = "txtA";
+            this.txtA.ReadOnly = true;
             this.txtA.Size = new System.Drawing.Size(281, 47);
             this.txtA.TabIndex = 38;
             // 
@@ -452,7 +452,7 @@
             this.txtSearch2.ForeColor = System.Drawing.Color.Black;
             this.txtSearch2.Icon = ((System.Drawing.Image)(resources.GetObject("txtSearch2.Icon")));
             this.txtSearch2.Location = new System.Drawing.Point(796, 430);
-            this.txtSearch2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtSearch2.Margin = new System.Windows.Forms.Padding(5);
             this.txtSearch2.Name = "txtSearch2";
             this.txtSearch2.Size = new System.Drawing.Size(613, 30);
             this.txtSearch2.TabIndex = 120;
@@ -485,7 +485,7 @@
             this.dgvView.HeaderBgColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.dgvView.HeaderForeColor = System.Drawing.Color.White;
             this.dgvView.Location = new System.Drawing.Point(15, 468);
-            this.dgvView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvView.Margin = new System.Windows.Forms.Padding(4);
             this.dgvView.MultiSelect = false;
             this.dgvView.Name = "dgvView";
             this.dgvView.ReadOnly = true;
@@ -521,7 +521,7 @@
             this.dgvItems.HeaderBgColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.dgvItems.HeaderForeColor = System.Drawing.Color.White;
             this.dgvItems.Location = new System.Drawing.Point(796, 468);
-            this.dgvItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvItems.Margin = new System.Windows.Forms.Padding(4);
             this.dgvItems.MultiSelect = false;
             this.dgvItems.Name = "dgvItems";
             this.dgvItems.ReadOnly = true;
@@ -536,7 +536,7 @@
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.panel3.Controls.Add(this.label13);
             this.panel3.Location = new System.Drawing.Point(-3, -1);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1444, 57);
             this.panel3.TabIndex = 123;
@@ -726,7 +726,7 @@
             this.Controls.Add(this.lblNumber);
             this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Export_Questions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Export_Questions";

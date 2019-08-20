@@ -25,20 +25,7 @@ namespace Chekku
         {
             s = state;
             InitializeComponent();
-            if(state == 1)
-            {
-                btnUploadReport.Visible = false;
-                btnImport.Visible = true;
-                lblQues.Visible = true;
-                lblImport.Visible = false;
-            }
-            else
-            {
-                btnImport.Visible = false;
-                btnUploadReport.Visible = true;
-                lblQues.Visible = false;
-                lblImport.Visible = true;
-            }
+            
         }
 
         private void BtnImport_Click(object sender, EventArgs e)
@@ -74,7 +61,7 @@ namespace Chekku
                     {
                         imgloc = imgdir + "/" + x.Number.ToString() + ".jpg";
                     }
-                    AddQuestion add = new AddQuestion(x.Quest, x.Answer, x.choice1, x.choice2, x.choice3, x.img, imgloc);
+                    AddQuestion add = new AddQuestion(x.Quest, x.Answer, x.choice1, x.choice2, x.choice3, x.img, x.base6);
                     add.ShowDialog();
                     add.Hide();
                     added = added + add.added;
@@ -97,7 +84,7 @@ namespace Chekku
                 {
                     //public Question(string q, string a, string c1, string c2, string c3, int hI)
                     var parts = line.Split(new string[] { "@@@" }, StringSplitOptions.None);
-                    Imports.Add(new Question(Convert.ToInt32(parts[0]), parts[1], parts[2], parts[3], parts[4], parts[5], Convert.ToInt32(parts[6])));
+                    Imports.Add(new Question(Convert.ToInt32(parts[0]), parts[1], parts[2], parts[3], parts[4], parts[5], Convert.ToInt32(parts[6]), parts[7]));
                 }
             }
         }
@@ -446,7 +433,23 @@ namespace Chekku
             }
         }
 
-
+        private void Import_Load(object sender, EventArgs e)
+        {
+            if (s == 1)
+            {
+                btnUploadReport.Visible = false;
+                btnImport.Visible = true;
+                lblQues.Visible = true;
+                lblImport.Visible = false;
+            }
+            else
+            {
+                btnImport.Visible = false;
+                btnUploadReport.Visible = true;
+                lblQues.Visible = false;
+                lblImport.Visible = true;
+            }
+        }
     }
 }
 

@@ -19,20 +19,21 @@ namespace Chekku
         string subsectcode = ""; //sectioncode
         string qcode = "";
         string examCode = "";
+        string oldexamid = "";
         string qcode2 = "";
         int setNum = 1;
         List<Question> Items = new List<Question>();
+        List<String> ExistingItems = new List<String>();
         List<int>Sets = new List<int>();
         List<String> AnswerKey = new List<String>();
         List<String> toCheck = new List<String>();
         public Exam_Questions(string excode, int set, string subid, string subsectCode)
         {
             InitializeComponent();
-            loadQuestions();
             loadDetails(subid, subsectCode);
             id = subid;
             subsectcode = subsectCode;
-            SelectFirst();
+            
             examCode = excode;
             setNum = set;
             for(int i = 1; i<=set; i++)
@@ -40,6 +41,32 @@ namespace Chekku
                 Sets.Add(i);
                 System.Console.WriteLine("Set: " + i);
             }
+            Console.WriteLine("Pumasok dito 1");
+
+            loadQuestions();
+            SelectFirst();
+        }
+
+        public Exam_Questions(string excode, int set, string subid, string subsectCode, string oldexamid)
+        {
+            InitializeComponent();
+            loadDetails(subid, subsectCode);
+            id = subid;
+            subsectcode = subsectCode;
+            this.oldexamid = oldexamid;
+            examCode = excode;
+            loadExistingQuestions();
+            lblNumber.Text = Items.Count.ToString();
+            
+            setNum = set;
+            for (int i = 1; i <= set; i++)
+            {
+                Sets.Add(i);
+                System.Console.WriteLine("Set: " + i);
+            }
+            loadQuestions();
+            SelectFirst();
+            Console.WriteLine("Pumasok dito 2 qcode = " + qcode2);
         }
 
         private void loadDetails(string subCode, string subsectCode)
@@ -73,6 +100,36 @@ namespace Chekku
                     myConnection.Close();
                 }
 
+            }
+        }
+
+        private void loadExistingQuestions()
+        {
+            using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
+            {
+                string oString = "Select DISTINCT QuestionCode from Chekku.ExamItems where ExamCode=@examcode";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@examcode", oldexamid);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        ExistingItems.Add(oReader["QuestionCode"].ToString());
+                    }
+                    myConnection.Close();
+                }
+            }
+            foreach (string x in ExistingItems)
+            {
+                Console.WriteLine(x);
+                AddExistingItem(x);
+                Items.Add(new Question(x, ""));
+            }
+
+            foreach (var x in Items)
+            {
+                Console.WriteLine(x.Qcode + " " + x.Quest);
             }
         }
 
@@ -297,6 +354,38 @@ namespace Chekku
                         connection.Open();
                         sqlCommand.ExecuteNonQuery();
                         loadQuestions();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Error deleting student.");
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
+
+        private void AddExistingItem(string exqcode)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
+            {
+                using (SqlCommand sqlCommand = new SqlCommand("Chekku.addExamItem", connection))
+                {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                    sqlCommand.Parameters.Add(new SqlParameter("@ExamCode", SqlDbType.VarChar, 8000));
+                    sqlCommand.Parameters["@ExamCode"].Value = examCode;
+
+                    sqlCommand.Parameters.Add(new SqlParameter("@QuestionCode", SqlDbType.VarChar, 8000));
+                    sqlCommand.Parameters["@QuestionCode"].Value = exqcode;
+
+
+                    try
+                    {
+                        connection.Open();
+                        sqlCommand.ExecuteNonQuery();
                     }
                     catch
                     {
@@ -846,8 +935,6 @@ namespace Chekku
                         }
                     }
                 }
-
-
                 doc.Add(new Paragraph());
                 num++;
             }
@@ -907,17 +994,38 @@ namespace Chekku
                 Directory.CreateDirectory(path);
             }
             string filename = examCode + " " + SetNum + " Answer Key.pdf";
-            FileStream fs = new FileStream(path + "/" + filename, FileMode.Create, FileAccess.Write, FileShare.None);
-            Document doc = new Document(PageSize.LETTER);
-            PdfWriter writer = PdfWriter.GetInstance(doc, fs);
-            doc.Open();
-            int i = 1;
+            //FileStream fs = new FileStream(path + "/" + filename, FileMode.Create, FileAccess.Write, FileShare.None);
+            //Document doc = new Document(PageSize.LETTER);
+            //PdfWriter writer = PdfWriter.GetInstance(doc, fs);
+            //doc.Open();
+            //int i = 1;
+            //foreach (var x in AnswerKey)
+            //{
+            //    doc.Add(new Paragraph(i + ".) " + x));
+            //    i++;
+            //}
+            //doc.Close();
+            filename = examCode + " " + SetNum + " Answer Key.txt";
+            string Open = path + "/" + filename + ".txt";
+            string delimiter = ",";
+            List<string> line = new List<string>();
             foreach (var x in AnswerKey)
             {
-                doc.Add(new Paragraph(i + ".) " + x));
-                i++;
+                line.Add(x);
             }
-            doc.Close();
+            foreach (var x in AnswerKey)
+            {
+                Console.WriteLine("Answer Key: " + x);
+            }
+            var toWrite = string.Join(delimiter, line.ToArray());
+            using (var writer = new StreamWriter(Open))
+            {
+                
+                writer.WriteLine(examCode + "|" + toWrite);
+                writer.Close();
+            }
+            Console.WriteLine("ANO BA YAN: " + examCode + "|" + toWrite);
+            line.Clear();
         }
         public static System.Drawing.Image resizeImage(System.Drawing.Image image, int width, int height)
         {
@@ -960,6 +1068,21 @@ namespace Chekku
                     SelectFirst();
                 }
                 lblNumber.Text = Items.Count.ToString();
+            }
+        }
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        private void Panel3_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
     }

@@ -58,9 +58,10 @@
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Controls.Add(this.btnBack);
             this.panel1.Controls.Add(this.btnDelete);
-            this.panel1.Location = new System.Drawing.Point(0, -5);
+            this.panel1.Location = new System.Drawing.Point(0, -6);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(196, 435);
+            this.panel1.Size = new System.Drawing.Size(261, 535);
             this.panel1.TabIndex = 74;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Panel2_MouseDown);
             // 
@@ -86,14 +87,14 @@
             this.btnEdit.IconVisible = true;
             this.btnEdit.IconZoom = 40D;
             this.btnEdit.IsTab = false;
-            this.btnEdit.Location = new System.Drawing.Point(0, 172);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnEdit.Location = new System.Drawing.Point(0, 212);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.btnEdit.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
             this.btnEdit.OnHoverTextColor = System.Drawing.Color.White;
             this.btnEdit.selected = false;
-            this.btnEdit.Size = new System.Drawing.Size(196, 47);
+            this.btnEdit.Size = new System.Drawing.Size(261, 58);
             this.btnEdit.TabIndex = 27;
             this.btnEdit.Text = "Edit Student Details";
             this.btnEdit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -123,14 +124,14 @@
             this.btnAdd.IconVisible = true;
             this.btnAdd.IconZoom = 40D;
             this.btnAdd.IsTab = false;
-            this.btnAdd.Location = new System.Drawing.Point(0, 121);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAdd.Location = new System.Drawing.Point(0, 149);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.btnAdd.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
             this.btnAdd.OnHoverTextColor = System.Drawing.Color.White;
             this.btnAdd.selected = false;
-            this.btnAdd.Size = new System.Drawing.Size(196, 47);
+            this.btnAdd.Size = new System.Drawing.Size(261, 58);
             this.btnAdd.TabIndex = 26;
             this.btnAdd.Text = "Add Student";
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -160,14 +161,14 @@
             this.btnBack.IconVisible = true;
             this.btnBack.IconZoom = 40D;
             this.btnBack.IsTab = false;
-            this.btnBack.Location = new System.Drawing.Point(0, 315);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnBack.Location = new System.Drawing.Point(0, 388);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnBack.Name = "btnBack";
             this.btnBack.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.btnBack.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
             this.btnBack.OnHoverTextColor = System.Drawing.Color.White;
             this.btnBack.selected = false;
-            this.btnBack.Size = new System.Drawing.Size(196, 47);
+            this.btnBack.Size = new System.Drawing.Size(261, 58);
             this.btnBack.TabIndex = 29;
             this.btnBack.Text = "Back to Menu";
             this.btnBack.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -197,14 +198,14 @@
             this.btnDelete.IconVisible = true;
             this.btnDelete.IconZoom = 40D;
             this.btnDelete.IsTab = false;
-            this.btnDelete.Location = new System.Drawing.Point(0, 223);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnDelete.Location = new System.Drawing.Point(0, 274);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.btnDelete.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
             this.btnDelete.OnHoverTextColor = System.Drawing.Color.White;
             this.btnDelete.selected = false;
-            this.btnDelete.Size = new System.Drawing.Size(196, 47);
+            this.btnDelete.Size = new System.Drawing.Size(261, 58);
             this.btnDelete.TabIndex = 28;
             this.btnDelete.Text = "Delete Student";
             this.btnDelete.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -237,13 +238,14 @@
             this.dgvViewStudents.EnableHeadersVisualStyles = false;
             this.dgvViewStudents.HeaderBgColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.dgvViewStudents.HeaderForeColor = System.Drawing.Color.White;
-            this.dgvViewStudents.Location = new System.Drawing.Point(239, 119);
+            this.dgvViewStudents.Location = new System.Drawing.Point(319, 146);
+            this.dgvViewStudents.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvViewStudents.MultiSelect = false;
             this.dgvViewStudents.Name = "dgvViewStudents";
             this.dgvViewStudents.ReadOnly = true;
             this.dgvViewStudents.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvViewStudents.RowHeadersWidth = 51;
-            this.dgvViewStudents.Size = new System.Drawing.Size(241, 241);
+            this.dgvViewStudents.Size = new System.Drawing.Size(321, 297);
             this.dgvViewStudents.TabIndex = 78;
             this.dgvViewStudents.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvViewStudents_CellClick);
             // 
@@ -255,9 +257,10 @@
             this.panel2.Controls.Add(this.btnSave);
             this.panel2.Controls.Add(this.txtID);
             this.panel2.Controls.Add(this.label8);
-            this.panel2.Location = new System.Drawing.Point(515, -4);
+            this.panel2.Location = new System.Drawing.Point(687, -5);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(337, 434);
+            this.panel2.Size = new System.Drawing.Size(449, 534);
             this.panel2.TabIndex = 79;
             this.panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Panel2_MouseDown);
             // 
@@ -265,10 +268,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(32, 154);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(43, 190);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(91, 17);
+            this.label3.Size = new System.Drawing.Size(120, 23);
             this.label3.TabIndex = 39;
             this.label3.Text = "Student Name";
             // 
@@ -276,11 +278,12 @@
             // 
             this.txtName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.txtName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.Location = new System.Drawing.Point(133, 151);
+            this.txtName.Location = new System.Drawing.Point(177, 186);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtName.Multiline = true;
             this.txtName.Name = "txtName";
             this.txtName.ReadOnly = true;
-            this.txtName.Size = new System.Drawing.Size(179, 23);
+            this.txtName.Size = new System.Drawing.Size(237, 27);
             this.txtName.TabIndex = 38;
             // 
             // btnSave
@@ -305,14 +308,14 @@
             this.btnSave.IconVisible = true;
             this.btnSave.IconZoom = 40D;
             this.btnSave.IsTab = false;
-            this.btnSave.Location = new System.Drawing.Point(133, 314);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnSave.Location = new System.Drawing.Point(177, 386);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.btnSave.Name = "btnSave";
             this.btnSave.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.btnSave.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
             this.btnSave.OnHoverTextColor = System.Drawing.Color.White;
             this.btnSave.selected = false;
-            this.btnSave.Size = new System.Drawing.Size(179, 47);
+            this.btnSave.Size = new System.Drawing.Size(239, 58);
             this.btnSave.TabIndex = 30;
             this.btnSave.Text = "Save Changes";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -325,21 +328,21 @@
             // 
             this.txtID.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.txtID.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtID.Location = new System.Drawing.Point(133, 120);
+            this.txtID.Location = new System.Drawing.Point(177, 148);
+            this.txtID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtID.Multiline = true;
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
-            this.txtID.Size = new System.Drawing.Size(179, 23);
+            this.txtID.Size = new System.Drawing.Size(237, 27);
             this.txtID.TabIndex = 37;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(32, 123);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Location = new System.Drawing.Point(43, 151);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(77, 17);
+            this.label8.Size = new System.Drawing.Size(101, 23);
             this.label8.TabIndex = 9;
             this.label8.Text = "Student No.";
             // 
@@ -350,10 +353,10 @@
             this.txtSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.txtSearch.ForeColor = System.Drawing.Color.Black;
             this.txtSearch.Icon = ((System.Drawing.Image)(resources.GetObject("txtSearch.Icon")));
-            this.txtSearch.Location = new System.Drawing.Point(239, 86);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSearch.Location = new System.Drawing.Point(319, 106);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(241, 24);
+            this.txtSearch.Size = new System.Drawing.Size(321, 30);
             this.txtSearch.TabIndex = 80;
             this.txtSearch.text = "";
             this.txtSearch.OnTextChange += new System.EventHandler(this.TxtSearch_TextChanged);
@@ -367,13 +370,13 @@
             this.cmbSelect.Items = new string[] {
         "Student No.",
         "Student Name"};
-            this.cmbSelect.Location = new System.Drawing.Point(239, 55);
-            this.cmbSelect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbSelect.Location = new System.Drawing.Point(319, 68);
+            this.cmbSelect.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.cmbSelect.Name = "cmbSelect";
             this.cmbSelect.NomalColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.cmbSelect.onHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
             this.cmbSelect.selectedIndex = 0;
-            this.cmbSelect.Size = new System.Drawing.Size(241, 24);
+            this.cmbSelect.Size = new System.Drawing.Size(321, 30);
             this.cmbSelect.TabIndex = 81;
             this.cmbSelect.onItemSelected += new System.EventHandler(this.CmbSelect_SelectedIndexChanged);
             // 
@@ -381,18 +384,17 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(235, 18);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(313, 22);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(86, 21);
+            this.label5.Size = new System.Drawing.Size(107, 28);
             this.label5.TabIndex = 82;
             this.label5.Text = "STUDENTS";
             // 
             // Students
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(852, 412);
+            this.ClientSize = new System.Drawing.Size(1136, 507);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cmbSelect);
             this.Controls.Add(this.txtSearch);
@@ -400,7 +402,7 @@
             this.Controls.Add(this.dgvViewStudents);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Students";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Students";

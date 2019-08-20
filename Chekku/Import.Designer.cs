@@ -43,23 +43,22 @@
             // txtFilename
             // 
             this.txtFilename.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtFilename.ReadOnly= false;
             this.txtFilename.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFilename.Location = new System.Drawing.Point(104, 86);
+            this.txtFilename.Location = new System.Drawing.Point(139, 106);
+            this.txtFilename.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtFilename.MaxLength = 7;
             this.txtFilename.Multiline = true;
             this.txtFilename.Name = "txtFilename";
-            this.txtFilename.Size = new System.Drawing.Size(208, 23);
+            this.txtFilename.Size = new System.Drawing.Size(276, 27);
             this.txtFilename.TabIndex = 60;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(23, 86);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(31, 106);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 21);
+            this.label4.Size = new System.Drawing.Size(94, 28);
             this.label4.TabIndex = 59;
             this.label4.Text = "Filename:";
             // 
@@ -81,10 +80,10 @@
             this.btnCancel.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.btnCancel.IdleForecolor = System.Drawing.Color.White;
             this.btnCancel.IdleLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.btnCancel.Location = new System.Drawing.Point(27, 131);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(5);
+            this.btnCancel.Location = new System.Drawing.Point(36, 161);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(100, 59);
+            this.btnCancel.Size = new System.Drawing.Size(133, 73);
             this.btnCancel.TabIndex = 64;
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
@@ -107,10 +106,10 @@
             this.btnImport.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.btnImport.IdleForecolor = System.Drawing.Color.White;
             this.btnImport.IdleLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.btnImport.Location = new System.Drawing.Point(212, 131);
-            this.btnImport.Margin = new System.Windows.Forms.Padding(5);
+            this.btnImport.Location = new System.Drawing.Point(283, 161);
+            this.btnImport.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(100, 59);
+            this.btnImport.Size = new System.Drawing.Size(133, 73);
             this.btnImport.TabIndex = 63;
             this.btnImport.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnImport.Visible = false;
@@ -122,8 +121,9 @@
             this.panel1.Controls.Add(this.lblImport);
             this.panel1.Controls.Add(this.lblQues);
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(343, 46);
+            this.panel1.Size = new System.Drawing.Size(457, 57);
             this.panel1.TabIndex = 65;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Panel1_MouseDown);
             // 
@@ -132,10 +132,9 @@
             this.lblImport.AutoSize = true;
             this.lblImport.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblImport.ForeColor = System.Drawing.Color.White;
-            this.lblImport.Location = new System.Drawing.Point(92, 13);
-            this.lblImport.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblImport.Location = new System.Drawing.Point(123, 16);
             this.lblImport.Name = "lblImport";
-            this.lblImport.Size = new System.Drawing.Size(158, 21);
+            this.lblImport.Size = new System.Drawing.Size(195, 28);
             this.lblImport.TabIndex = 67;
             this.lblImport.Text = "IMPORT REPORT FILE";
             this.lblImport.Visible = false;
@@ -145,10 +144,9 @@
             this.lblQues.AutoSize = true;
             this.lblQues.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblQues.ForeColor = System.Drawing.Color.White;
-            this.lblQues.Location = new System.Drawing.Point(94, 13);
-            this.lblQues.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblQues.Location = new System.Drawing.Point(125, 16);
             this.lblQues.Name = "lblQues";
-            this.lblQues.Size = new System.Drawing.Size(155, 21);
+            this.lblQues.Size = new System.Drawing.Size(193, 28);
             this.lblQues.TabIndex = 52;
             this.lblQues.Text = "IMPORT QUESTIONS";
             // 
@@ -170,10 +168,10 @@
             this.btnUploadReport.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.btnUploadReport.IdleForecolor = System.Drawing.Color.White;
             this.btnUploadReport.IdleLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.btnUploadReport.Location = new System.Drawing.Point(212, 131);
-            this.btnUploadReport.Margin = new System.Windows.Forms.Padding(5);
+            this.btnUploadReport.Location = new System.Drawing.Point(282, 161);
+            this.btnUploadReport.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btnUploadReport.Name = "btnUploadReport";
-            this.btnUploadReport.Size = new System.Drawing.Size(100, 59);
+            this.btnUploadReport.Size = new System.Drawing.Size(133, 73);
             this.btnUploadReport.TabIndex = 66;
             this.btnUploadReport.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnUploadReport.Visible = false;
@@ -181,9 +179,9 @@
             // 
             // Import
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(342, 218);
+            this.ClientSize = new System.Drawing.Size(456, 268);
             this.Controls.Add(this.btnUploadReport);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnCancel);
@@ -191,9 +189,11 @@
             this.Controls.Add(this.txtFilename);
             this.Controls.Add(this.label4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Import";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Import_QuestionBank";
+            this.Load += new System.EventHandler(this.Import_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Panel1_MouseDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -347,7 +347,7 @@ namespace Chekku
 
         private void UpdateDetails()
         {
-            if (!String.IsNullOrWhiteSpace(txtCode.Text))
+            if (!String.IsNullOrWhiteSpace(txtSection.Text))
             {
                 using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
                 {

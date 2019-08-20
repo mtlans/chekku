@@ -88,7 +88,7 @@ namespace Chekku
                     sqlCommand.CommandType = CommandType.StoredProcedure;
 
                     sqlCommand.Parameters.Add(new SqlParameter("@StudentNo", SqlDbType.VarChar, 8000));
-                    sqlCommand.Parameters["@StudentNo"].Value = txtID;
+                    sqlCommand.Parameters["@StudentNo"].Value = txtID.Text;
                     try
                     {
                         connection.Open();
@@ -158,7 +158,7 @@ namespace Chekku
 
         private void UpdateDetails()
         {
-            if (!String.IsNullOrWhiteSpace(txtID.Text))
+            if (!String.IsNullOrWhiteSpace(txtID.Text) || !(String.IsNullOrWhiteSpace(txtName.Text)))
             {
                 using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
                 {

@@ -10,6 +10,7 @@ namespace Chekku
     {
         string id = ""; //subjectID
         string code = ""; //subSectCode
+        string s = "";
         string examCode = "";
         string setNum = "";
         
@@ -18,6 +19,7 @@ namespace Chekku
             InitializeComponent();
             this.id = id;
             this.code = code;
+            this.s = section;
             loadDetails(id, code);
             btnOpen.Enabled= false;
             loadExams();
@@ -256,6 +258,13 @@ namespace Chekku
         private void Exams_Section_Load(object sender, EventArgs e)
         {
             SelectFirst();
+        }
+
+        private void BtnReuse_Click(object sender, EventArgs e)
+        {
+            Form frm = new Exams(1, id, code, s, examCode);
+            frm.Show();
+            this.Hide();
         }
     }
 }

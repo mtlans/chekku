@@ -42,9 +42,10 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(902, 12);
+            this.btnClose.Location = new System.Drawing.Point(1203, 15);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(26, 27);
+            this.btnClose.Size = new System.Drawing.Size(35, 33);
             this.btnClose.TabIndex = 6;
             this.btnClose.Text = "X";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -64,10 +65,10 @@
             this.Reports.ImageZoom = 50;
             this.Reports.LabelPosition = 37;
             this.Reports.LabelText = "REPORTS";
-            this.Reports.Location = new System.Drawing.Point(698, 333);
-            this.Reports.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.Reports.Location = new System.Drawing.Point(955, 392);
+            this.Reports.Margin = new System.Windows.Forms.Padding(4, 7, 4, 7);
             this.Reports.Name = "Reports";
-            this.Reports.Size = new System.Drawing.Size(121, 161);
+            this.Reports.Size = new System.Drawing.Size(161, 198);
             this.Reports.TabIndex = 12;
             this.Reports.Click += new System.EventHandler(this.Reports_Click);
             // 
@@ -84,10 +85,10 @@
             this.btnQuestions.ImageZoom = 50;
             this.btnQuestions.LabelPosition = 37;
             this.btnQuestions.LabelText = "QUESTIONS";
-            this.btnQuestions.Location = new System.Drawing.Point(574, 333);
-            this.btnQuestions.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.btnQuestions.Location = new System.Drawing.Point(789, 392);
+            this.btnQuestions.Margin = new System.Windows.Forms.Padding(4, 7, 4, 7);
             this.btnQuestions.Name = "btnQuestions";
-            this.btnQuestions.Size = new System.Drawing.Size(121, 161);
+            this.btnQuestions.Size = new System.Drawing.Size(161, 198);
             this.btnQuestions.TabIndex = 11;
             this.btnQuestions.Click += new System.EventHandler(this.BtnQuestions_Click);
             // 
@@ -104,10 +105,10 @@
             this.btnSections.ImageZoom = 50;
             this.btnSections.LabelPosition = 37;
             this.btnSections.LabelText = "SECTIONS";
-            this.btnSections.Location = new System.Drawing.Point(450, 333);
-            this.btnSections.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.btnSections.Location = new System.Drawing.Point(624, 392);
+            this.btnSections.Margin = new System.Windows.Forms.Padding(4, 7, 4, 7);
             this.btnSections.Name = "btnSections";
-            this.btnSections.Size = new System.Drawing.Size(121, 161);
+            this.btnSections.Size = new System.Drawing.Size(161, 198);
             this.btnSections.TabIndex = 10;
             this.btnSections.Click += new System.EventHandler(this.BtnSection_Click);
             // 
@@ -124,10 +125,10 @@
             this.btnStudents.ImageZoom = 50;
             this.btnStudents.LabelPosition = 37;
             this.btnStudents.LabelText = "STUDENTS";
-            this.btnStudents.Location = new System.Drawing.Point(326, 333);
-            this.btnStudents.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.btnStudents.Location = new System.Drawing.Point(459, 392);
+            this.btnStudents.Margin = new System.Windows.Forms.Padding(4, 7, 4, 7);
             this.btnStudents.Name = "btnStudents";
-            this.btnStudents.Size = new System.Drawing.Size(121, 161);
+            this.btnStudents.Size = new System.Drawing.Size(161, 198);
             this.btnStudents.TabIndex = 9;
             this.btnStudents.Click += new System.EventHandler(this.BtnStudents_Click);
             // 
@@ -144,10 +145,10 @@
             this.btnSubjects.ImageZoom = 50;
             this.btnSubjects.LabelPosition = 37;
             this.btnSubjects.LabelText = "SUBJECTS";
-            this.btnSubjects.Location = new System.Drawing.Point(202, 333);
-            this.btnSubjects.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
+            this.btnSubjects.Location = new System.Drawing.Point(293, 392);
+            this.btnSubjects.Margin = new System.Windows.Forms.Padding(4, 7, 4, 7);
             this.btnSubjects.Name = "btnSubjects";
-            this.btnSubjects.Size = new System.Drawing.Size(121, 161);
+            this.btnSubjects.Size = new System.Drawing.Size(161, 198);
             this.btnSubjects.TabIndex = 8;
             this.btnSubjects.Click += new System.EventHandler(this.BtnSubjects_Click);
             // 
@@ -164,19 +165,20 @@
             this.btnExam.ImageZoom = 50;
             this.btnExam.LabelPosition = 37;
             this.btnExam.LabelText = "EXAMS";
-            this.btnExam.Location = new System.Drawing.Point(78, 333);
-            this.btnExam.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnExam.Location = new System.Drawing.Point(128, 392);
+            this.btnExam.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.btnExam.Name = "btnExam";
-            this.btnExam.Size = new System.Drawing.Size(121, 161);
+            this.btnExam.Size = new System.Drawing.Size(161, 198);
             this.btnExam.TabIndex = 7;
             this.btnExam.Click += new System.EventHandler(this.BtnExams_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(-17, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(-23, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(975, 261);
+            this.pictureBox1.Size = new System.Drawing.Size(1300, 321);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
@@ -184,11 +186,11 @@
             // 
             // Chekku
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(940, 580);
+            this.ClientSize = new System.Drawing.Size(1253, 714);
             this.Controls.Add(this.Reports);
             this.Controls.Add(this.btnQuestions);
             this.Controls.Add(this.btnSections);
@@ -198,7 +200,7 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Chekku";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Chekku";

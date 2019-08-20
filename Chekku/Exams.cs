@@ -18,10 +18,33 @@ namespace Chekku
         string code = "";
         string SubSectCode = "";
 
+        string i1, c1, s1, oldexamid;
+        int reuse = 0;
         public Exams()
         {
             InitializeComponent();
             
+            cmbSearchTerm.selectedIndex = 0;
+            cmbSearchYear.selectedIndex = 0;
+            oldname = txtSection.Text;
+            View();
+            Filter();
+            SelectFirst();
+
+            ViewSections();
+            selectSections();
+        }
+
+        public Exams(int i, string id, string code, string section, string old)
+        {
+            InitializeComponent();
+            reuse = i;
+            i1 = id;
+            c1 = code;
+            s1 = section;
+            oldexamid = old;
+            btnExams.Text = "Select Section";
+            btnBack.Text = "Cancel";
             cmbSearchTerm.selectedIndex = 0;
             cmbSearchYear.selectedIndex = 0;
             oldname = txtSection.Text;
@@ -285,11 +308,21 @@ namespace Chekku
 
         private void BtnExams_Click(object sender, EventArgs e)
         {
+
             if (!String.IsNullOrWhiteSpace(txtSection.Text))
             {
-                Form frm = new Exams_Section(id, code, txtSection.Text);
-                frm.Show();
-                this.Hide();
+                if(reuse == 1)
+                {
+                    Form frm = new CreateExam_Details(id, code, oldexamid);
+                    frm.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    Form frm = new Exams_Section(id, code, txtSection.Text);
+                    frm.Show();
+                    this.Hide();
+                }
             }
             else
             {
@@ -299,9 +332,18 @@ namespace Chekku
 
         private void BtnBack_Click(object sender, EventArgs e)
         {
-            Form frm = new Chekku();
-            frm.Show();
-            this.Hide();
+            if (reuse == 1)
+            {
+                Form frm = new Exams_Section(id, code, txtSection.Text);
+                frm.Show();
+                this.Hide();
+            }
+            else
+            {
+                Form frm = new Chekku();
+                frm.Show();
+                this.Hide();
+            }
         }
 
         private void Exams_Load(object sender, EventArgs e)

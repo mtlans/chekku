@@ -82,5 +82,12 @@ namespace Chekku
             frm.Show();
             this.Hide();
         }
+
+        private void BtnTest_Click(object sender, EventArgs e)
+        {
+            Form frm = new Test_SQLITE();
+            frm.Show();
+            this.Hide();
+        }
     }
 }
