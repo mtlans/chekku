@@ -343,6 +343,9 @@ namespace Chekku
                 btnEnroll.Visible = true;
                 toggleEdit = 1;
             }
+            SelectFirst();
+            ViewSections();
+            selectSections();
         }
 
         private void UpdateDetails()

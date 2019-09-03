@@ -40,10 +40,6 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.panel1 = new System.Windows.Forms.Panel();
             this.bunifuFlatButton3 = new Bunifu.Framework.UI.BunifuFlatButton();
             this.bunifuFlatButton2 = new Bunifu.Framework.UI.BunifuFlatButton();
@@ -52,16 +48,9 @@
             this.cmbSelect = new Bunifu.Framework.UI.BunifuDropdown();
             this.dgvScores = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.pScores = new System.Windows.Forms.Panel();
+            this.scoreChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.scoreChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtSD = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
-            this.chartNorm = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label9 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtLow = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
             this.txtMean = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
@@ -82,18 +71,14 @@
             this.txtSearch = new Bunifu.Framework.UI.BunifuTextbox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.pIA = new System.Windows.Forms.Panel();
-            this.chartFOE = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.btnSortNum = new Bunifu.Framework.UI.BunifuThinButton2();
             this.btnSortMis = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.btnSortNum = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.chartFOE = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvScores)).BeginInit();
             this.pScores.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scoreChart)).BeginInit();
-            this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartNorm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.pIA.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartFOE)).BeginInit();
@@ -270,7 +255,7 @@
         "Student No.",
         "Student Name"};
             this.cmbSelect.Location = new System.Drawing.Point(5, 24);
-            this.cmbSelect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbSelect.Margin = new System.Windows.Forms.Padding(4);
             this.cmbSelect.Name = "cmbSelect";
             this.cmbSelect.NomalColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.cmbSelect.onHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
@@ -315,9 +300,9 @@
             // 
             // pScores
             // 
+            this.pScores.Controls.Add(this.scoreChart);
             this.pScores.Controls.Add(this.pictureBox1);
             this.pScores.Controls.Add(this.label11);
-            this.pScores.Controls.Add(this.tabControl1);
             this.pScores.Controls.Add(this.panel2);
             this.pScores.Controls.Add(this.txtSearch);
             this.pScores.Controls.Add(this.cmbSelect);
@@ -328,47 +313,6 @@
             this.pScores.TabIndex = 101;
             this.pScores.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Panel1_MouseDown);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Chekku.Properties.Resources.color;
-            this.pictureBox1.Location = new System.Drawing.Point(131, 502);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(21, 17);
-            this.pictureBox1.TabIndex = 108;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(157, 501);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(160, 17);
-            this.label11.TabIndex = 107;
-            this.label11.Text = "- above the passing score";
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(324, 209);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(599, 329);
-            this.tabControl1.TabIndex = 102;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.BackColor = System.Drawing.Color.LightGray;
-            this.tabPage1.Controls.Add(this.scoreChart);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage1.Size = new System.Drawing.Size(591, 303);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Score Distribution";
-            // 
             // scoreChart
             // 
             this.scoreChart.BackColor = System.Drawing.Color.LightGray;
@@ -377,7 +321,7 @@
             this.scoreChart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.scoreChart.Legends.Add(legend1);
-            this.scoreChart.Location = new System.Drawing.Point(0, 0);
+            this.scoreChart.Location = new System.Drawing.Point(324, 231);
             this.scoreChart.Name = "scoreChart";
             this.scoreChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             this.scoreChart.PaletteCustomColors = new System.Drawing.Color[] {
@@ -396,84 +340,25 @@
             title1.Text = "Score Distribution";
             this.scoreChart.Titles.Add(title1);
             // 
-            // tabPage2
+            // pictureBox1
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.LightGray;
-            this.tabPage2.Controls.Add(this.label10);
-            this.tabPage2.Controls.Add(this.txtSD);
-            this.tabPage2.Controls.Add(this.chartNorm);
-            this.tabPage2.Controls.Add(this.label9);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage2.Size = new System.Drawing.Size(591, 303);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Normally Distributed Graph";
+            this.pictureBox1.Image = global::Chekku.Properties.Resources.color;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 487);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(21, 17);
+            this.pictureBox1.TabIndex = 108;
+            this.pictureBox1.TabStop = false;
             // 
-            // label10
+            // label11
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label10.Location = new System.Drawing.Point(59, 270);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(140, 17);
-            this.label10.TabIndex = 106;
-            this.label10.Text = "*Hover for information";
-            // 
-            // txtSD
-            // 
-            this.txtSD.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.txtSD.Enabled = false;
-            this.txtSD.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSD.Location = new System.Drawing.Point(204, 256);
-            this.txtSD.MaxLength = 3;
-            this.txtSD.Multiline = true;
-            this.txtSD.Name = "txtSD";
-            this.txtSD.Size = new System.Drawing.Size(85, 31);
-            this.txtSD.TabIndex = 105;
-            this.txtSD.Text = "70";
-            this.txtSD.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.toolTip1.SetToolTip(this.txtSD, "A low standard deviation might mean the students\r\nunderstood the topic uniformly." +
-        " A large deviation \r\nmight mean there is a large variation in regards to \r\nthe s" +
-        "tudents\' understanding of the lesson.");
-            // 
-            // chartNorm
-            // 
-            this.chartNorm.BackColor = System.Drawing.Color.LightGray;
-            this.chartNorm.BorderlineColor = System.Drawing.Color.DarkGray;
-            chartArea2.Name = "ChartArea1";
-            this.chartNorm.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartNorm.Legends.Add(legend2);
-            this.chartNorm.Location = new System.Drawing.Point(0, 0);
-            this.chartNorm.Name = "chartNorm";
-            this.chartNorm.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            this.chartNorm.PaletteCustomColors = new System.Drawing.Color[] {
-        System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))))};
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Students";
-            this.chartNorm.Series.Add(series2);
-            this.chartNorm.Size = new System.Drawing.Size(591, 250);
-            this.chartNorm.TabIndex = 103;
-            this.chartNorm.Text = "chart1";
-            title2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title2.Name = "Title1";
-            title2.Text = "Normally Distributed Score Chart";
-            this.chartNorm.Titles.Add(title2);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(59, 253);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(122, 17);
-            this.label9.TabIndex = 104;
-            this.label9.Text = "Standard Deviation:";
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(29, 486);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(160, 17);
+            this.label11.TabIndex = 107;
+            this.label11.Text = "- above the passing score";
             // 
             // panel2
             // 
@@ -496,7 +381,7 @@
             this.panel2.Controls.Add(this.gPassing);
             this.panel2.Location = new System.Drawing.Point(324, 24);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(598, 165);
+            this.panel2.Size = new System.Drawing.Size(598, 201);
             this.panel2.TabIndex = 98;
             // 
             // txtLow
@@ -654,7 +539,7 @@
             this.btnRecalc.IdleForecolor = System.Drawing.Color.White;
             this.btnRecalc.IdleLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.btnRecalc.Location = new System.Drawing.Point(458, 110);
-            this.btnRecalc.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnRecalc.Margin = new System.Windows.Forms.Padding(5);
             this.btnRecalc.Name = "btnRecalc";
             this.btnRecalc.Size = new System.Drawing.Size(135, 44);
             this.btnRecalc.TabIndex = 101;
@@ -721,7 +606,7 @@
             this.txtSearch.ForeColor = System.Drawing.Color.Black;
             this.txtSearch.Icon = ((System.Drawing.Image)(resources.GetObject("txtSearch.Icon")));
             this.txtSearch.Location = new System.Drawing.Point(6, 52);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(312, 24);
             this.txtSearch.TabIndex = 99;
@@ -739,64 +624,6 @@
             this.pIA.TabIndex = 102;
             this.pIA.Visible = false;
             this.pIA.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Panel1_MouseDown);
-            // 
-            // chartFOE
-            // 
-            this.chartFOE.BackColor = System.Drawing.Color.LightGray;
-            chartArea3.AxisX.Title = "Item Number";
-            chartArea3.AxisX.TitleFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            chartArea3.CursorX.IsUserEnabled = true;
-            chartArea3.CursorX.IsUserSelectionEnabled = true;
-            chartArea3.CursorY.IsUserEnabled = true;
-            chartArea3.CursorY.IsUserSelectionEnabled = true;
-            chartArea3.Name = "ChartArea1";
-            this.chartFOE.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chartFOE.Legends.Add(legend3);
-            this.chartFOE.Location = new System.Drawing.Point(22, 17);
-            this.chartFOE.Name = "chartFOE";
-            this.chartFOE.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            this.chartFOE.PaletteCustomColors = new System.Drawing.Color[] {
-        System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))))};
-            series3.ChartArea = "ChartArea1";
-            series3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series3.LabelBackColor = System.Drawing.Color.LightGray;
-            series3.Legend = "Legend1";
-            series3.Name = "Mistakes";
-            this.chartFOE.Series.Add(series3);
-            this.chartFOE.Size = new System.Drawing.Size(752, 525);
-            this.chartFOE.TabIndex = 0;
-            this.chartFOE.Text = "Frequency of Errors";
-            title3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title3.Name = "Title1";
-            title3.Text = "Frequency of Errors";
-            this.chartFOE.Titles.Add(title3);
-            // 
-            // btnSortNum
-            // 
-            this.btnSortNum.ActiveBorderThickness = 1;
-            this.btnSortNum.ActiveCornerRadius = 20;
-            this.btnSortNum.ActiveFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
-            this.btnSortNum.ActiveForecolor = System.Drawing.Color.White;
-            this.btnSortNum.ActiveLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
-            this.btnSortNum.BackColor = System.Drawing.SystemColors.Control;
-            this.btnSortNum.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSortNum.BackgroundImage")));
-            this.btnSortNum.ButtonText = "Sort by Num";
-            this.btnSortNum.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSortNum.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSortNum.ForeColor = System.Drawing.Color.White;
-            this.btnSortNum.IdleBorderThickness = 1;
-            this.btnSortNum.IdleCornerRadius = 20;
-            this.btnSortNum.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.btnSortNum.IdleForecolor = System.Drawing.Color.White;
-            this.btnSortNum.IdleLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.btnSortNum.Location = new System.Drawing.Point(787, 129);
-            this.btnSortNum.Margin = new System.Windows.Forms.Padding(5);
-            this.btnSortNum.Name = "btnSortNum";
-            this.btnSortNum.Size = new System.Drawing.Size(130, 59);
-            this.btnSortNum.TabIndex = 63;
-            this.btnSortNum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnSortNum.Click += new System.EventHandler(this.BtnSortNum_Click);
             // 
             // btnSortMis
             // 
@@ -824,6 +651,64 @@
             this.btnSortMis.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnSortMis.Click += new System.EventHandler(this.BtnSortMis_Click);
             // 
+            // btnSortNum
+            // 
+            this.btnSortNum.ActiveBorderThickness = 1;
+            this.btnSortNum.ActiveCornerRadius = 20;
+            this.btnSortNum.ActiveFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
+            this.btnSortNum.ActiveForecolor = System.Drawing.Color.White;
+            this.btnSortNum.ActiveLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(110)))));
+            this.btnSortNum.BackColor = System.Drawing.SystemColors.Control;
+            this.btnSortNum.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSortNum.BackgroundImage")));
+            this.btnSortNum.ButtonText = "Sort by Num";
+            this.btnSortNum.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSortNum.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSortNum.ForeColor = System.Drawing.Color.White;
+            this.btnSortNum.IdleBorderThickness = 1;
+            this.btnSortNum.IdleCornerRadius = 20;
+            this.btnSortNum.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
+            this.btnSortNum.IdleForecolor = System.Drawing.Color.White;
+            this.btnSortNum.IdleLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
+            this.btnSortNum.Location = new System.Drawing.Point(787, 129);
+            this.btnSortNum.Margin = new System.Windows.Forms.Padding(5);
+            this.btnSortNum.Name = "btnSortNum";
+            this.btnSortNum.Size = new System.Drawing.Size(130, 59);
+            this.btnSortNum.TabIndex = 63;
+            this.btnSortNum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnSortNum.Click += new System.EventHandler(this.BtnSortNum_Click);
+            // 
+            // chartFOE
+            // 
+            this.chartFOE.BackColor = System.Drawing.Color.LightGray;
+            chartArea2.AxisX.Title = "Item Number";
+            chartArea2.AxisX.TitleFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            chartArea2.CursorX.IsUserEnabled = true;
+            chartArea2.CursorX.IsUserSelectionEnabled = true;
+            chartArea2.CursorY.IsUserEnabled = true;
+            chartArea2.CursorY.IsUserSelectionEnabled = true;
+            chartArea2.Name = "ChartArea1";
+            this.chartFOE.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartFOE.Legends.Add(legend2);
+            this.chartFOE.Location = new System.Drawing.Point(22, 17);
+            this.chartFOE.Name = "chartFOE";
+            this.chartFOE.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
+            this.chartFOE.PaletteCustomColors = new System.Drawing.Color[] {
+        System.Drawing.Color.Brown};
+            series2.ChartArea = "ChartArea1";
+            series2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series2.LabelBackColor = System.Drawing.Color.LightGray;
+            series2.Legend = "Legend1";
+            series2.Name = "Mistakes";
+            this.chartFOE.Series.Add(series2);
+            this.chartFOE.Size = new System.Drawing.Size(752, 525);
+            this.chartFOE.TabIndex = 0;
+            this.chartFOE.Text = "2";
+            title2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title2.Name = "Title1";
+            title2.Text = "Frequency of Errors";
+            this.chartFOE.Titles.Add(title2);
+            // 
             // ReportTables
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -842,13 +727,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvScores)).EndInit();
             this.pScores.ResumeLayout(false);
             this.pScores.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.scoreChart)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartNorm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.pIA.ResumeLayout(false);
@@ -883,14 +763,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chartNorm;
-        private System.Windows.Forms.Label label10;
-        private WindowsFormsControlLibrary1.BunifuCustomTextbox txtSD;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label11;
         private Bunifu.Framework.UI.BunifuFlatButton btnExport;

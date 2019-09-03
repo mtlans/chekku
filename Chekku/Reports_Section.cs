@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -172,9 +173,97 @@ namespace Chekku
 
         private void BtnView_Click(object sender, EventArgs e)
         {
-            Form frm = new ReportTables(examCode, itemNum, id, code);
-            frm.Show();
-            this.Hide();
+            if (String.IsNullOrWhiteSpace(examCode))
+            {
+                MessageBox.Show("Please select a report that you have uploaded.", "No selected report.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                Form frm = new ReportTables(examCode, itemNum, id, code);
+                frm.Show();
+                this.Hide();
+            }
         }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
+            {
+                using (SqlCommand sqlCommand = new SqlCommand("Chekku.DeleteReport", connection))
+                {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+                    sqlCommand.Parameters.Add(new SqlParameter("@ExamCode", SqlDbType.VarChar, 8000));
+                    sqlCommand.Parameters["@ExamCode"].Value = examCode;
+
+                    try
+                    {
+                        connection.Open();
+                        sqlCommand.ExecuteNonQuery();
+
+                        MessageBox.Show("Report is now deleted!");
+                        loadReports();
+                        SelectFirst();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Error deleting report.");
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+
+            DialogResult dr = MessageBox.Show("Confirm deletion of exam?\nThis will also delete the saved pdf, answer keys, and reports.", "Confirm Deletion", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (dr == DialogResult.OK)
+            {
+                using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
+                {
+                    using (SqlCommand sqlCommand = new SqlCommand("Chekku.deleteExam", connection))
+                    {
+                        sqlCommand.CommandType = CommandType.StoredProcedure;
+                        sqlCommand.Parameters.Add(new SqlParameter("@ExamCode", SqlDbType.VarChar, 8000));
+                        sqlCommand.Parameters["@ExamCode"].Value = examCode;
+
+                        try
+                        {
+                            connection.Open();
+                            sqlCommand.ExecuteNonQuery();
+                                deleteFile(examCode);
+                            MessageBox.Show("Files have now been deleted.");
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Error deleting exam.");
+                        }
+                        finally
+                        {
+                            connection.Close();
+                        }
+                    }
+                }
+            }
+
+            loadReports();
+            SelectFirst();
+        }
+
+
+        private void deleteFile(string examcode)
+        {
+            string sub = lblSub.Text;
+            string term = lblTerm.Text;
+            string year = lblSY.Text;
+            string sect = lblSec.Text;
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Subjects/" + sub + " " + year + " T" + term + "/" + sect + "/Reports";
+            string filename = examcode + " Report.pdf";
+            string PDF = path + "/" + filename; 
+            if (File.Exists(PDF))
+            {
+                File.Delete(PDF);
+            }
+        }
+
     }
 }

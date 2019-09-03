@@ -23,6 +23,7 @@ namespace Chekku
             loadDetails(id, code);
             btnOpen.Enabled= false;
             loadExams();
+            SelectFirst();
         }
         private void loadDetails(string subCode, string subsectCode)
         {
@@ -137,22 +138,25 @@ namespace Chekku
 
         private void BtnOpen_Click(object sender, EventArgs e)
         {
-            for (int i = 1; i <= Convert.ToInt32(setNum); i++)
+            if (!String.IsNullOrWhiteSpace(examCode))
             {
-                string sub = lblSub.Text;
-                string term = lblTerm.Text;
-                string year = lblSY.Text;
-                string sect = lblSec.Text;
-                string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Subjects/" + sub + " " + year + " T" + term + "/" + sect + "/Exams";
-                if (!Directory.Exists(path))
+                for (int i = 1; i <= Convert.ToInt32(setNum); i++)
                 {
-                    Directory.CreateDirectory(path);
-                }
-                string answerKeyPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Subjects/" + sub + " " + year + " T" + term + "/" + sect + "/Answer Keys";
-                string filename = examCode + " " + i + ".pdf";
-                string Open = path + "/" + filename;
+                    string sub = lblSub.Text;
+                    string term = lblTerm.Text;
+                    string year = lblSY.Text;
+                    string sect = lblSec.Text;
+                    string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Subjects/" + sub + " " + year + " T" + term + "/" + sect + "/Exams";
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+                    string answerKeyPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Subjects/" + sub + " " + year + " T" + term + "/" + sect + "/Answer Keys";
+                    string filename = examCode + " " + i + ".pdf";
+                    string Open = path + "/" + filename;
 
-                System.Diagnostics.Process.Start(Open);
+                    System.Diagnostics.Process.Start(Open);
+                }
             }
         }
 
@@ -212,7 +216,7 @@ namespace Chekku
                 }
             }
 
-            loadExams();
+            loadExams(); SelectFirst();
         }
 
         private void deleteFile(string examcode, int i)
@@ -227,8 +231,10 @@ namespace Chekku
             string filename = examcode + " " + i.ToString() + ".pdf";
             string PDF = path + "/" + filename;
             Console.WriteLine(PDF);
-            string ansfilename = examCode + " " + i.ToString() + " Answer Key.pdf";
+            string ansfilename = examCode + " Answer Key.txt";
+            string pdfans = examCode + " Answer Key.pdf";
             string answerKey = answerKeyPath + "/" +  ansfilename;
+            string pdfanskey = answerKeyPath + "/" + pdfans;
             Console.WriteLine(answerKey);
             if (File.Exists(PDF))
             {
@@ -237,6 +243,10 @@ namespace Chekku
             if (File.Exists(answerKey))
             {
                 File.Delete(answerKey);
+            }
+            if (File.Exists(pdfanskey))
+            {
+                File.Delete(pdfanskey);
             }
         }
         public const int WM_NCLBUTTONDOWN = 0xA1;

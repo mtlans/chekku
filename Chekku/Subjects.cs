@@ -142,18 +142,25 @@ namespace Chekku
                 btnSaveChanges.Visible = false;
                 toggleEdit = 1;
             }
+            refreshView();
+            SelectFirst();
         }
 
         private void BtnSaveChanges_Click(object sender, EventArgs e)
         {
-            UpdateDetails();
-            refreshView();
+            if (String.IsNullOrWhiteSpace(txtCode.Text) || (String.IsNullOrWhiteSpace(txtName.Text)))
+            {
+                MessageBox.Show("Please do not leave any blanks on the required fields.");
+                txtSearch.ResetText();
+            }
+            else
+            {
+                UpdateDetails();
+                refreshView();
+            }
         }
 
-
-        private void UpdateDetails()
-        {
-            if (!String.IsNullOrWhiteSpace(txtCode.Text))
+            private void UpdateDetails()
             {
                 using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
                 {
@@ -198,7 +205,7 @@ namespace Chekku
                         }
                         try
                         {
-                           
+
                         }
                         catch
                         {
@@ -211,8 +218,8 @@ namespace Chekku
                     }
                 }
 
-                txtCode.ReadOnly= true;
-                txtName.ReadOnly= true;
+                txtCode.ReadOnly = true;
+                txtName.ReadOnly = true;
                 cmbTerm.Enabled = false;
                 cmbYear.Enabled = false;
                 btnAdd.Enabled = true;
@@ -225,12 +232,6 @@ namespace Chekku
                 btnSaveChanges.Visible = false;
                 toggleEdit = 1;
             }
-            else
-            {
-                MessageBox.Show("Please select a subject to edit.");
-                txtSearch.ResetText();
-            }
-        }
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {

@@ -45,10 +45,11 @@
             this.txtFilename.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.txtFilename.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFilename.Location = new System.Drawing.Point(139, 106);
-            this.txtFilename.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFilename.Margin = new System.Windows.Forms.Padding(4);
             this.txtFilename.MaxLength = 7;
             this.txtFilename.Multiline = true;
             this.txtFilename.Name = "txtFilename";
+            this.txtFilename.ReadOnly = true;
             this.txtFilename.Size = new System.Drawing.Size(276, 27);
             this.txtFilename.TabIndex = 60;
             // 
@@ -121,7 +122,7 @@
             this.panel1.Controls.Add(this.lblImport);
             this.panel1.Controls.Add(this.lblQues);
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(457, 57);
             this.panel1.TabIndex = 65;
@@ -189,7 +190,7 @@
             this.Controls.Add(this.txtFilename);
             this.Controls.Add(this.label4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Import";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Import_QuestionBank";

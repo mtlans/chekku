@@ -31,6 +31,7 @@ namespace Chekku
         string term = "";
         string year = "";
         string sect = "";
+        string examName = "";
         double passed70 = 0;
         public ReportTables(string ex, int maxItems, string id, string code)
         {
@@ -79,7 +80,7 @@ namespace Chekku
                     myConnection.Close();
                 }
 
-                oString = "Select DISTINCT QuestionCode from Chekku.SetMapper where ExamCode=@examcode";
+                oString = "Select DISTINCT QuestionCode,SetNum, ItemNumber from Chekku.SetMapper where ExamCode=@examcode order by SetNum, ItemNumber";
                 oCmd = new SqlCommand(oString, myConnection);
                 oCmd.Parameters.AddWithValue("@examcode", examcode);
                 myConnection.Open();
@@ -87,9 +88,30 @@ namespace Chekku
                 {
                     while (oReader.Read())
                     {
-                        ques.Add(oReader["QuestionCode"].ToString());
+                        string qc = oReader["QuestionCode"].ToString();
+                        if (!ques.Contains(qc))
+                        {
+                            ques.Add(qc);
+                        }
                     }
                     myConnection.Close();
+                }
+
+                oString = "Select ExamName from Chekku.Exams where ExamCode=@examcode";
+                oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@examcode", examcode);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        examName = oReader["ExamName"].ToString();
+                    }
+                    myConnection.Close();
+                }
+                foreach (var x in ques)
+                {
+                    Console.WriteLine("OOGABOOGA " + x);
                 }
 
             }
@@ -285,6 +307,7 @@ namespace Chekku
             scoreChart.Series["Students"].Points.AddXY(q1.ToString() + " - " + q2.ToString(), c2);
             scoreChart.Series["Students"].Points.AddXY(q2.ToString() + " - " + q3.ToString(), c3);
             scoreChart.Series["Students"].Points.AddXY(q3.ToString() + " - " + maxItems, c4);
+            scoreChart.ChartAreas[0].AxisY.Interval = 1;
         }
 
 
@@ -332,13 +355,13 @@ namespace Chekku
             q1 = Math.Round(q1,2);
             q2 = Math.Round(q2,2);
             q3 = Math.Round(q3,2);
-            q4 = Math.Round(q4,2);
-            chartNorm.ChartAreas[0].AxisY.Maximum = scores.Rows.Count;
-            chartNorm.Series["Students"].Points.AddXY( q1.ToString(), c1);
-            chartNorm.Series["Students"].Points.AddXY(q1.ToString() + " - " + q2.ToString(), c2);
-            chartNorm.Series["Students"].Points.AddXY(q2.ToString() + " - " + q3.ToString(), c3);
-            chartNorm.Series["Students"].Points.AddXY(q3.ToString() + " - " + maxItems, c4);
-            txtSD.Text = sd.ToString();
+            //q4 = Math.Round(q4,2);
+            //chartNorm.ChartAreas[0].AxisY.Maximum = scores.Rows.Count;
+            //chartNorm.Series["Students"].Points.AddXY( q1.ToString(), c1);
+            //chartNorm.Series["Students"].Points.AddXY(q1.ToString() + " - " + q2.ToString(), c2);
+            //chartNorm.Series["Students"].Points.AddXY(q2.ToString() + " - " + q3.ToString(), c3);
+            //chartNorm.Series["Students"].Points.AddXY(q3.ToString() + " - " + maxItems, c4);
+            //txtSD.Text = sd.ToString();
         }
 
         private void BtnExport_Click(object sender, EventArgs e)
@@ -357,7 +380,7 @@ namespace Chekku
             doc.Add(new Paragraph("Subject Code: " + sub + "\n" + "Term: " + term + "\n" + "Year: " + year));
             doc.Add(new Paragraph("Section: " + sect));
             doc.Add(new Paragraph("Exam Code: " + examcode));
-            doc.Add(new Paragraph("Exam Name: WAIT LANG DI KO PA NAGAGAWA"));
+            doc.Add(new Paragraph("Exam Name: " + examName));
             Paragraph x = new Paragraph("Table of Scores\n\n");
             x.Alignment = Element.ALIGN_CENTER;
             doc.Add(x);
@@ -394,10 +417,11 @@ namespace Chekku
                     table.AddCell(cell);
                 }
             }
+            
+            doc.Add(table);
             Paragraph x2 = new Paragraph("\n\nExam Summary");
             x2.Alignment = Element.ALIGN_CENTER;
             doc.Add(x2);
-            doc.Add(table);
             doc.Add(new Paragraph("\nNo. of Students: " + scores.Rows.Count));
             doc.Add(new Paragraph("Average Score: " + txtMean.Text));
             doc.Add(new Paragraph("No. of Passing (70% above): " + passed70.ToString()));
@@ -430,6 +454,7 @@ namespace Chekku
             pScores.Visible = false;
         }
         int chartState = 1;
+
         private void loadFOE()
         {
             final.Clear();
@@ -461,7 +486,6 @@ namespace Chekku
                                 Console.WriteLine("Number: " + i + " Mistakes: " + oReader["Mistakes"].ToString());
                             }
                             myConnection.Close();
-
                         }
                     }
                     final.Add(n);
@@ -473,6 +497,9 @@ namespace Chekku
                 }
                 chartFOE.Series["Mistakes"].ChartType = SeriesChartType.Bar;
                 chartFOE.ChartAreas[0].AxisX.Title = "Item Number";
+                chartFOE.ChartAreas[0].AxisY.Title = "Number of Mistakes";
+                chartFOE.ChartAreas[0].AxisX.Interval = 1;
+                chartFOE.ChartAreas[0].AxisY.Interval = 1;
                 chartFOE.ChartAreas[0].AxisX.Maximum = maxItems + 1;
                 chartFOE.ChartAreas[0].AxisY.Maximum = final.Max();
                 int num = 1;
@@ -523,6 +550,9 @@ namespace Chekku
                 }
                 chartFOE.Series["Mistakes"].ChartType = SeriesChartType.Bar;
                 chartFOE.ChartAreas[0].AxisX.Title = "Item Number";
+                chartFOE.ChartAreas[0].AxisY.Title = "Number of Mistakes";
+                chartFOE.ChartAreas[0].AxisX.Interval = 1;
+                chartFOE.ChartAreas[0].AxisY.Interval = 1;
                 chartFOE.ChartAreas[0].AxisX.Maximum = maxItems + 1;
                 chartFOE.ChartAreas[0].AxisY.Maximum = final.Max();
                 int num = maxItems;
@@ -610,6 +640,9 @@ namespace Chekku
                 }
                 chartFOE.Series["Mistakes"].ChartType = SeriesChartType.Bar;
                 chartFOE.ChartAreas[0].AxisX.Title = "Item Number";
+                chartFOE.ChartAreas[0].AxisY.Title = "Number of Mistakes";
+                chartFOE.ChartAreas[0].AxisX.Interval = 1;
+                chartFOE.ChartAreas[0].AxisY.Interval = 1;
                 chartFOE.ChartAreas[0].AxisX.Maximum = maxItems + 1;
                 chartFOE.ChartAreas[0].AxisY.Maximum = final.Max();
                 int num = 1;
@@ -665,6 +698,9 @@ namespace Chekku
                 }
                 chartFOE.Series["Mistakes"].ChartType = SeriesChartType.Bar;
                 chartFOE.ChartAreas[0].AxisX.Title = "Item Number";
+                chartFOE.ChartAreas[0].AxisY.Title = "Number of Mistakes";
+                chartFOE.ChartAreas[0].AxisX.Interval = 1;
+                chartFOE.ChartAreas[0].AxisY.Interval = 1;
                 chartFOE.ChartAreas[0].AxisX.Maximum = maxItems + 1;
                 chartFOE.ChartAreas[0].AxisY.Maximum = final.Max();
                 int num = 1;

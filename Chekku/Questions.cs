@@ -390,6 +390,8 @@ namespace Chekku
                 btnExport.Enabled = true;
                 toggleEdit = 1;
             }
+            refreshView();
+            SelectFirst();
         }
         //else
         //{

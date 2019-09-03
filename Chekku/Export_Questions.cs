@@ -284,7 +284,7 @@ namespace Chekku
                 Console.WriteLine("Step 6");
                 SelectFirst();
             }
-            lblNumber.Text = Items.Count.ToString();
+            lblNum.Text = Items.Count.ToString();
             Search2();
         }
 
@@ -343,7 +343,7 @@ namespace Chekku
                 Search();
                 SelectFirst();
             }
-            lblNumber.Text = Items.Count.ToString();
+            lblNum.Text = Items.Count.ToString();
         }
 
         private void RemoveItem()
@@ -620,15 +620,46 @@ namespace Chekku
                 }
             }
         }
+
+
+        private void fillItems()
+        {
+            using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
+            {
+                string oString = "Select DISTINCT QuestionCode from Chekku.ExamItems where ExamCode=@examcode";
+                SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                oCmd.Parameters.AddWithValue("@examcode", examCode);
+                myConnection.Open();
+                using (SqlDataReader oReader = oCmd.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        Items.Add(new Question(oReader["QuestionCode"].ToString(), ""));
+                    }
+                    myConnection.Close();
+                }
+            }
+        }
         private void BtnExport_Click(object sender, EventArgs e)
         {
             if(!(Items.Count == 0))
             {
+                foreach (var x in Items)
+                {
+                    Console.WriteLine("BEFORE: " + x.Qcode);
+                }
+                Items.Clear();
+
+                fillItems();
+                foreach (var x in Items)
+                {
+                    Console.WriteLine("AFTER: " + x.Qcode);
+                }
                 GetFileName a = new GetFileName();
                 a.ShowDialog();
                 a.Hide();
                 string filename = a.filename;
-                string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Export Question Banks/";
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Export Question Banks/" + filename;
                 a.Dispose();
                 if (!filename.Equals("cancelled"))
                 {
@@ -727,7 +758,7 @@ namespace Chekku
                     Search();
                     SelectFirst();
                 }
-                lblNumber.Text = Items.Count.ToString();
+                lblNum.Text = Items.Count.ToString();
             }
         }
         private string imgtobase64(string path)
