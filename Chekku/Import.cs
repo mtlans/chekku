@@ -61,11 +61,27 @@ namespace Chekku
                     {
                         imgloc = imgdir + "/" + x.Number.ToString() + ".jpg";
                     }
-                    AddQuestion add = new AddQuestion(x.Quest, x.Answer, x.choice1, x.choice2, x.choice3, x.img, x.base6);
-                    add.ShowDialog();
-                    add.Hide();
-                    added = added + add.added;
-                    add.Dispose();
+                    if(hasTags == 1)
+                    {
+
+                        AddQuestion add = new AddQuestion(x.Quest, x.Answer, x.choice1, x.choice2, x.choice3, x.img, x.base6, x.TL);
+
+                        add.ShowDialog();
+                        add.Hide();
+                        added = added + add.added;
+                        add.Dispose();
+                    }
+                    else if(hasTags == 0)
+                    {
+
+                        AddQuestion add = new AddQuestion(x.Quest, x.Answer, x.choice1, x.choice2, x.choice3, x.img, x.base6);
+
+                        add.ShowDialog();
+                        add.Hide();
+                        added = added + add.added;
+                        add.Dispose();
+
+                    }
                 }
                 MessageBox.Show("Successfully imported " + added + " questions.", "Import Success.", MessageBoxButtons.OK);
                 Form frm = new Questions();
@@ -74,9 +90,19 @@ namespace Chekku
             }
         }
 
-
+        int hasTags = 0;
         private void GetImports(string path)
         {
+            DialogResult dr = MessageBox.Show("Would you like to import the tags?", "Import tags", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                hasTags = 1;
+                Console.WriteLine("Hastags = " + hasTags);
+            }
+            else
+            {
+                hasTags = 0;
+            }
             using (var f = new StreamReader(path))
             {
                 string line = string.Empty;
@@ -84,7 +110,7 @@ namespace Chekku
                 {
                     //public Question(string q, string a, string c1, string c2, string c3, int hI)
                     var parts = line.Split(new string[] { "@@@" }, StringSplitOptions.None);
-                    Imports.Add(new Question(Convert.ToInt32(parts[0]), parts[1], parts[2], parts[3], parts[4], parts[5], Convert.ToInt32(parts[6]), parts[7]));
+                    Imports.Add(new Question(Convert.ToInt32(parts[0]), parts[1], parts[2], parts[3], parts[4], parts[5],parts[6], Convert.ToInt32(parts[7]), parts[8]));
                 }
             }
         }
@@ -127,6 +153,7 @@ namespace Chekku
         {
             int extractor = 1;
             int setnum = 1;
+            
             using (var f = new StreamReader(path))
             {
                 string line = string.Empty;

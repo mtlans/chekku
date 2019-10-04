@@ -835,9 +835,9 @@ namespace Chekku
             Paragraph x2 = new Paragraph("\nAsia Pacific College");
             x2.Alignment = Element.ALIGN_CENTER;
             doc.Add(x2);
-            x2 = new Paragraph("School of Engineering");
+            x2 = new Paragraph("School of Engineering"); x2.Alignment = Element.ALIGN_CENTER;
             doc.Add(x2);
-            x2 = new Paragraph(examname);
+            x2 = new Paragraph(examname ); x2.Alignment = Element.ALIGN_CENTER;
             doc.Add(x2);
             string setLetter = "";
             if(SetNum == 1)
@@ -856,9 +856,9 @@ namespace Chekku
             {
                 setLetter = "D";
             }
-            x2 = new Paragraph(lblSub.Text);
+            x2 = new Paragraph(lblSub.Text); x2.Alignment = Element.ALIGN_CENTER;
             doc.Add(x2);
-            x2 = new Paragraph("Set " + setLetter);
+            x2 = new Paragraph("Set " + setLetter + "\n\n"); x2.Alignment = Element.ALIGN_CENTER;
             doc.Add(x2);
             System.Drawing.Image i = null;
             //main loop
@@ -1115,9 +1115,26 @@ namespace Chekku
             PdfWriter writer = PdfWriter.GetInstance(doc, fs);
             doc.Open();
             int i = 1;
+            string setLetter = "";
             foreach (var x in finalanswerkey)
             {
-                doc.Add(new Paragraph("Set " + i + ": " + x));
+                if (i == 1)
+                {
+                    setLetter = "A";
+                }
+                else if (i == 2)
+                {
+                    setLetter = "B";
+                }
+                else if (i == 3)
+                {
+                    setLetter = "C";
+                }
+                else if (i == 4)
+                {
+                    setLetter = "D";
+                }
+                doc.Add(new Paragraph("Set " + setLetter + ": " + x));
                 i++;
             }
             doc.Close();

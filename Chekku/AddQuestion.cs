@@ -25,6 +25,34 @@ namespace Chekku
             btnAddImp.Visible = false;
         }
 
+        public AddQuestion(string q, string a, string c1, string c2, string c3, int hI, string base64, string tg)
+        {
+            InitializeComponent();
+            code = generateQuestionCode();
+            txtQuestion.Text = q;
+            txtAnswer.Text = a;
+            txtCh1.Text = c1;
+            txtCh2.Text = c2;
+            txtCh3.Text = c3;
+            hasImage = hI;
+            txtTags.Text = tg;
+            isImported = true;
+            if (hI == 1)
+            {
+                LoadImage(base64);
+                origfile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Chekku/Question Images/TEMP.jpg";
+                File.WriteAllBytes(origfile, Convert.FromBase64String(base64));
+                //pbImage.Image = Image.FromFile(path);
+                //origfile = path;
+            }
+            btnEditPic.Visible = false;
+            btnRemoveImg.Visible = false;
+            btnSkip.Visible = true;
+            btnAddImp.Visible = true;
+            btnAdd.Visible = false;
+            btnCancel.Visible = false;
+        }
+
         public AddQuestion(string q, string a, string c1, string c2, string c3, int hI, string base64)
         {
             InitializeComponent();
@@ -385,10 +413,12 @@ namespace Chekku
                         }
                     }
                 }
+
+                
                 if (!isImported)
                 {
-                    MessageBox.Show("Question is now added!");
-                    Form ques = new Questions();
+                    MessageBox.Show("Question is now added!", "Question added", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Form ques = new AddQuestion();
                     ques.Show();
                     this.Close();
                 }

@@ -235,38 +235,54 @@ namespace Chekku
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            if (!String.IsNullOrWhiteSpace(txtCode.Text))
+            DialogResult dr = MessageBox.Show("Are you sure to delete the subject?", "Delete Subject", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.No)
             {
-                using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
-                {
-                    using (SqlCommand sqlCommand = new SqlCommand("Chekku.deleteSubject", connection))
-                    {
-                        sqlCommand.CommandType = CommandType.StoredProcedure;
 
-                        sqlCommand.Parameters.Add(new SqlParameter("@SubjectID", SqlDbType.VarChar, 50));
-                        sqlCommand.Parameters["@SubjectID"].Value = Oldid;
-                        try
-                        {
-                            connection.Open();
-                            sqlCommand.ExecuteNonQuery();
-                            MessageBox.Show("Subject is now deleted!");
-                        }
-                        catch
-                        {
-                            MessageBox.Show("Error deleting subject.");
-                        }
-                        finally
-                        {
-                            connection.Close();
-                        }
-                    }
-                }
-                
-                refreshView();
             }
             else
             {
-                MessageBox.Show("Please select a subject to delete.");
+                if (!String.IsNullOrWhiteSpace(txtCode.Text))
+                {
+                    using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
+                    {
+                        using (SqlCommand sqlCommand = new SqlCommand("Chekku.deleteSubject", connection))
+                        {
+                            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                            sqlCommand.Parameters.Add(new SqlParameter("@SubjectID", SqlDbType.VarChar, 50));
+                            sqlCommand.Parameters["@SubjectID"].Value = Oldid;
+                            try
+                            {
+                                connection.Open();
+                                sqlCommand.ExecuteNonQuery();
+                                string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku/Subjects/" + txtCode.Text + " " + txtYear.Text + " T" + txtTerm.Text;
+                                Console.WriteLine("Path = " + path);
+                                if (Directory.Exists(path))
+                                {
+                                    Directory.Delete(path);
+                                }
+                                MessageBox.Show("Subject is now deleted!");
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Error deleting subject.");
+                            }
+                            finally
+                            {
+                                connection.Close();
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a subject to delete.");
+                }
+                refreshView();
+
+
+
             }
 
         }

@@ -420,31 +420,39 @@ namespace Chekku
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
+            DialogResult dr = MessageBox.Show("Are you sure to delete the section?", "Delete Section", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.No)
             {
-                using (SqlCommand sqlCommand = new SqlCommand("Chekku.deleteSection", connection))
+
+            }
+            else
+            {
+                using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
                 {
-                    sqlCommand.CommandType = CommandType.StoredProcedure;
-                    getSubID();
-                    sqlCommand.Parameters.Add(new SqlParameter("@SubjectID", SqlDbType.VarChar, 8000));
-                    sqlCommand.Parameters["@SubjectID"].Value = id;
+                    using (SqlCommand sqlCommand = new SqlCommand("Chekku.deleteSection", connection))
+                    {
+                        sqlCommand.CommandType = CommandType.StoredProcedure;
+                        getSubID();
+                        sqlCommand.Parameters.Add(new SqlParameter("@SubjectID", SqlDbType.VarChar, 8000));
+                        sqlCommand.Parameters["@SubjectID"].Value = id;
 
-                    sqlCommand.Parameters.Add(new SqlParameter("@SectionName", SqlDbType.VarChar, 8000));
-                    sqlCommand.Parameters["@SectionName"].Value = txtSection.Text;
+                        sqlCommand.Parameters.Add(new SqlParameter("@SectionName", SqlDbType.VarChar, 8000));
+                        sqlCommand.Parameters["@SectionName"].Value = txtSection.Text;
 
-                    try
-                    {
-                        connection.Open();
-                        sqlCommand.ExecuteNonQuery();
-                        MessageBox.Show("Section is now deleted!");
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Error deleting section.");
-                    }
-                    finally
-                    {
-                        connection.Close();
+                        try
+                        {
+                            connection.Open();
+                            sqlCommand.ExecuteNonQuery();
+                            MessageBox.Show("Section is now deleted!");
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Error deleting section.");
+                        }
+                        finally
+                        {
+                            connection.Close();
+                        }
                     }
                 }
             }

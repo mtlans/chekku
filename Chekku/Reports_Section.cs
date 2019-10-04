@@ -187,40 +187,16 @@ namespace Chekku
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
+            DialogResult dr = MessageBox.Show("Are you sure to delete the report?", "Delete Report", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.No)
             {
-                using (SqlCommand sqlCommand = new SqlCommand("Chekku.DeleteReport", connection))
-                {
-                    sqlCommand.CommandType = CommandType.StoredProcedure;
-                    sqlCommand.Parameters.Add(new SqlParameter("@ExamCode", SqlDbType.VarChar, 8000));
-                    sqlCommand.Parameters["@ExamCode"].Value = examCode;
 
-                    try
-                    {
-                        connection.Open();
-                        sqlCommand.ExecuteNonQuery();
-
-                        MessageBox.Show("Report is now deleted!");
-                        loadReports();
-                        SelectFirst();
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Error deleting report.");
-                    }
-                    finally
-                    {
-                        connection.Close();
-                    }
-                }
             }
-
-            DialogResult dr = MessageBox.Show("Confirm deletion of exam?\nThis will also delete the saved pdf, answer keys, and reports.", "Confirm Deletion", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-            if (dr == DialogResult.OK)
+            else
             {
                 using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
                 {
-                    using (SqlCommand sqlCommand = new SqlCommand("Chekku.deleteExam", connection))
+                    using (SqlCommand sqlCommand = new SqlCommand("Chekku.DeleteReport", connection))
                     {
                         sqlCommand.CommandType = CommandType.StoredProcedure;
                         sqlCommand.Parameters.Add(new SqlParameter("@ExamCode", SqlDbType.VarChar, 8000));
@@ -230,12 +206,14 @@ namespace Chekku
                         {
                             connection.Open();
                             sqlCommand.ExecuteNonQuery();
-                                deleteFile(examCode);
-                            MessageBox.Show("Files have now been deleted.");
+
+                            MessageBox.Show("Report is now deleted!");
+                            loadReports();
+                            SelectFirst();
                         }
                         catch
                         {
-                            MessageBox.Show("Error deleting exam.");
+                            MessageBox.Show("Error deleting report.");
                         }
                         finally
                         {

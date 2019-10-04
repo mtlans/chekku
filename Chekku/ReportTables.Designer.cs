@@ -643,10 +643,10 @@
             this.btnSortMis.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.btnSortMis.IdleForecolor = System.Drawing.Color.White;
             this.btnSortMis.IdleLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.btnSortMis.Location = new System.Drawing.Point(787, 198);
+            this.btnSortMis.Location = new System.Drawing.Point(763, 121);
             this.btnSortMis.Margin = new System.Windows.Forms.Padding(5);
             this.btnSortMis.Name = "btnSortMis";
-            this.btnSortMis.Size = new System.Drawing.Size(130, 59);
+            this.btnSortMis.Size = new System.Drawing.Size(153, 47);
             this.btnSortMis.TabIndex = 64;
             this.btnSortMis.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnSortMis.Click += new System.EventHandler(this.BtnSortMis_Click);
@@ -669,10 +669,10 @@
             this.btnSortNum.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
             this.btnSortNum.IdleForecolor = System.Drawing.Color.White;
             this.btnSortNum.IdleLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(169)))), ((int)(((byte)(156)))));
-            this.btnSortNum.Location = new System.Drawing.Point(787, 129);
+            this.btnSortNum.Location = new System.Drawing.Point(762, 69);
             this.btnSortNum.Margin = new System.Windows.Forms.Padding(5);
             this.btnSortNum.Name = "btnSortNum";
-            this.btnSortNum.Size = new System.Drawing.Size(130, 59);
+            this.btnSortNum.Size = new System.Drawing.Size(153, 47);
             this.btnSortNum.TabIndex = 63;
             this.btnSortNum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnSortNum.Click += new System.EventHandler(this.BtnSortNum_Click);
@@ -690,7 +690,7 @@
             this.chartFOE.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
             this.chartFOE.Legends.Add(legend2);
-            this.chartFOE.Location = new System.Drawing.Point(22, 17);
+            this.chartFOE.Location = new System.Drawing.Point(6, 8);
             this.chartFOE.Name = "chartFOE";
             this.chartFOE.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             this.chartFOE.PaletteCustomColors = new System.Drawing.Color[] {
@@ -701,7 +701,7 @@
             series2.Legend = "Legend1";
             series2.Name = "Mistakes";
             this.chartFOE.Series.Add(series2);
-            this.chartFOE.Size = new System.Drawing.Size(752, 525);
+            this.chartFOE.Size = new System.Drawing.Size(749, 541);
             this.chartFOE.TabIndex = 0;
             this.chartFOE.Text = "2";
             title2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -713,7 +713,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1140, 607);
+            this.ClientSize = new System.Drawing.Size(1158, 607);
             this.Controls.Add(this.pIA);
             this.Controls.Add(this.pScores);
             this.Controls.Add(this.panel1);

@@ -455,37 +455,45 @@ namespace Chekku
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
+            DialogResult dr = MessageBox.Show("Are you sure to delete the question?", "Delete Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.No)
             {
-                using (SqlCommand sqlCommand = new SqlCommand("Chekku.deleteQuestion", connection))
+
+            }
+            else
+            {
+                using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
                 {
-                    sqlCommand.CommandType = CommandType.StoredProcedure;
-                    sqlCommand.Parameters.Add(new SqlParameter("@QuestionCode", SqlDbType.VarChar, 8000));
-                    sqlCommand.Parameters["@QuestionCode"].Value = qcode;
-
-                    try
+                    using (SqlCommand sqlCommand = new SqlCommand("Chekku.deleteQuestion", connection))
                     {
-                        connection.Open();
-                        sqlCommand.ExecuteNonQuery();
+                        sqlCommand.CommandType = CommandType.StoredProcedure;
+                        sqlCommand.Parameters.Add(new SqlParameter("@QuestionCode", SqlDbType.VarChar, 8000));
+                        sqlCommand.Parameters["@QuestionCode"].Value = qcode;
 
-                        string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Chekku/Question Images";
-                        string imgname = qcode + ".jpg";
-                        string pathstring = System.IO.Path.Combine(path, imgname);
-                        if (File.Exists(pathstring))
+                        try
                         {
-                            System.IO.File.Delete(pathstring);
+                            connection.Open();
+                            sqlCommand.ExecuteNonQuery();
+
+                            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Chekku/Question Images";
+                            string imgname = qcode + ".jpg";
+                            string pathstring = System.IO.Path.Combine(path, imgname);
+                            if (File.Exists(pathstring))
+                            {
+                                System.IO.File.Delete(pathstring);
+                            }
+                            MessageBox.Show("Question is now deleted!");
+                            refreshView();
+                            SelectFirst();
                         }
-                        MessageBox.Show("Question is now deleted!");
-                        refreshView();
-                        SelectFirst();
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Error deleting question.");
-                    }
-                    finally
-                    {
-                        connection.Close();
+                        catch
+                        {
+                            MessageBox.Show("Error deleting question.");
+                        }
+                        finally
+                        {
+                            connection.Close();
+                        }
                     }
                 }
             }

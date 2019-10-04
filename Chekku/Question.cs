@@ -13,7 +13,7 @@
         private int hasImg = 0;
         private int mistakes = 0;
         private int setNum = 1;
-
+        private string tagline = "";
         public Question(string code, string q)
         {
             qcode = code;
@@ -34,7 +34,7 @@
         }
 
 
-        public Question(int n, string q, string a, string c1, string c2, string c3, int hI, string base6)
+        public Question(int n, string q, string a, string c1, string c2, string c3, string tg, int hI, string base6)
         {
             question = q;
             answer = a;
@@ -44,6 +44,7 @@
             hasImg = hI;
             itemNumber = n;
             base64 = base6;
+            tagline = tg;
         }
 
         
@@ -53,7 +54,11 @@
             get { return qcode; }
             set { qcode = value; }
         }
-
+        public string TL
+        {
+            get { return tagline; }
+            set { tagline = value; }
+        }
         public string Quest
         {
             get { return question; }

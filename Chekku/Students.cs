@@ -81,33 +81,50 @@ namespace Chekku
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
+            DialogResult dr = MessageBox.Show("Are you sure to delete the students?", "Delete Student", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.No)
             {
-                using (SqlCommand sqlCommand = new SqlCommand("Chekku.deleteStudent", connection))
-                {
-                    sqlCommand.CommandType = CommandType.StoredProcedure;
 
-                    sqlCommand.Parameters.Add(new SqlParameter("@StudentNo", SqlDbType.VarChar, 8000));
-                    sqlCommand.Parameters["@StudentNo"].Value = txtID.Text;
-                    try
+            }
+            else
+            {
+                if (!String.IsNullOrWhiteSpace(txtName.Text))
+                {
+
+                    using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
                     {
-                        connection.Open();
-                        sqlCommand.ExecuteNonQuery();
-                        MessageBox.Show("Student is now deleted!");
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Error deleting student.");
-                    }
-                    finally
-                    {
-                        connection.Close();
+                        using (SqlCommand sqlCommand = new SqlCommand("Chekku.deleteStudent", connection))
+                        {
+                            sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                            sqlCommand.Parameters.Add(new SqlParameter("@StudentNo", SqlDbType.VarChar, 8000));
+                            sqlCommand.Parameters["@StudentNo"].Value = txtID.Text;
+                            try
+                            {
+                                connection.Open();
+                                sqlCommand.ExecuteNonQuery();
+                                MessageBox.Show("Student is now deleted!");
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Error deleting student.");
+                            }
+                            finally
+                            {
+                                connection.Close();
+                            }
+                        }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Please select a student to delete.", "Delete Student", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
             }
             refreshView();
+            SelectFirst();
             dgvViewStudents.CurrentCell = null;
-            ResetFields();
         }
 
         private void ResetFields()
@@ -147,9 +164,9 @@ namespace Chekku
                 btnDelete.Enabled = true;
                 btnSave.Visible = false;
                 toggleEdit = 1;
+                refreshView();
+                SelectFirst();
             }
-            refreshView();
-            SelectFirst();
         }
 
         private void btnSaveChanges_Click(object sender, EventArgs e)

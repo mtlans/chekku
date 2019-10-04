@@ -640,6 +640,7 @@ namespace Chekku
                 }
             }
         }
+        int hasTags = 0;
         private void BtnExport_Click(object sender, EventArgs e)
         {
             if(!(Items.Count == 0))
@@ -649,7 +650,7 @@ namespace Chekku
                     Console.WriteLine("BEFORE: " + x.Qcode);
                 }
                 Items.Clear();
-
+               
                 fillItems();
                 foreach (var x in Items)
                 {
@@ -682,7 +683,7 @@ namespace Chekku
                 int num = 1;
                 foreach (var question in Items)
                 {
-                    string que = "", answer = "", ch1 = "", ch2 = "", ch3 = "", img64 ="";
+                    string que = "", answer = "", ch1 = "", ch2 = "", ch3 = "", img64 ="", tagline ="";
                     int hasImg = 0;
                     List<string> line = new List<string>();
                     using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
@@ -724,12 +725,28 @@ namespace Chekku
                             myConnection.Close();
                         }
                     }
+                    using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
+                    {
+                        string oString = "Select * from Chekku.QTagString where QuestionCode=@Code";
+                        SqlCommand oCmd = new SqlCommand(oString, myConnection);
+                        oCmd.Parameters.AddWithValue("@Code", question.Qcode);
+                        myConnection.Open();
+                        using (SqlDataReader oReader = oCmd.ExecuteReader())
+                        {
+                            while (oReader.Read())
+                            {
+                                tagline = oReader["Tagline"].ToString();
+                            }
+                            myConnection.Close();
+                        }
+                    }
                     line.Add(num.ToString());
                     line.Add(que);
                     line.Add(answer);
                     line.Add(ch1);
                     line.Add(ch2);
                     line.Add(ch3);
+                    line.Add(tagline);
                     line.Add(hasImg.ToString());
                     line.Add(img64);
                     var toWrite = string.Join(delimiter, line.ToArray());

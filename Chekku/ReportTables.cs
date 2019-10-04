@@ -718,5 +718,94 @@ namespace Chekku
         {
             loadFOE();
         }
+
+        //private void fillDifficultQuestions()
+        //{
+        //    foreach (var x in ques)
+        //    {
+        //        using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
+        //        {
+        //            string oString = "Select * from Chekku.Subjects where QuestionCode=@ques";
+        //            SqlCommand oCmd = new SqlCommand(oString, myConnection);
+        //            oCmd.Parameters.AddWithValue("@ques", x);
+        //            myConnection.Open();
+        //            using (SqlDataReader oReader = oCmd.ExecuteReader())
+        //            {
+        //                while (oReader.Read())
+        //                {
+        //                    sub = oReader["SubjectCode"].ToString();
+        //                    term = oReader["Term"].ToString();
+        //                    year = oReader["SchoolYear"].ToString();
+        //                }
+        //                myConnection.Close();
+        //            }
+
+        //            this.dgvView.Columns[1].Visible = false;
+        //        }
+        //    }
+        //}
+        //public void FillContent(string Code)
+        //{
+        //    int hasImg;
+        //    using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
+        //    {
+        //        string oString = "Select * from Chekku.Questions where QuestionCode=@Code";
+        //        SqlCommand oCmd = new SqlCommand(oString, myConnection);
+        //        oCmd.Parameters.AddWithValue("@Code", Code);
+        //        myConnection.Open();
+        //        using (SqlDataReader oReader = oCmd.ExecuteReader())
+        //        {
+        //            while (oReader.Read())
+        //            {
+        //                txtQuestion.Text = oReader["Question"].ToString();
+        //                txtAnswer.Text = oReader["Answer"].ToString();
+        //                txtCh1.Text = oReader["Choice1"].ToString();
+        //                txtCh2.Text = oReader["Choice2"].ToString();
+        //                txtCh3.Text = oReader["Choice3"].ToString();
+        //                hasImg = Convert.ToInt32(oReader["hasImage"]);
+        //                if (hasImg == 1)
+        //                {
+        //                    byte[] picArr = (byte[])oReader["Image"];
+        //                    MemoryStream ms = new MemoryStream(picArr);
+        //                    ms.Seek(0, SeekOrigin.Begin);
+        //                    pbImage.Image = Image.FromStream(ms);
+        //                    Console.WriteLine("Image size: Height: " + pbImage.Image.Height.ToString() + " Width: " + pbImage.Image.Width.ToString());
+        //                    lblImg.Visible = true;
+        //                }
+        //                else
+        //                {
+        //                    lblImg.Visible = false;
+        //                    pbImage.Image = null;
+        //                }
+        //            }
+
+        //            myConnection.Close();
+        //        }
+        //        string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Chekku/Question Images";
+        //        string imgname = qcode + ".jpg";
+        //        pathstring = System.IO.Path.Combine(path, imgname);
+        //        //lblimg.Text = pathstring;
+        //        origfile = pathstring;
+        //    }
+
+        //    using (SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
+        //    {
+        //        string oString = "Select * from Chekku.QTagString where QuestionCode=@Code";
+        //        SqlCommand oCmd = new SqlCommand(oString, myConnection);
+        //        oCmd.Parameters.AddWithValue("@Code", Code);
+        //        myConnection.Open();
+        //        using (SqlDataReader oReader = oCmd.ExecuteReader())
+        //        {
+        //            while (oReader.Read())
+        //            {
+        //                txtTags.Text = oReader["Tagline"].ToString();
+        //            }
+        //            myConnection.Close();
+        //        }
+        //    }
+        //    //lblQcode.Text = Code;
+        //    qcode = Code;
+        //}
+
     }
 }

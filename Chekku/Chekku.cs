@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Chekku
@@ -9,6 +12,23 @@ namespace Chekku
         public Chekku()
         {
             InitializeComponent();
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + "/Chekku";
+            string checkPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/Chekku";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            if (!Directory.Exists(checkPath))
+            {
+                Directory.CreateDirectory(checkPath);
+                Console.WriteLine("Pumasok DITO!!!");
+                Reset();
+            }
+            string locationToSavePdf = Path.Combine(path, "Answer Sheet.pdf");  // select other location if you want
+            if (!File.Exists(locationToSavePdf))
+            {
+                File.WriteAllBytes(locationToSavePdf, Properties.Resources.AnswerSheet);    // write the file from the resources to the location you want
+            }
         }
 
         private void BtnExams_Click(object sender, EventArgs e)
@@ -88,6 +108,32 @@ namespace Chekku
             Form frm = new Test_SQLITE();
             frm.Show();
             this.Hide();
+        }
+
+        private void Reset()
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ChekkuConnectionString))
+            {
+                using (SqlCommand sqlCommand = new SqlCommand("Chekku.ResetAll", connection))
+                {
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                    try
+                    {
+                        connection.Open();
+                        sqlCommand.ExecuteNonQuery();
+                        MessageBox.Show("Successful deletion");
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Error deleting subject.");
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
         }
     }
 }
